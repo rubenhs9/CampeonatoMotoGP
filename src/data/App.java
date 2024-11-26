@@ -11,11 +11,11 @@ import java.util.List;
  */
 public class App {
     private String nombre;
-    
+    private Campeonato campeonato2024;
 
     public App(String nombre) {
         this.nombre = nombre;
-        Campeonato campeonato2024 = new Campeonato(nombre);
+        campeonato2024 = new Campeonato(nombre);
         datosPrueba(campeonato2024);
         datosPruebaCircuito(campeonato2024);
         campeonato2024.mostrarCircuitos();
@@ -26,7 +26,7 @@ public class App {
     public void datosPrueba(Campeonato campeonato){
         // Ducati Lenovo Team
         Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", "Italia");
-        Moto moto1 = new Moto("63", "Ducati", "Desmosedici GP24");
+        Moto moto1 = new Moto("1", "Ducati", "Desmosedici GP24");
         Moto moto2 = new Moto("23", "Ducati", "Desmosedici GP24");
         Piloto piloto1 = new Piloto("Francesco Bagnaia", "Italia", "Ducati Lenovo Team", 0, moto1);
         Piloto piloto2 = new Piloto("Enea Bastianini", "Italia", "Ducati Lenovo Team", 0, moto2);
@@ -71,9 +71,9 @@ public class App {
 
         // Gresini Racing MotoGP
         Escuderia escuderia6 = new Escuderia("Gresini Racing MotoGP", "Italia");
-        Moto moto11 = new Moto("10", "Ducati", "Desmosedici GP24");
-        Moto moto12 = new Moto("49", "Ducati", "Desmosedici GP24");
-        Piloto piloto11 = new Piloto("Fabio Di Giannantonio", "Italia", "Gresini Racing MotoGP", 0, moto11);
+        Moto moto11 = new Moto("93", "Ducati", "Desmosedici GP24");
+        Moto moto12 = new Moto("73", "Ducati", "Desmosedici GP24");
+        Piloto piloto11 = new Piloto("Marc Márquez", "Italia", "Gresini Racing MotoGP", 0, moto11);
         Piloto piloto12 = new Piloto("Álex Márquez", "España", "Gresini Racing MotoGP", 0, moto12);
         escuderia6.addPilotos(piloto11, piloto12);
         campeonato.addEscuderia(escuderia6);
@@ -81,43 +81,43 @@ public class App {
         // Mooney VR46 Racing Team
         Escuderia escuderia7 = new Escuderia("Mooney VR46 Racing Team", "Italia");
         Moto moto13 = new Moto("72", "Ducati", "Desmosedici GP24");
-        Moto moto14 = new Moto("46", "Ducati", "Desmosedici GP24");
+        Moto moto14 = new Moto("49", "Ducati", "Desmosedici GP24");
         Piloto piloto13 = new Piloto("Marco Bezzecchi", "Italia", "Mooney VR46 Racing Team", 0, moto13);
-        Piloto piloto14 = new Piloto("Luca Marini", "Italia", "Mooney VR46 Racing Team", 0, moto14);
+        Piloto piloto14 = new Piloto("Fabio Di Giannantonio", "Italia", "Mooney VR46 Racing Team", 0, moto14);
         escuderia7.addPilotos(piloto13, piloto14);
         campeonato.addEscuderia(escuderia7);
 
         // Repsol Honda Team
         Escuderia escuderia8 = new Escuderia("Repsol Honda Team", "Japón");
-        Moto moto15 = new Moto("93", "Honda", "RC213V");
-        Moto moto16 = new Moto("44", "Honda", "RC213V");
-        Piloto piloto15 = new Piloto("Marc Márquez", "España", "Repsol Honda Team", 0, moto15);
+        Moto moto15 = new Moto("10", "Honda", "RC213V");
+        Moto moto16 = new Moto("36", "Honda", "RC213V");
+        Piloto piloto15 = new Piloto("Luca Marini", "España", "Repsol Honda Team", 0, moto15);
         Piloto piloto16 = new Piloto("Joan Mir", "España", "Repsol Honda Team", 0, moto16);
         escuderia8.addPilotos(piloto15, piloto16);
         campeonato.addEscuderia(escuderia8);
 
         // LCR Honda
         Escuderia escuderia9 = new Escuderia("LCR Honda", "Japón");
-        Moto moto17 = new Moto("30", "Honda", "RC213V");
+        Moto moto17 = new Moto("5", "Honda", "RC213V");
         Moto moto18 = new Moto("73", "Honda", "RC213V");
         Piloto piloto17 = new Piloto("Takaaki Nakagami", "Japón", "LCR Honda", 0, moto17);
-        Piloto piloto18 = new Piloto("Álex Márquez", "España", "LCR Honda", 0, moto18);
+        Piloto piloto18 = new Piloto("Johann Zarco", "España", "LCR Honda", 0, moto18);
         escuderia9.addPilotos(piloto17, piloto18);
         campeonato.addEscuderia(escuderia9);
 
         // GasGas Factory Racing Tech3
         Escuderia escuderia10 = new Escuderia("GasGas Factory Racing Tech3", "España");
-        Moto moto19 = new Moto("87", "GasGas", "RC16");
+        Moto moto19 = new Moto("31", "GasGas", "RC16");
         Moto moto20 = new Moto("37", "GasGas", "RC16");
         Piloto piloto19 = new Piloto("Augusto Fernández", "España", "GasGas Factory Racing Tech3", 0, moto19);
-        Piloto piloto20 = new Piloto("Pol Espargaró", "España", "GasGas Factory Racing Tech3", 0, moto20);
+        Piloto piloto20 = new Piloto("Pedro Acosta", "España", "GasGas Factory Racing Tech3", 0, moto20);
         escuderia10.addPilotos(piloto19, piloto20);
         campeonato.addEscuderia(escuderia10);
 
         // RNF MotoGP Team
         Escuderia escuderia11 = new Escuderia("RNF MotoGP Team", "Malasia");
         Moto moto21 = new Moto("25", "Aprilia", "RS-GP");
-        Moto moto22 = new Moto("40", "Aprilia", "RS-GP");
+        Moto moto22 = new Moto("88", "Aprilia", "RS-GP");
         Piloto piloto21 = new Piloto("Raúl Fernández", "España", "RNF MotoGP Team", 0, moto21);
         Piloto piloto22 = new Piloto("Miguel Oliveira", "Portugal", "RNF MotoGP Team", 0, moto22);
         escuderia11.addPilotos(piloto21, piloto22);
@@ -150,7 +150,7 @@ public class App {
     }
 
     private void modoGrafico() {
-        Vpal vpal = new Vpal();
+        Vpal vpal = new Vpal(campeonato2024);
         vpal.setVisible(true);
     }
 }

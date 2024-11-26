@@ -1,6 +1,7 @@
 
 package GUI;
 
+import data.Campeonato;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -14,9 +15,11 @@ public class panelPrincipal extends javax.swing.JPanel {
     private  Vpal vpal;
     private String nombreApp = "PRUEBA";
     private Color colorPrimario = new Color(95, 171, 221); //Color principal de la app, se puede cambiar si no gusta
+    private Campeonato campeonato;
     
-    public panelPrincipal(Vpal vpal) {
+    public panelPrincipal(Vpal vpal, Campeonato campeonato) {
         this.vpal = vpal; 
+        this.campeonato = campeonato;
         this.setLayout(new BorderLayout());
         minitComponents();
     }
@@ -56,7 +59,7 @@ public class panelPrincipal extends javax.swing.JPanel {
 //        panelTextArea.cambiarTamñoLetra(20);
 //        this.add(panelTextArea,BorderLayout.CENTER);
 
-        panelOpciones panelOpciones = new panelOpciones(vpal, this, colorPrimario);
+        panelOpciones panelOpciones = new panelOpciones(vpal, this, colorPrimario, campeonato);
         this.add(panelOpciones);
     }
     

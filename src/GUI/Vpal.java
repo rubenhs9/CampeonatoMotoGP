@@ -1,6 +1,7 @@
 
 package GUI;
 
+import data.Campeonato;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
@@ -8,14 +9,17 @@ import javax.swing.JFrame;
 
 public class Vpal extends javax.swing.JFrame {
 
+    private Campeonato campeonato;
 
-    public Vpal() {
+
+    public Vpal(Campeonato campeonato2024) {
         this.setSize(1280,720);
         this.setMinimumSize(new Dimension(1280,720));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout());
         
+        this.campeonato = campeonato2024;
         
         minitComponents();
     }
@@ -43,7 +47,7 @@ public class Vpal extends javax.swing.JFrame {
 
     private void minitComponents() {
         //Iniciamos el primer panel principal
-        panelPrincipal panelPrincipal = new panelPrincipal(this); 
+        panelPrincipal panelPrincipal = new panelPrincipal(this, campeonato); 
         this.add(panelPrincipal);
     }
    
