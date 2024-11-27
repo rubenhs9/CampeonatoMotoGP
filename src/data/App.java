@@ -2,6 +2,7 @@
 package data;
 
 import GUI.Vpal;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class App {
     
     public void datosPrueba(Campeonato campeonato){
         // Ducati Lenovo Team
-        Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", "Italia");
+        Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", "Italia",".\\res\\imgEscuderias\\Ducati Lenovo Team.png");
         Moto moto1 = new Moto("1", "Ducati", "Desmosedici GP24");
         Moto moto2 = new Moto("23", "Ducati", "Desmosedici GP24");
         Piloto piloto1 = new Piloto("Francesco Bagnaia", "Italia", "Ducati Lenovo Team", 0, moto1);
@@ -34,7 +35,7 @@ public class App {
         campeonato.addEscuderia(escuderia1);
 
         // Red Bull KTM Factory Racing
-        Escuderia escuderia2 = new Escuderia("Red Bull KTM Factory Racing", "Austria");
+        Escuderia escuderia2 = new Escuderia("Red Bull KTM Factory Racing", "Austria",".\\res\\imgEscuderias\\Red Bull KTM Factory Racing.png");
         Moto moto3 = new Moto("33", "KTM", "RC16");
         Moto moto4 = new Moto("43", "KTM", "RC16");
         Piloto piloto3 = new Piloto("Brad Binder", "Sudáfrica", "Red Bull KTM Factory Racing", 0, moto3);
@@ -43,7 +44,7 @@ public class App {
         campeonato.addEscuderia(escuderia2);
 
         // Aprilia Racing
-        Escuderia escuderia3 = new Escuderia("Aprilia Racing", "Italia");
+        Escuderia escuderia3 = new Escuderia("Aprilia Racing", "Italia",".\\res\\imgEscuderias\\Aprilia Racing.png");
         Moto moto5 = new Moto("41", "Aprilia", "RS-GP");
         Moto moto6 = new Moto("12", "Aprilia", "RS-GP");
         Piloto piloto5 = new Piloto("Aleix Espargaró", "España", "Aprilia Racing", 0, moto5);
@@ -52,7 +53,7 @@ public class App {
         campeonato.addEscuderia(escuderia3);
 
         // Prima Pramac Racing
-        Escuderia escuderia4 = new Escuderia("Prima Pramac Racing", "Italia");
+        Escuderia escuderia4 = new Escuderia("Prima Pramac Racing", "Italia",".\\res\\imgEscuderias\\Prima Pramac Racing.png");
         Moto moto7 = new Moto("89", "Ducati", "Desmosedici GP24");
         Moto moto8 = new Moto("21", "Ducati", "Desmosedici GP24");
         Piloto piloto7 = new Piloto("Jorge Martín", "España", "Prima Pramac Racing", 0, moto7);
@@ -61,7 +62,7 @@ public class App {
         campeonato.addEscuderia(escuderia4);
 
         // Monster Energy Yamaha MotoGP
-        Escuderia escuderia5 = new Escuderia("Monster Energy Yamaha MotoGP", "Japón");
+        Escuderia escuderia5 = new Escuderia("Monster Energy Yamaha MotoGP", "Japón",".\\res\\imgEscuderias\\Monster Energy Yamaha MotoGP.png");
         Moto moto9 = new Moto("20", "Yamaha", "YZR-M1");
         Moto moto10 = new Moto("42", "Yamaha", "YZR-M1");
         Piloto piloto9 = new Piloto("Fabio Quartararo", "Francia", "Monster Energy Yamaha MotoGP", 0, moto9);
@@ -70,7 +71,7 @@ public class App {
         campeonato.addEscuderia(escuderia5);
 
         // Gresini Racing MotoGP
-        Escuderia escuderia6 = new Escuderia("Gresini Racing MotoGP", "Italia");
+        Escuderia escuderia6 = new Escuderia("Gresini Racing MotoGP", "Italia",".\\res\\imgEscuderias\\Gresini Racing MotoGP.png");
         Moto moto11 = new Moto("93", "Ducati", "Desmosedici GP24");
         Moto moto12 = new Moto("73", "Ducati", "Desmosedici GP24");
         Piloto piloto11 = new Piloto("Marc Márquez", "Italia", "Gresini Racing MotoGP", 0, moto11);
@@ -79,7 +80,7 @@ public class App {
         campeonato.addEscuderia(escuderia6);
 
         // Mooney VR46 Racing Team
-        Escuderia escuderia7 = new Escuderia("Mooney VR46 Racing Team", "Italia");
+        Escuderia escuderia7 = new Escuderia("Pertamina Enduro Racing Team", "Italia",".\\res\\imgEscuderias\\Pertamina Enduro Racing Team.png");
         Moto moto13 = new Moto("72", "Ducati", "Desmosedici GP24");
         Moto moto14 = new Moto("49", "Ducati", "Desmosedici GP24");
         Piloto piloto13 = new Piloto("Marco Bezzecchi", "Italia", "Mooney VR46 Racing Team", 0, moto13);
@@ -88,7 +89,7 @@ public class App {
         campeonato.addEscuderia(escuderia7);
 
         // Repsol Honda Team
-        Escuderia escuderia8 = new Escuderia("Repsol Honda Team", "Japón");
+        Escuderia escuderia8 = new Escuderia("Repsol Honda Team", "Japón",".\\res\\imgEscuderias\\Repsol Honda Team.png");
         Moto moto15 = new Moto("10", "Honda", "RC213V");
         Moto moto16 = new Moto("36", "Honda", "RC213V");
         Piloto piloto15 = new Piloto("Luca Marini", "España", "Repsol Honda Team", 0, moto15);
@@ -97,7 +98,7 @@ public class App {
         campeonato.addEscuderia(escuderia8);
 
         // LCR Honda
-        Escuderia escuderia9 = new Escuderia("LCR Honda", "Japón");
+        Escuderia escuderia9 = new Escuderia("LCR Honda", "Japón",".\\res\\imgEscuderias\\LCR Honda.png");
         Moto moto17 = new Moto("5", "Honda", "RC213V");
         Moto moto18 = new Moto("73", "Honda", "RC213V");
         Piloto piloto17 = new Piloto("Takaaki Nakagami", "Japón", "LCR Honda", 0, moto17);
@@ -106,7 +107,7 @@ public class App {
         campeonato.addEscuderia(escuderia9);
 
         // GasGas Factory Racing Tech3
-        Escuderia escuderia10 = new Escuderia("GasGas Factory Racing Tech3", "España");
+        Escuderia escuderia10 = new Escuderia("GasGas Factory Racing Tech3", "España",".\\res\\imgEscuderias\\GASGAS Factory Racing Tech3.png");
         Moto moto19 = new Moto("31", "GasGas", "RC16");
         Moto moto20 = new Moto("37", "GasGas", "RC16");
         Piloto piloto19 = new Piloto("Augusto Fernández", "España", "GasGas Factory Racing Tech3", 0, moto19);
@@ -115,7 +116,7 @@ public class App {
         campeonato.addEscuderia(escuderia10);
 
         // RNF MotoGP Team
-        Escuderia escuderia11 = new Escuderia("RNF MotoGP Team", "Malasia");
+        Escuderia escuderia11 = new Escuderia("Trackhouse Racing", "Malasia",".\\res\\imgEscuderias\\Trackhouse Racing.png");
         Moto moto21 = new Moto("25", "Aprilia", "RS-GP");
         Moto moto22 = new Moto("88", "Aprilia", "RS-GP");
         Piloto piloto21 = new Piloto("Raúl Fernández", "España", "RNF MotoGP Team", 0, moto21);

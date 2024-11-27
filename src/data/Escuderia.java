@@ -12,13 +12,15 @@ public class Escuderia {
     
     private String nombre;
     private String Pais;
+    private String rutaImagen;
     private int puntos;
     private Piloto piloto;
     private List<Piloto> pilotos = new ArrayList<>();
 
-    public Escuderia(String nombre, String Pais) {
+    public Escuderia(String nombre, String Pais, String rutaImagen) {
         this.nombre = nombre;
         this.Pais = Pais;
+        this.rutaImagen = rutaImagen;
     }
     
 
@@ -34,6 +36,12 @@ public class Escuderia {
     public String getPais() {
         return Pais;
     }
+
+    public String getImagen() {
+        return rutaImagen;
+    }
+    
+    
 
     public int getPuntos() {
         return puntos;

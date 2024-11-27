@@ -8,9 +8,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -23,6 +25,7 @@ public class panelEscuderias extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
+    private int alturaImg = 150;
     
     public panelEscuderias(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -89,27 +92,48 @@ public class panelEscuderias extends javax.swing.JPanel {
     }
     
     private void minitComponents() {
-        // Crear un panel con FlowLayout centrado
+        
+        //Creamos un panel con FlowLayout centrado
         JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        panelContenido.setBackground(Color.WHITE); // Fondo blanco para contraste
-        this.add(panelContenido, BorderLayout.CENTER); // Agregar al centro del panel principal
+        panelContenido.setBackground(Color.WHITE); 
+        this.add(panelContenido, BorderLayout.CENTER); 
 
         
 
-        // Crear un JLabel cuadrado para cada escudería
+        //Creamos un JLabel cuadrado para cada escudería
         for (Escuderia escuderia : campeonato.getEscuderias()) {
-            JLabel labelEscuderia = new JLabel(escuderia.getNombre(), SwingConstants.CENTER);
-            labelEscuderia.setPreferredSize(new Dimension(100, 100)); // Dimensiones cuadradas
-            labelEscuderia.setOpaque(true); // Permitir fondo coloreado
-            labelEscuderia.setBackground(colorPrimario); // Color primario
-            labelEscuderia.setForeground(Color.WHITE); // Texto en blanco
-            labelEscuderia.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Borde negro
+            JLabel labelEscuderia = new JLabel();
+            labelEscuderia.setPreferredSize(new Dimension(300, alturaImg));
+            labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
+            labelEscuderia.setOpaque(true); 
+            ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
+            labelEscuderia.setBackground(colorPrimario); 
+            labelEscuderia.setForeground(Color.WHITE); 
+            labelEscuderia.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-            // Agregar el label al panel
             panelContenido.add(labelEscuderia);
         }
     }
+    
+    private void ajustarImagenEnLabel(JLabel label, String rutaImagen) {
+        try {
+            //Cargar la imagen desde la ruta
+            ImageIcon iconoOriginal = new ImageIcon(rutaImagen);
+            Image imagenOriginal = iconoOriginal.getImage();
 
+            //Dimensiones fijas del JLabel
+            int alturaLabel = alturaImg; //Altura fija
+            int anchoEscalado = (int) (imagenOriginal.getWidth(null) * ((double) alturaLabel / imagenOriginal.getHeight(null)));
+
+            //Escalamos la imagen al tamaño deseado
+            Image imagenEscalada = imagenOriginal.getScaledInstance(anchoEscalado, alturaLabel, Image.SCALE_SMOOTH);
+
+            label.setIcon(new ImageIcon(imagenEscalada));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar la imagen: " + rutaImagen);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
