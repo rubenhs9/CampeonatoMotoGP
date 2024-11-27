@@ -15,7 +15,9 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 
@@ -93,28 +95,62 @@ public class panelEscuderias extends javax.swing.JPanel {
     }
     
     private void minitComponents() {
-        
-        //Creamos un panel con FlowLayout centrado
-        JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        panelContenido.setBackground(Color.WHITE); 
-        this.add(panelContenido, BorderLayout.CENTER); 
+    //Crear un panel con FlowLayout centrado
+    JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+//    panelContenido.setBackground(Color.WHITE);
 
-        
+    //Agregar un JScrollPane que envuelve al panelContenido
+    JScrollPane scrollPane = new JScrollPane(panelContenido);
+    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPane.setBorder(null);
 
-        //Creamos un JLabel cuadrado para cada escudería
-        for (Escuderia escuderia : campeonato.getEscuderias()) {
-            JLabel labelEscuderia = new JLabel();
-            labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
-            labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
-            labelEscuderia.setOpaque(true); 
-            ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
-            labelEscuderia.setBackground(colorPrimario); 
-            labelEscuderia.setForeground(Color.WHITE); 
-            labelEscuderia.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    //Agregar el JScrollPane al contenedor principal
+    this.add(scrollPane, BorderLayout.CENTER);
 
-            panelContenido.add(labelEscuderia);
-        }
+    //Crear un JLabel para cada escudería
+    for (Escuderia escuderia : campeonato.getEscuderias()) {
+        JLabel labelEscuderia = new JLabel();
+        labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
+        labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
+        labelEscuderia.setOpaque(true);
+        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
+        labelEscuderia.setBackground(colorPrimario);
+        labelEscuderia.setForeground(Color.WHITE);
+        labelEscuderia.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        panelContenido.add(labelEscuderia);
     }
+    
+    //Ajustar el tamaño del panel después de que la ventana sea visible
+    SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
+}
+
+    private void ajustarTamañoPanel(JPanel panelContenido, JScrollPane scrollPane) {
+    // Obtener el ancho real del viewport
+    int anchoDisponible = scrollPane.getViewport().getWidth();
+
+    if (anchoDisponible <= 0) {
+        // Si el ancho no es válido aún, programar un ajuste posterior
+        SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
+        return;
+    }
+
+    // Calcular cuántos elementos caben por fila
+    int elementosPorFila = Math.max(1, (anchoDisponible + 10) / (anchoImg + 10));
+    int filasNecesarias = (int) Math.ceil((double) panelContenido.getComponentCount() / elementosPorFila);
+
+    // Calcular la altura total
+    int alturaTotal = filasNecesarias * (alturaImg + 10);
+
+    // Ajustar las dimensiones preferidas del panel
+    panelContenido.setPreferredSize(new Dimension(anchoDisponible, alturaTotal));
+
+    // Forzar el rediseño y repintado
+    panelContenido.revalidate();
+    panelContenido.repaint();
+}
+
     
     private void ajustarImagenEnLabel(JLabel label, String rutaImagen) {
         try {
