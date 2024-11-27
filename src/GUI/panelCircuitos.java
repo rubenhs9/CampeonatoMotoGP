@@ -1,58 +1,73 @@
 package GUI;
 
 import data.Campeonato;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
+import data.Circuito;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.net.URL;
+import java.util.ArrayList;
+import javax.swing.*;
+
 /**
+ * Clase para mostrar los circuitos como miniaturas.
  *
  * @author Rubén
  */
-public class panelCircuitos extends JPanel{
-    
+public class panelCircuitos extends JPanel {
+
     private Color colorPrimario;
     private JPanel panelPrincipal;
     private JPanel panelOpcionesListados;
+    private ArrayList<String> listaImagenes;
     private Campeonato campeonato;
-    private GridBagConstraints gbc;
-    
+
     public panelCircuitos(JPanel panelPrincipal, panelOpcionesListados panelOpcionesListados, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
         this.panelOpcionesListados = panelOpcionesListados;
-        
+        this.listaImagenes = new ArrayList<>();
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
-        this.setBackground(colorPrimario);
         
+        panelesCircuitos();
         botonVolverAtras();
         
-    }
-    
-    private void tablonCircuitos(){
         
     }
     
-    private void botonVolverAtras(){
-        //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
-        JPanel panelIrHaciaAtras = new JPanel();
-        panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
-        //BOTON PARA VOLVER ATRAS
-        JLabel volverAtras = new JLabel();
+    private void panelesCircuitos(){
+        JPanel panelCircuitos = new JPanel();
+        panelCircuitos.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
+        panelCircuitos.setBackground(colorPrimario);
+        this.add(panelCircuitos, BorderLayout.CENTER);
+        
+        for (Circuito circuitos : campeonato.getCircuitos()) {
+            JLabel j = new JLabel();
+            j.setPreferredSize(new Dimension(300,100));
+            j.setOpaque(true);
+            j.setBackground(Color.RED);
+            j.setText(circuitos.getNombre());
+            panelCircuitos.add(j);
+            
+        }
+        
+    }
+
+    
+    
+    
+
+    private void botonVolverAtras() {
+        JPanel panelIrHaciaAtras = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel volverAtras = new JLabel("VOLVER");
         volverAtras.setBackground(colorPrimario);
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
-        volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
-        volverAtras.setText("VOLVER");
-        volverAtras.addMouseListener(new MouseAdapter(){
+        volverAtras.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        volverAtras.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 25));
+        volverAtras.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelPrincipal.remove(panelCircuitos.this);
@@ -71,6 +86,7 @@ public class panelCircuitos extends JPanel{
                 volverAtras.setBackground(colorPrimario);
             }
         });
+
         panelIrHaciaAtras.add(volverAtras);
         this.add(panelIrHaciaAtras, BorderLayout.NORTH);
     }
