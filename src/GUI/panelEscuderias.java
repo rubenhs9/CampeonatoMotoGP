@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 
 public class panelEscuderias extends javax.swing.JPanel {
@@ -61,6 +62,7 @@ public class panelEscuderias extends javax.swing.JPanel {
 
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
+        JPanel panelInfo = new JPanel(new BorderLayout());
         JPanel panelIrHaciaAtras = new JPanel();
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
@@ -71,7 +73,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
         volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
         volverAtras.setText("VOLVER");
-        volverAtras.addMouseListener(new MouseAdapter(){
+        volverAtras.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelPrincipal.remove(panelEscuderias.this);
@@ -91,7 +93,16 @@ public class panelEscuderias extends javax.swing.JPanel {
             }
         });
         panelIrHaciaAtras.add(volverAtras);
-        this.add(panelIrHaciaAtras, BorderLayout.NORTH);
+        panelInfo.add(panelIrHaciaAtras, BorderLayout.WEST);
+        
+        //CREAMOS EL Label QUE INIDICARA QUE ESTAMOS HACIENDO
+        JLabel labelInfo = new JLabel();
+        labelInfo.setText("SELECCIONA UNA ESCUDERIA                   ");
+        labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
+        labelInfo.setFont(new Font("Arial",Font.BOLD,25));
+        panelInfo.add(labelInfo,BorderLayout.CENTER);
+        
+        this.add(panelInfo, BorderLayout.NORTH);
     }
     
     private void minitComponents() {
@@ -114,10 +125,30 @@ public class panelEscuderias extends javax.swing.JPanel {
         labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
         labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
         labelEscuderia.setOpaque(true);
-        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
+//        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
         labelEscuderia.setBackground(colorPrimario);
         labelEscuderia.setForeground(Color.WHITE);
-        labelEscuderia.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        labelEscuderia.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato, colorPrimario);
+                panelPrincipal.remove(panelEscuderias.this);
+                panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
+                labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                labelEscuderia.setBorder(new LineBorder(Color.RED,3,false));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+            }
+        });
 
         panelContenido.add(labelEscuderia);
     }
