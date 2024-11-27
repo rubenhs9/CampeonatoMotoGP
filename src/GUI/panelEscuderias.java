@@ -2,6 +2,7 @@
 package GUI;
 
 import data.Campeonato;
+import data.Escuderia;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -85,7 +86,25 @@ public class panelEscuderias extends javax.swing.JPanel {
     }
     
     private void minitComponents() {
+        // Crear un panel con FlowLayout centrado
+        JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        panelContenido.setBackground(Color.WHITE); // Fondo blanco para contraste
+        this.add(panelContenido, BorderLayout.CENTER); // Agregar al centro del panel principal
+
         
+
+        // Crear un JLabel cuadrado para cada escudería
+        for (Escuderia escuderia : campeonato.getEscuderias()) {
+            JLabel labelEscuderia = new JLabel(escuderia.getNombre(), SwingConstants.CENTER);
+            labelEscuderia.setPreferredSize(new Dimension(100, 100)); // Dimensiones cuadradas
+            labelEscuderia.setOpaque(true); // Permitir fondo coloreado
+            labelEscuderia.setBackground(colorPrimario); // Color primario
+            labelEscuderia.setForeground(Color.WHITE); // Texto en blanco
+            labelEscuderia.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Borde negro
+
+            // Agregar el label al panel
+            panelContenido.add(labelEscuderia);
+        }
     }
 
 

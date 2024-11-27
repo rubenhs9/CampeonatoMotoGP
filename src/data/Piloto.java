@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package data;
 
-/**
- *
- * @author Rubén
- */
+
 public class Piloto {
     private String nombre;
     private String pais;
@@ -15,14 +9,34 @@ public class Piloto {
     private int puntos;
     private Moto moto;
 
-        public Piloto(String nombre, String pais, String escuderia, int puntos, Moto moto) {
-            this.nombre = nombre;
-            this.pais = pais;
-            this.escuderia = escuderia;
-            this.puntos = puntos;
-            this.moto = moto;
-        }
+    public Piloto(String nombre, String pais, String escuderia, int puntos, Moto moto) {
+        this.nombre = nombre;
+        this.pais = pais;
+        this.escuderia = escuderia;
+        this.puntos = puntos;
+        this.moto = moto;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public String getEscuderia() {
+        return escuderia;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public Moto getMoto() {
+        return moto;
+    }
+    
     @Override
     public String toString() {
         return "Piloto{" + "nombre=" + nombre + ", pais=" + pais + ", escuderia=" + escuderia + ", puntos=" + puntos + ", moto=" + moto + '}';

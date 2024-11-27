@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package data;
 
 import java.util.ArrayList;
@@ -29,6 +26,24 @@ public class Escuderia {
         pilotos.add(piloto3);
         pilotos.add(piloto4);
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getPais() {
+        return Pais;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public List<Piloto> getPilotos() {
+        return pilotos;
+    }
+    
+    
     
     
     
