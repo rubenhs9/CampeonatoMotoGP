@@ -25,7 +25,8 @@ public class panelEscuderias extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
-    private int alturaImg = 150;
+    private int alturaImg = 125;
+    private int anchoImg = 370;
     
     public panelEscuderias(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -103,7 +104,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         //Creamos un JLabel cuadrado para cada escudería
         for (Escuderia escuderia : campeonato.getEscuderias()) {
             JLabel labelEscuderia = new JLabel();
-            labelEscuderia.setPreferredSize(new Dimension(300, alturaImg));
+            labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
             labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
             labelEscuderia.setOpaque(true); 
             ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
