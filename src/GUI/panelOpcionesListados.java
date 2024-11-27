@@ -82,12 +82,12 @@ public class panelOpcionesListados extends javax.swing.JPanel {
         primerBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                panelInfoAlumno panelInfoInstituto = new panelInfoAlumno(panelPrincipal,panelOpciones.this, instituto);
-//                panelPrincipal.remove(panelOpciones.this);
-//                panelPrincipal.add(panelInfoInstituto, BorderLayout.CENTER);
-//                panelPrincipal.revalidate();
-//                panelPrincipal.repaint();
-//                primerBoton.setBackground(colorPrimario);
+                  panelCircuitos panelCircuitos = new panelCircuitos(panelPrincipal, panelOpcionesListados.this, campeonato, colorPrimario);
+                  panelPrincipal.remove(panelOpcionesListados.this);
+                  panelPrincipal.add(panelCircuitos, BorderLayout.CENTER);
+                  panelPrincipal.revalidate();
+                  panelPrincipal.repaint();
+                  primerBoton.setBackground(colorPrimario);
             }
 
             @Override
@@ -154,7 +154,7 @@ public class panelOpcionesListados extends javax.swing.JPanel {
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
         volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
         volverAtras.setText("VOLVER");
-        volverAtras.addMouseListener(new MouseAdapter() {
+        volverAtras.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelPrincipal.remove(panelOpcionesListados.this);
