@@ -21,6 +21,7 @@ public class panelCircuitos extends JPanel {
     private JPanel panelOpcionesListados;
     private ArrayList<String> listaImagenes;
     private Campeonato campeonato;
+    private int alturaImg = 100;
 
     public panelCircuitos(JPanel panelPrincipal, panelOpcionesListados panelOpcionesListados, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -44,16 +45,36 @@ public class panelCircuitos extends JPanel {
         
         for (Circuito circuitos : campeonato.getCircuitos()) {
             JLabel j = new JLabel();
-            j.setPreferredSize(new Dimension(300,100));
+            j.setHorizontalAlignment(SwingConstants.CENTER);
+            j.setPreferredSize(new Dimension(300,alturaImg));
             j.setOpaque(true);
-            j.setBackground(Color.RED);
-            j.setText(circuitos.getNombre());
-            panelCircuitos.add(j);
             
+            ajustarImagenEnLabel(j, circuitos.getImagen());
+            panelCircuitos.add(j);
         }
-        
     }
 
+    
+     private void ajustarImagenEnLabel(JLabel label, String rutaImagen) {
+        try {
+            //Cargar la imagen desde la ruta
+            ImageIcon iconoOriginal = new ImageIcon(rutaImagen);
+            Image imagenOriginal = iconoOriginal.getImage();
+            
+
+            //Dimensiones fijas del JLabel
+            int alturaLabel = alturaImg; //Altura fija
+            int anchoEscalado = (int) (imagenOriginal.getWidth(null) * ((double) alturaLabel / imagenOriginal.getHeight(null)));
+
+            //Escalamos la imagen al tamaño deseado
+            Image imagenEscalada = imagenOriginal.getScaledInstance(anchoEscalado, alturaLabel, Image.SCALE_SMOOTH);
+
+            label.setIcon(new ImageIcon(imagenEscalada));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar la imagen: " + rutaImagen);
+        }
+    }
     
     
     
