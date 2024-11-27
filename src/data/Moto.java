@@ -6,11 +6,13 @@ public class Moto {
     private String numero;
     private String marca;
     private String modelo;
+    private String rutaimagenMoto;
 
-    public Moto(String numero, String marca, String modelo) {
+    public Moto(String numero, String marca, String modelo, String rutaimagenMoto) {
         this.numero = numero;
         this.marca = marca;
         this.modelo = modelo;
+        this.rutaimagenMoto = rutaimagenMoto;
     }
 
     public String getNumero() {
@@ -25,6 +27,11 @@ public class Moto {
         return modelo;
     }
 
+    public String getRutaimagenMoto() {
+        return rutaimagenMoto;
+    }
+
+    
     
     
     

@@ -131,7 +131,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         labelEscuderia.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato, colorPrimario);
+                panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato,escuderia, colorPrimario);
                 panelPrincipal.remove(panelEscuderias.this);
                 panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
                 panelPrincipal.revalidate();
@@ -158,29 +158,29 @@ public class panelEscuderias extends javax.swing.JPanel {
 }
 
     private void ajustarTamañoPanel(JPanel panelContenido, JScrollPane scrollPane) {
-    // Obtener el ancho real del viewport
-    int anchoDisponible = scrollPane.getViewport().getWidth();
+        // Obtener el ancho real del viewport
+        int anchoDisponible = scrollPane.getViewport().getWidth();
 
-    if (anchoDisponible <= 0) {
-        // Si el ancho no es válido aún, programar un ajuste posterior
-        SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
-        return;
+        if (anchoDisponible <= 0) {
+            // Si el ancho no es válido aún, programar un ajuste posterior
+            SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
+            return;
+        }
+
+        // Calcular cuántos elementos caben por fila
+        int elementosPorFila = Math.max(1, (anchoDisponible + 10) / (anchoImg + 10));
+        int filasNecesarias = (int) Math.ceil((double) panelContenido.getComponentCount() / elementosPorFila);
+
+        // Calcular la altura total
+        int alturaTotal = filasNecesarias * (alturaImg + 10);
+
+        // Ajustar las dimensiones preferidas del panel
+        panelContenido.setPreferredSize(new Dimension(anchoDisponible, alturaTotal));
+
+        // Forzar el rediseño y repintado
+        panelContenido.revalidate();
+        panelContenido.repaint();
     }
-
-    // Calcular cuántos elementos caben por fila
-    int elementosPorFila = Math.max(1, (anchoDisponible + 10) / (anchoImg + 10));
-    int filasNecesarias = (int) Math.ceil((double) panelContenido.getComponentCount() / elementosPorFila);
-
-    // Calcular la altura total
-    int alturaTotal = filasNecesarias * (alturaImg + 10);
-
-    // Ajustar las dimensiones preferidas del panel
-    panelContenido.setPreferredSize(new Dimension(anchoDisponible, alturaTotal));
-
-    // Forzar el rediseño y repintado
-    panelContenido.revalidate();
-    panelContenido.repaint();
-}
 
     
     private void ajustarImagenEnLabel(JLabel label, String rutaImagen) {
@@ -188,7 +188,7 @@ public class panelEscuderias extends javax.swing.JPanel {
             //Cargar la imagen desde la ruta
             ImageIcon iconoOriginal = new ImageIcon(rutaImagen);
             Image imagenOriginal = iconoOriginal.getImage();
-
+//
             //Dimensiones fijas del JLabel
             int alturaLabel = alturaImg; //Altura fija
             int anchoEscalado = (int) (imagenOriginal.getWidth(null) * ((double) alturaLabel / imagenOriginal.getHeight(null)));

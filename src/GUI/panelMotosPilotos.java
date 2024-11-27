@@ -2,15 +2,23 @@
 package GUI;
 
 import data.Campeonato;
+import data.Escuderia;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 
@@ -20,11 +28,13 @@ public class panelMotosPilotos extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelEscuderias;
     private Campeonato campeonato;
+    private Escuderia escuderia;
     
-    public panelMotosPilotos(JPanel panelPrincipal, JPanel panelEscuderias, Campeonato campeonato, Color colorPrimario) {
+    public panelMotosPilotos(JPanel panelPrincipal, JPanel panelEscuderias, Campeonato campeonato, Escuderia escuderia, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
         this.panelEscuderias = panelEscuderias;
         this.campeonato = campeonato;
+        this.escuderia = escuderia;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
         
@@ -90,40 +100,138 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         //PILITO Y MOTO DE LA IZQUIERDA
         JPanel panelContenedorIzq = new JPanel();
         panelContenedorIzq.setLayout(new BorderLayout());
-        panelContenedorIzq.setPreferredSize(new Dimension(400,300));
         panelContenedorIzq.setBackground(colorPrimario);
         
-//        //PANEL DONDE ESTARÁ EL PILITO Y LA MOTO
-//        JPanel panelMotoPilotoIzq = new JPanel(new BorderLayout());
-//        //Label piloto
-//        JLabel labelPilotoIzq = new JLabel();
-//        labelPilotoIzq.setBackground(Color.red);
-//        //label moto
-//        JLabel labelMotoIzq = new JLabel();
-//        labelMotoIzq.setBackground(Color.YELLOW);
-//        panelMotoPilotoIzq.add(labelPilotoIzq, BorderLayout.WEST);
-//        panelMotoPilotoIzq.add(labelMotoIzq, BorderLayout.EAST);
-//        
-//        
-//        panelContenedorIzq.add(panelMotoPilotoIzq, BorderLayout.CENTER);
-//        //PANEL DONDE ESTARA LA INFO DEL PILOTO
+        //PANEL DONDE ESTARÁ EL PILITO Y LA MOTO
+        JPanel panelMotoPilotoIzq = new JPanel(new BorderLayout());
+        //Label piloto
+        JLabel labelPilotoIzq = new JLabel();
+        labelPilotoIzq.setOpaque(true);
+        labelPilotoIzq.setPreferredSize(new Dimension(200, 300));
+        labelPilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
+        String rutaImagenPiloto = escuderia.getPilotos().get(0).getRutaImagenPiloto();
+        ajustarImagenEnLabel(labelPilotoIzq,rutaImagenPiloto,300,false);
+        labelPilotoIzq.setBackground(Color.red);
         
+        //label moto
+        JLabel labelMotoIzq = new JLabel();
+        labelMotoIzq.setOpaque(true);
+        labelMotoIzq.setPreferredSize(new Dimension(400, 300));
+        labelMotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
+        String rutaImagenMoto = escuderia.getPilotos().get(0).getMoto().getRutaimagenMoto();
+        ajustarImagenEnLabel(labelMotoIzq,rutaImagenMoto,300,false);
+        labelMotoIzq.setBackground(Color.YELLOW);
+        panelMotoPilotoIzq.add(labelPilotoIzq, BorderLayout.WEST);
+        panelMotoPilotoIzq.add(labelMotoIzq, BorderLayout.EAST);
+        
+        panelContenedorIzq.add(panelMotoPilotoIzq, BorderLayout.CENTER);
+        //PANEL DONDE ESTARA LA INFO DEL PILOTO
+        JPanel panelInfoPilotoIzq = new JPanel(new BorderLayout());
+        panelInfoPilotoIzq.setPreferredSize(new Dimension(400, 100));
+        panelInfoPilotoIzq.setBackground(Color.WHITE);
+        //Jlabel bandera
+        JLabel paisPilotoIzq = new JLabel();
+        panelInfoPilotoIzq.add(paisPilotoIzq,BorderLayout.WEST);
+        //Jlabel nombre Piloto
+        JLabel nombrePilotoIzq = new JLabel();
+        nombrePilotoIzq.setText(escuderia.getPilotos().get(0).getNombre());
+        nombrePilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
+        nombrePilotoIzq.setVerticalAlignment(SwingConstants.CENTER);
+        panelInfoPilotoIzq.add(nombrePilotoIzq,BorderLayout.CENTER);
+        //Jlabel Puntos piloto
+        JLabel puntosPilotoIzq = new JLabel();
+        puntosPilotoIzq.setText("PTS: " + String.valueOf(escuderia.getPilotos().get(0).getPuntos()));
+        puntosPilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
+        puntosPilotoIzq.setVerticalAlignment(SwingConstants.CENTER);
+        panelInfoPilotoIzq.add(puntosPilotoIzq,BorderLayout.EAST);
+        
+        panelContenedorIzq.add(panelInfoPilotoIzq, BorderLayout.SOUTH);
         
         panelContenido.add(panelContenedorIzq, BorderLayout.WEST);
+        
+        
+        
         
         //PILITO Y MOTO DE LA DERECHA
         JPanel panelContenedorDerch = new JPanel();
         panelContenedorDerch.setLayout(new BorderLayout());
         panelContenedorDerch.setBackground(colorPrimario);
         
+        //PANEL DONDE ESTARÁ EL PILITO Y LA MOTO
+        JPanel panelMotoPilotoDerch = new JPanel(new BorderLayout());
+        //Label piloto
+        JLabel labelPilotoDerch = new JLabel();
+        labelPilotoDerch.setOpaque(true);
+        labelPilotoDerch.setPreferredSize(new Dimension(200, 300));
+        labelPilotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
+        String rutaImagenPilotoDerch = escuderia.getPilotos().get(1).getRutaImagenPiloto();
+        ajustarImagenEnLabel(labelPilotoDerch,rutaImagenPilotoDerch,300,false);
+        labelPilotoDerch.setBackground(Color.red);
+        
+        //label moto
+        JLabel labelMotoDerch = new JLabel();
+        labelMotoDerch.setOpaque(true);
+        labelMotoDerch.setPreferredSize(new Dimension(400, 300));
+        labelMotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
+        String rutaImagenMotoDerch = escuderia.getPilotos().get(1).getMoto().getRutaimagenMoto();
+        ajustarImagenEnLabel(labelMotoDerch,rutaImagenMotoDerch,300,true);
+        labelMotoDerch.setBackground(Color.YELLOW);
+        panelMotoPilotoDerch.add(labelPilotoDerch, BorderLayout.EAST);
+        panelMotoPilotoDerch.add(labelMotoDerch, BorderLayout.WEST);
         
         
+        panelContenedorDerch.add(panelMotoPilotoDerch, BorderLayout.CENTER);
+        //PANEL DONDE ESTARA LA INFO DEL PILOTO
+        
+
         
         panelContenido.add(panelContenedorDerch, BorderLayout.EAST);
         
         this.add(panelContenido, BorderLayout.CENTER);
     }
 
+    private void ajustarImagenEnLabel(JLabel label, String rutaImagen, int alturaImg, boolean voltear) {
+    try {
+        // Cargar la imagen desde la ruta
+        ImageIcon iconoOriginal = new ImageIcon(rutaImagen);
+        Image imagenOriginal = iconoOriginal.getImage();
+
+        // Dimensiones deseadas
+        int alturaLabel = alturaImg; // Altura fija
+        int anchoEscalado = (int) (imagenOriginal.getWidth(null) * ((double) alturaLabel / imagenOriginal.getHeight(null)));
+
+        // Crear un BufferedImage escalado
+        BufferedImage bufferedImage = new BufferedImage(anchoEscalado, alturaLabel, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = bufferedImage.createGraphics();
+
+        // Suavizado para una mejor calidad de imagen
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+        if (voltear) {
+            // Configurar el AffineTransform para voltear y escalar
+            AffineTransform transform = new AffineTransform();
+            transform.scale(-1, 1); // Voltear horizontalmente
+            transform.translate(-anchoEscalado, 0); // Ajustar la posición para mantener el tamaño
+            g2d.setTransform(transform); // Aplicar la transformación al contexto gráfico
+        }
+        
+        // Dibujar la imagen (normal o transformada)
+        g2d.drawImage(imagenOriginal, 0, 0, anchoEscalado, alturaLabel, null);
+
+        g2d.dispose();
+
+        // Establecer la imagen resultante en el JLabel
+        label.setIcon(new ImageIcon(bufferedImage));
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar la imagen: " + rutaImagen);
+    }
+}
+
+
+
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
