@@ -33,6 +33,24 @@ public class Campeonato  {
     public void addEscuderia(Escuderia escuderia1) {
         escuderias.add(escuderia1);
     }
+
+    public List<Moto> getMotos() {
+        return motos;
+    }
+
+    public Set<Circuito> getCircuitos() {
+        return circuitos;
+    }
+
+    public List<Escuderia> getEscuderias() {
+        return escuderias;
+    }
+
+    public String getNombreCampeonato() {
+        return nombreCampeonato;
+    }
+    
+    
     
     
 }
