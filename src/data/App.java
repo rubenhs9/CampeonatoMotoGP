@@ -138,7 +138,7 @@ public class App {
         campeonato.addCircutios(new Circuito("Sachsenring", "Alemania", 3.67,".\\res\\imgCircuito\\Sachsenring.png"));
         campeonato.addCircutios(new Circuito("Silverstone Circuit", "Reino Unido", 5.89,".\\res\\imgCircuito\\Silverstone.png"));
         campeonato.addCircutios(new Circuito("Red Bull Ring – Spielberg", "Austria", 4.32,".\\res\\imgCircuito\\Red Bull Ring.png"));
-        campeonato.addCircutios(new Circuito("", "España", 5.08,".\\res\\imgCircuito\\MotorLand Aragon.png"));
+        campeonato.addCircutios(new Circuito("MotorLand Aragón", "España", 5.08,".\\res\\imgCircuito\\MotorLand Aragon.png"));
         campeonato.addCircutios(new Circuito("Pertamina Mandalika International Circuit", "Indonesia", 4.31,".\\res\\imgCircuito\\Pertamina Mandalika International Circuit.png"));
         campeonato.addCircutios(new Circuito("Mobility Resort Motegi", "Japón", 4.80,".\\res\\imgCircuito\\Mobility Resort Motegi.png"));
         campeonato.addCircutios(new Circuito("Phillip Island", "Australia", 4.45,".\\res\\imgCircuito\\Phillip Island.png"));

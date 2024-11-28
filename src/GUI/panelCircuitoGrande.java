@@ -8,12 +8,15 @@ import data.Campeonato;
 import data.Circuito;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,27 +46,105 @@ public class panelCircuitoGrande extends JPanel{
         botonVolverAtras();
     }
     
-    private void mostrarCircuito(){
-        
-        if (circuito == null) {
-        System.err.println("El circuito es nulo. Revisa la inicialización.");
-        return;
-    }
-        JPanel panelContenedor = new JPanel(new BorderLayout());
-        panelContenedor.setBackground(colorPrimario);
-        
-        JLabel labelImagen = new JLabel();
-        labelImagen.setHorizontalAlignment(JLabel.CENTER);
-        
-         // Cargar y ajustar la imagen
-        ImageIcon icono = new ImageIcon(circuito.getImagen());
-        Image imagen = icono.getImage().getScaledInstance(1000, 500, Image.SCALE_SMOOTH); // Ajustar tamaño
-        labelImagen.setIcon(new ImageIcon(imagen));
+   private void mostrarCircuito() {
+    JPanel panelContenedor = new JPanel(new BorderLayout());
+    panelContenedor.setBackground(colorPrimario);
 
-        panelContenedor.add(labelImagen, BorderLayout.CENTER);
+    // Crear el JLabel para la imagen
+    JLabel labelImagen = new JLabel();
+    labelImagen.setHorizontalAlignment(JLabel.CENTER); // Centrar la imagen
+    labelImagen.setVerticalAlignment(JLabel.CENTER);
+    
+    labelImagen.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 0));
 
-        this.add(panelContenedor, BorderLayout.CENTER);
-    }
+    // Definir dimensiones del JLabel
+    int anchoLabel = 700; // Ancho máximo del JLabel
+    int altoLabel = 500;  // Alto máximo del JLabel
+    labelImagen.setPreferredSize(new Dimension(anchoLabel, altoLabel));
+
+    // Cargar la imagen original
+    ImageIcon icono = new ImageIcon(circuito.getImagen());
+    Image imagenOriginal = icono.getImage();
+
+    // Obtener las dimensiones originales de la imagen
+    int anchoOriginal = icono.getIconWidth();
+    int altoOriginal = icono.getIconHeight();
+
+    // Calcular la escala para que la imagen se ajuste sin perder proporciones
+    double escalaX = (double) anchoLabel / anchoOriginal;
+    double escalaY = (double) altoLabel / altoOriginal;
+    
+    // Elegir la menor escala para mantener la proporción sin cortar la imagen
+    double escalaFinal = Math.min(escalaX, escalaY);
+
+    // Calcular el nuevo tamaño basado en la escala
+    int anchoEscalado = (int) (anchoOriginal * escalaFinal);
+    int altoEscalado = (int) (altoOriginal * escalaFinal);
+
+    // Escalar la imagen al tamaño calculado
+    Image imagenEscalada = imagenOriginal.getScaledInstance(anchoEscalado, altoEscalado, Image.SCALE_SMOOTH);
+    labelImagen.setIcon(new ImageIcon(imagenEscalada));
+
+    // Añadir el JLabel de la imagen al contenedor
+    panelContenedor.add(labelImagen, BorderLayout.WEST);
+
+    // Crear el panel derecho para la información
+    JPanel panelInformacion = new JPanel();
+    panelInformacion.setLayout(new BorderLayout());
+    panelInformacion.setBackground(colorPrimario);
+    
+    
+
+
+        panelInformacion.setLayout(new BorderLayout());
+        panelInformacion.setBackground(colorPrimario);
+
+        // LABEL NOMBRE
+        JLabel labelNombre = new JLabel();
+        labelNombre.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
+        labelNombre.setText(circuito.getNombre());
+        labelNombre.setForeground(Color.BLACK);
+        labelNombre.setHorizontalAlignment(JLabel.CENTER);
+
+        // LABEL PAIS
+        JLabel labelPais = new JLabel();
+        labelPais.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
+        labelPais.setText(circuito.getPais());
+        labelPais.setForeground(Color.BLACK);
+        labelPais.setHorizontalAlignment(JLabel.CENTER);
+
+        // LABEL LONGITUD
+        JLabel labelLongitud = new JLabel();
+        labelLongitud.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
+        labelLongitud.setText(circuito.getLongitud() + " km");
+        labelLongitud.setForeground(Color.BLACK);
+        labelLongitud.setHorizontalAlignment(JLabel.CENTER);
+
+        // Crear un panel para contener los JLabels y organizar su disposición
+        JPanel panelTexto = new JPanel();
+        panelTexto.setLayout(new BoxLayout(panelTexto, BoxLayout.Y_AXIS)); // Establecer disposición vertical
+        panelTexto.setBackground(colorPrimario);
+        
+        panelTexto.setBackground(Color.GRAY);
+        
+        panelTexto.add(Box.createVerticalStrut(150));
+        
+        panelTexto.add(labelNombre);
+        panelTexto.add(labelPais);
+        panelTexto.add(labelLongitud);
+        
+        
+
+        // Añadir el panelTexto al centro del panelInformacion
+        panelInformacion.add(panelTexto, BorderLayout.CENTER);
+
+    // Añadir el panel de información al lado derecho
+    panelContenedor.add(panelInformacion, BorderLayout.CENTER);
+
+    // Añadir el panel contenedor al panel principal
+    this.add(panelContenedor, BorderLayout.CENTER);
+}
+
     
     private void botonVolverAtras() {
         JPanel panelIrHaciaAtras = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -72,7 +153,7 @@ public class panelCircuitoGrande extends JPanel{
         volverAtras.setBackground(colorPrimario);
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
-        volverAtras.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        volverAtras.setBorder(BorderFactory.createEmptyBorder(0, -20, 0, 10));
         volverAtras.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 25));
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override

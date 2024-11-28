@@ -30,6 +30,14 @@ public class Circuito implements Comparable<Circuito>{
     public String getImagen() {
         return imagen;
     }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
     
     
     
