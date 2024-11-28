@@ -4,13 +4,13 @@ package data;
 
 public class Piloto {
     private String nombre;
-    private String pais;
+    private Pais pais;
     private String escuderia;
     private int puntos;
     private Moto moto;
     private String rutaImagenPiloto;
 
-    public Piloto(String nombre, String pais, String escuderia, int puntos, Moto moto,String rutaImagenPiloto) {
+    public Piloto(String nombre, Pais pais, String escuderia, int puntos, Moto moto,String rutaImagenPiloto) {
         this.nombre = nombre;
         this.pais = pais;
         this.escuderia = escuderia;
@@ -23,7 +23,7 @@ public class Piloto {
         return nombre;
     }
 
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 

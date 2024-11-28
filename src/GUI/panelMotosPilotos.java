@@ -188,6 +188,8 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         panelInfoPilotoIzq.setBackground(Color.WHITE);
         //Jlabel bandera
         JLabel paisPilotoIzq = new JLabel();
+        String rutaPais = escuderia.getPilotos().get(0).getPais().getRutaImagen();
+        ajustarImagenEnLabel(paisPilotoIzq,rutaPais,100,false);
         panelInfoPilotoIzq.add(paisPilotoIzq,BorderLayout.WEST);
         //Jlabel nombre Piloto
         JLabel nombrePilotoIzq = new JLabel();

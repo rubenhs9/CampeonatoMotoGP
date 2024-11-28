@@ -3,6 +3,7 @@ package GUI;
 
 import data.Campeonato;
 import data.Escuderia;
+import data.Pais;
 import data.Piloto;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,16 +12,20 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 
 public class panelClasificacionPilotos extends javax.swing.JPanel {
@@ -145,7 +150,7 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
             panelClasificacion.add(crearLabelPosicion(String.valueOf(posicion++)), gbc);  // Posición
 
             gbc.gridx = 1;  //País (columna 1)
-            panelClasificacion.add(crearLabel(piloto.getPais()), gbc);
+            panelClasificacion.add(crearLabelPais(piloto.getPais().name()), gbc);
 
             gbc.gridx = 2;  //Nombre (columna 2)
             panelClasificacion.add(crearLabel(piloto.getNombre()), gbc);
@@ -176,11 +181,38 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
     private JLabel crearLabelPosicion(String texto) {
         JLabel label = new JLabel(texto, JLabel.CENTER);
         label.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 20));
-        label.setBorder(new EmptyBorder(5, 10, 5, 10));
-        label.setBackground(new Color(0, 0, 0, 50));  // Fondo semitransparente
+         // Crear el borde superior e inferior con LineBorder
+        LineBorder bordeSuperiorInferior = new LineBorder(Color.BLACK, 2, true);
+        // Crear un borde vacío a los lados izquierdo y derecho (sin borde)
+        EmptyBorder bordeIzquierdaDerecha = new EmptyBorder(5, 10, 5, 10);  // 10px en izquierda y derecha
+        // Combinar el borde superior/inferior con el borde vacío de los lados
+        CompoundBorder compoundBorder = new CompoundBorder(bordeIzquierdaDerecha, bordeSuperiorInferior);
+        label.setBorder(compoundBorder);  // Establecer el borde combinado
+//        label.setBackground(new Color(0, 0, 0, 50));  // Fondo semitransparente
         label.setOpaque(true);
 
         label.setPreferredSize(new java.awt.Dimension(20, label.getPreferredSize().height)); // 50 es el ancho adecuado
+
+        return label;
+    }
+    
+    //METODO PARA CREAR EL LABEL CON EL PAIS
+    private JLabel crearLabelPais(String texto) {
+        JLabel label = new JLabel();
+
+        // Buscar la imagen según el país
+        String rutaImagen = Pais.valueOf(texto).getRutaImagen();
+        ImageIcon iconoPais = new ImageIcon(rutaImagen);
+
+        // Escalar la imagen para que tenga un tamaño adecuado
+        Image imagenEscalada = iconoPais.getImage().getScaledInstance(40, 30, Image.SCALE_SMOOTH);
+        label.setIcon(new ImageIcon(imagenEscalada)); // Establecer la imagen del país
+
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.PLAIN, 16));
+        label.setForeground(Color.BLACK);
+        
 
         return label;
     }
@@ -189,8 +221,14 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
     private JLabel crearLabel(String texto) {
         JLabel label = new JLabel(texto, JLabel.CENTER);
         label.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,20));
-        label.setBorder(new EmptyBorder(5, 10, 5, 10));
-        label.setBackground(new Color(0, 0, 0, 50));  // Fondo semitransparente
+        // Crear el borde superior e inferior con LineBorder
+        LineBorder bordeSuperiorInferior = new LineBorder(Color.BLACK, 2, true);
+        // Crear un borde vacío a los lados izquierdo y derecho (sin borde)
+        EmptyBorder bordeIzquierdaDerecha = new EmptyBorder(5, 10, 5, 10);  // 10px en izquierda y derecha
+        // Combinar el borde superior/inferior con el borde vacío de los lados
+        CompoundBorder compoundBorder = new CompoundBorder(bordeIzquierdaDerecha, bordeSuperiorInferior);
+        label.setBorder(compoundBorder);  // Establecer el borde combinado
+//        label.setBackground(new Color(0, 0, 0, 50));  // Fondo semitransparente
         label.setOpaque(true);
         return label;
     }
