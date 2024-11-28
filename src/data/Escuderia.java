@@ -12,7 +12,7 @@ import java.util.List;
 public class Escuderia {
     
     private String nombre;
-    private String Pais;
+    private Pais Pais;
     private String rutaImagen;
     private int puntos;
     private Piloto piloto;
@@ -20,7 +20,7 @@ public class Escuderia {
     private Color colorPrimario;
     private Color colorSecundario;
 
-    public Escuderia(String nombre, String Pais, String rutaImagen,Color colorPrimario,Color colorSecundario) {
+    public Escuderia(String nombre, Pais Pais, String rutaImagen,Color colorPrimario,Color colorSecundario) {
         this.nombre = nombre;
         this.Pais = Pais;
         this.rutaImagen = rutaImagen;
@@ -28,7 +28,7 @@ public class Escuderia {
         this.colorSecundario = colorSecundario;
     }
     
-    public Escuderia(String nombre, String Pais, String rutaImagen) {
+    public Escuderia(String nombre, Pais Pais, String rutaImagen) {
         this.nombre = nombre;
         this.Pais = Pais;
         this.rutaImagen = rutaImagen;
@@ -44,7 +44,7 @@ public class Escuderia {
         return nombre;
     }
 
-    public String getPais() {
+    public Pais getPais() {
         return Pais;
     }
 
@@ -55,6 +55,7 @@ public class Escuderia {
     
 
     public int getPuntos() {
+        puntos = pilotos.get(0).getPuntos() + pilotos.get(1).getPuntos();
         return puntos;
     }
 

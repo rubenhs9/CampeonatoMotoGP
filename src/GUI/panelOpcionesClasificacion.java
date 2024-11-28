@@ -133,12 +133,12 @@ public class panelOpcionesClasificacion extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                panelEscuderias panelEscuderias = new panelEscuderias(panelPrincipal, panelOpcionesListados.this, campeonato, colorPrimario);
-//                panelPrincipal.remove(panelOpcionesListados.this);
-//                panelPrincipal.add(panelEscuderias, BorderLayout.CENTER);
-//                panelPrincipal.revalidate();
-//                panelPrincipal.repaint();
-//                segundoBoton.setBackground(colorPrimario);
+                panelClasificacionEscuderias panelClasificacionEscuderias = new panelClasificacionEscuderias(panelPrincipal, panelOpcionesClasificacion.this, campeonato, colorPrimario);
+                panelPrincipal.remove(panelOpcionesClasificacion.this);
+                panelPrincipal.add(panelClasificacionEscuderias, BorderLayout.CENTER);
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
+                segundoBoton.setBackground(colorPrimario);
             }
 
             @Override

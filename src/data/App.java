@@ -30,7 +30,7 @@ public class App {
         
         
         // Ducati Lenovo Team
-        Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", "Italia",".\\res\\imgEscuderias\\Ducati Lenovo Team.png",new Color(183,1,5),new Color(53,1,3));
+        Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", Pais.ITALIA,".\\res\\imgEscuderias\\Ducati Lenovo Team.png",new Color(183,1,5),new Color(53,1,3));
         Moto moto1 = new Moto("1", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Ducati Team.png");
         Moto moto2 = new Moto("23", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Ducati Team.png");
         Piloto piloto1 = new Piloto("Francesco Bagnaia", Pais.ITALIA, "Ducati Lenovo Team", generarPuntosAleatorios(), moto1, ".\\res\\imgPilotos\\Francesco Bagnaia.png");
@@ -39,7 +39,7 @@ public class App {
         campeonato.addEscuderia(escuderia1);
 
         // Red Bull KTM Factory Racing
-        Escuderia escuderia2 = new Escuderia("Red Bull KTM Factory Racing", "Austria",".\\res\\imgEscuderias\\Red Bull KTM Factory Racing.png",new Color(36,40,92),new Color(197, 139, 37));
+        Escuderia escuderia2 = new Escuderia("Red Bull KTM Factory Racing", Pais.AUSTRIA,".\\res\\imgEscuderias\\Red Bull KTM Factory Racing.png",new Color(36,40,92),new Color(197, 139, 37));
         Moto moto3 = new Moto("33", "KTM", "RC16", ".\\res\\imgMotos\\Red Bull KTM Factory Racing.png");
         Moto moto4 = new Moto("43", "KTM", "RC16", ".\\res\\imgMotos\\Red Bull KTM Factory Racing.png");
         Piloto piloto3 = new Piloto("Brad Binder", Pais.SUDAFRICA, "Red Bull KTM Factory Racing", generarPuntosAleatorios(), moto3, ".\\res\\imgPilotos\\Brad Binder.png");
@@ -48,7 +48,7 @@ public class App {
         campeonato.addEscuderia(escuderia2);
 
         // Aprilia Racing
-        Escuderia escuderia3 = new Escuderia("Aprilia Racing", "Italia",".\\res\\imgEscuderias\\Aprilia Racing.png",new Color(36,40,92),new Color(142, 31, 31));
+        Escuderia escuderia3 = new Escuderia("Aprilia Racing", Pais.ITALIA,".\\res\\imgEscuderias\\Aprilia Racing.png",new Color(36,40,92),new Color(142, 31, 31));
         Moto moto5 = new Moto("41", "Aprilia", "RS-GP", ".\\res\\imgMotos\\Aprilia-RS-GP-2024.png");
         Moto moto6 = new Moto("12", "Aprilia", "RS-GP", ".\\res\\imgMotos\\Aprilia-RS-GP-2024.png");
         Piloto piloto5 = new Piloto("Aleix Espargaró", Pais.ESPAÑA, "Aprilia Racing", generarPuntosAleatorios(), moto5, ".\\res\\imgPilotos\\Aleix Espargaró.png");
@@ -57,7 +57,7 @@ public class App {
         campeonato.addEscuderia(escuderia3);
 
         // Prima Pramac Racing
-        Escuderia escuderia4 = new Escuderia("Prima Pramac Racing", "Italia",".\\res\\imgEscuderias\\Prima Pramac Racing.png",new Color(152, 57, 196),new Color(142, 31, 31));
+        Escuderia escuderia4 = new Escuderia("Prima Pramac Racing", Pais.ITALIA,".\\res\\imgEscuderias\\Prima Pramac Racing.png",new Color(152, 57, 196),new Color(142, 31, 31));
         Moto moto7 = new Moto("89", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Prima Pramac Racing.png");
         Moto moto8 = new Moto("21", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Prima Pramac Racing.png");
         Piloto piloto7 = new Piloto("Jorge Martín", Pais.ESPAÑA, "Prima Pramac Racing", generarPuntosAleatorios(), moto7, ".\\res\\imgPilotos\\Jorge Martín.png");
@@ -66,7 +66,7 @@ public class App {
         campeonato.addEscuderia(escuderia4);
 
         // Monster Energy Yamaha MotoGP
-        Escuderia escuderia5 = new Escuderia("Monster Energy Yamaha MotoGP", "Japón",".\\res\\imgEscuderias\\Monster Energy Yamaha MotoGP.png",new Color(0,26,119),Color.BLACK);
+        Escuderia escuderia5 = new Escuderia("Monster Energy Yamaha MotoGP", Pais.JAPÓN,".\\res\\imgEscuderias\\Monster Energy Yamaha MotoGP.png",new Color(0,26,119),Color.BLACK);
         Moto moto9 = new Moto("20", "Yamaha", "YZR-M1", ".\\res\\imgMotos\\Yamaha Factory Racing.png");
         Moto moto10 = new Moto("42", "Yamaha", "YZR-M1", ".\\res\\imgMotos\\Yamaha Factory Racing.png");
         Piloto piloto9 = new Piloto("Fabio Quartararo", Pais.FRANCIA, "Monster Energy Yamaha MotoGP", generarPuntosAleatorios(), moto9, ".\\res\\imgPilotos\\Fabio Quartararo.png");
@@ -75,7 +75,7 @@ public class App {
         campeonato.addEscuderia(escuderia5);
 
         // Gresini Racing MotoGP
-        Escuderia escuderia6 = new Escuderia("Gresini Racing MotoGP", "Italia",".\\res\\imgEscuderias\\Gresini Racing MotoGP.png",new Color(164,204,236),new Color(182,96,96));
+        Escuderia escuderia6 = new Escuderia("Gresini Racing MotoGP", Pais.ITALIA,".\\res\\imgEscuderias\\Gresini Racing MotoGP.png",new Color(164,204,236),new Color(182,96,96));
         Moto moto11 = new Moto("93", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Gresini Racing.png");
         Moto moto12 = new Moto("73", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Gresini Racing.png");
         Piloto piloto11 = new Piloto("Marc Márquez", Pais.ESPAÑA, "Gresini Racing MotoGP", generarPuntosAleatorios(), moto11, ".\\res\\imgPilotos\\Marc Márquez.png");
@@ -84,7 +84,7 @@ public class App {
         campeonato.addEscuderia(escuderia6);
 
         // Mooney VR46 Racing Team
-        Escuderia escuderia7 = new Escuderia("Pertamina Enduro Racing Team", "Italia",".\\res\\imgEscuderias\\Pertamina Enduro Racing Team.png",new Color(232,254,67),Color.WHITE);
+        Escuderia escuderia7 = new Escuderia("Pertamina Enduro Racing Team", Pais.ITALIA,".\\res\\imgEscuderias\\Pertamina Enduro Racing Team.png",new Color(232,254,67),Color.WHITE);
         Moto moto13 = new Moto("72", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\VR46 Racing Team.png");
         Moto moto14 = new Moto("49", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\VR46 Racing Team.png");
         Piloto piloto13 = new Piloto("Fabio Di Giannantonio", Pais.ITALIA, "Mooney VR46 Racing Team", generarPuntosAleatorios(), moto13, ".\\res\\imgPilotos\\Fabio Di Giannantonio.png");
@@ -93,7 +93,7 @@ public class App {
         campeonato.addEscuderia(escuderia7);
 
         // Repsol Honda Team
-        Escuderia escuderia8 = new Escuderia("Repsol Honda Team", "Japón",".\\res\\imgEscuderias\\Repsol Honda Team.png",new Color(212,154,45),new Color(193,34,34));
+        Escuderia escuderia8 = new Escuderia("Repsol Honda Team", Pais.JAPÓN,".\\res\\imgEscuderias\\Repsol Honda Team.png",new Color(212,154,45),new Color(193,34,34));
         Moto moto15 = new Moto("10", "Honda", "RC213V", ".\\res\\imgMotos\\Repsol Honda Team.png");
         Moto moto16 = new Moto("36", "Honda", "RC213V", ".\\res\\imgMotos\\Repsol Honda Team.png");
         Piloto piloto15 = new Piloto("Luca Marini", Pais.ESPAÑA, "Repsol Honda Team", generarPuntosAleatorios(), moto15, ".\\res\\imgPilotos\\Luca Marini.png");
@@ -102,7 +102,7 @@ public class App {
         campeonato.addEscuderia(escuderia8);
 
         // LCR Honda
-        Escuderia escuderia9 = new Escuderia("LCR Honda", "Japón",".\\res\\imgEscuderias\\LCR Honda.png",new Color(41,177,14),Color.WHITE);
+        Escuderia escuderia9 = new Escuderia("LCR Honda", Pais.JAPÓN,".\\res\\imgEscuderias\\LCR Honda.png",new Color(41,177,14),Color.WHITE);
         Moto moto17 = new Moto("5", "Honda", "RC213V", ".\\res\\imgMotos\\LCR Honda.png");
         Moto moto18 = new Moto("73", "Honda", "RC213V", ".\\res\\imgMotos\\LCR Honda.png");
         Piloto piloto17 = new Piloto("Takaaki Nakagami", Pais.JAPÓN, "LCR Honda", generarPuntosAleatorios(), moto17, ".\\res\\imgPilotos\\Takaaki Nakagami.png");
@@ -111,7 +111,7 @@ public class App {
         campeonato.addEscuderia(escuderia9);
 
         // GasGas Factory Racing Tech3
-        Escuderia escuderia10 = new Escuderia("GasGas Factory Racing Tech3", "España",".\\res\\imgEscuderias\\GASGAS Factory Racing Tech3.png",new Color(227,75,75),new Color(237,45,113));
+        Escuderia escuderia10 = new Escuderia("GasGas Factory Racing Tech3", Pais.ESPAÑA,".\\res\\imgEscuderias\\GASGAS Factory Racing Tech3.png",new Color(227,75,75),new Color(237,45,113));
         Moto moto19 = new Moto("31", "GasGas", "RC16", ".\\res\\imgMotos\\Tech3 GasGas Factory Racing.png");
         Moto moto20 = new Moto("37", "GasGas", "RC16", ".\\res\\imgMotos\\Tech3 GasGas Factory Racing.png");
         Piloto piloto19 = new Piloto("Augusto Fernández", Pais.ESPAÑA, "GasGas Factory Racing Tech3", generarPuntosAleatorios(), moto19, ".\\res\\imgPilotos\\Augusto Fernández.png");
@@ -120,7 +120,7 @@ public class App {
         campeonato.addEscuderia(escuderia10);
 
         // RNF MotoGP Team
-        Escuderia escuderia11 = new Escuderia("Trackhouse Racing", "Malasia",".\\res\\imgEscuderias\\Trackhouse Racing.png",Color.BLUE,Color.RED);
+        Escuderia escuderia11 = new Escuderia("Trackhouse Racing", Pais.USA,".\\res\\imgEscuderias\\Trackhouse Racing.png",Color.BLUE,Color.RED);
         Moto moto21 = new Moto("25", "Aprilia", "RS-GP", ".\\res\\imgMotos\\Trackhouse Racing.png");
         Moto moto22 = new Moto("88", "Aprilia", "RS-GP", ".\\res\\imgMotos\\Trackhouse Racing.png");
         Piloto piloto21 = new Piloto("Miguel Oliveira", Pais.ESPAÑA, "RNF MotoGP Team", generarPuntosAleatorios(), moto21, ".\\res\\imgPilotos\\Miguel Oliveira.png");
