@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 /**
  * Clase para mostrar los circuitos como miniaturas.
@@ -19,14 +20,13 @@ public class panelCircuitos extends JPanel {
     private Color colorPrimario;
     private JPanel panelPrincipal;
     private JPanel panelOpcionesListados;
-    private ArrayList<String> listaImagenes;
     private Campeonato campeonato;
+    private Circuito circuito;
     private int alturaImg = 100;
 
     public panelCircuitos(JPanel panelPrincipal, panelOpcionesListados panelOpcionesListados, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
         this.panelOpcionesListados = panelOpcionesListados;
-        this.listaImagenes = new ArrayList<>();
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
@@ -38,19 +38,48 @@ public class panelCircuitos extends JPanel {
     }
     
     private void panelesCircuitos(){
-        JPanel panelCircuitos = new JPanel();
-        panelCircuitos.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
-        panelCircuitos.setBackground(colorPrimario);
-        this.add(panelCircuitos, BorderLayout.CENTER);
+        JPanel panelC = new JPanel();
+        panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
+        panelC.setBackground(colorPrimario);
+        this.add(panelC, BorderLayout.CENTER);
         
         for (Circuito circuitos : campeonato.getCircuitos()) {
-            JLabel j = new JLabel();
-            j.setHorizontalAlignment(SwingConstants.CENTER);
-            j.setPreferredSize(new Dimension(300,alturaImg));
-            j.setOpaque(true);
+            JLabel pCircuitos = new JLabel();
+            pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
+            pCircuitos.setPreferredSize(new Dimension(300,alturaImg));
+            pCircuitos.setOpaque(true);
             
-            ajustarImagenEnLabel(j, circuitos.getImagen());
-            panelCircuitos.add(j);
+            ajustarImagenEnLabel(pCircuitos, circuitos.getImagen());
+            
+            pCircuitos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                panelCircuitoGrande panelCircuitoGrande = new panelCircuitoGrande
+                (panelCircuitos.this, 
+                colorPrimario, 
+                panelPrincipal, 
+                campeonato, 
+                circuitos);
+                
+                panelPrincipal.remove(panelCircuitos.this);
+                panelPrincipal.add(panelCircuitoGrande, BorderLayout.CENTER);
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
+                pCircuitos.setBorder(BorderFactory.createEmptyBorder());
+            }
+
+            
+            public void mouseEntered(MouseEvent e) {
+              pCircuitos.setBorder(new LineBorder(Color.RED,3,false));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                pCircuitos.setBorder(BorderFactory.createEmptyBorder());
+            }
+        });
+
+            panelC.add(pCircuitos);
         }
     }
 
