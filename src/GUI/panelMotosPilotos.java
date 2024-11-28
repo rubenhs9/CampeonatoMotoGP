@@ -32,7 +32,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
     private Campeonato campeonato;
     private Escuderia escuderia;
     
-    private int tamFuente = 40;
+    private int tamFuente = 34;
     private int imagenAlto = 200; 
     
     public panelMotosPilotos(JPanel panelPrincipal, JPanel panelEscuderias, Campeonato campeonato, Escuderia escuderia, Color colorPrimario) {
@@ -200,7 +200,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         panelInfoPilotoIzq.add(nombrePilotoIzq,BorderLayout.CENTER);
         //Jlabel Puntos piloto
         JLabel puntosPilotoIzq = new JLabel();
-        puntosPilotoIzq.setText("PTS: " + String.valueOf(escuderia.getPilotos().get(0).getPuntos()));
+        puntosPilotoIzq.setText("PTS: " + String.valueOf(escuderia.getPilotos().get(0).getPuntos()) + " ");
         puntosPilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
         puntosPilotoIzq.setVerticalAlignment(SwingConstants.CENTER);
         puntosPilotoIzq.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,tamFuente));
@@ -253,6 +253,8 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         panelInfoPilotoDerch.setBackground(Color.WHITE);
         //Jlabel bandera
         JLabel paisPilotoDerch = new JLabel();
+        String rutaPaisDerch = escuderia.getPilotos().get(1).getPais().getRutaImagen();
+        ajustarImagenEnLabel(paisPilotoDerch,rutaPaisDerch,100,false);
         panelInfoPilotoDerch.add(paisPilotoDerch,BorderLayout.EAST);
         //Jlabel nombre Piloto
         JLabel nombrePilotoDerch = new JLabel();
@@ -263,7 +265,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         panelInfoPilotoDerch.add(nombrePilotoDerch,BorderLayout.CENTER);
         //Jlabel Puntos piloto
         JLabel puntosPilotoDerch = new JLabel();
-        puntosPilotoDerch.setText("PTS: " + String.valueOf(escuderia.getPilotos().get(1).getPuntos()));
+        puntosPilotoDerch.setText(" PTS: " + String.valueOf(escuderia.getPilotos().get(1).getPuntos()));
         puntosPilotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
         puntosPilotoDerch.setVerticalAlignment(SwingConstants.CENTER);
         puntosPilotoDerch.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,tamFuente));
