@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -31,6 +33,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
     private Escuderia escuderia;
     
     private int tamFuente = 40;
+    private int imagenAlto = 200; 
     
     public panelMotosPilotos(JPanel panelPrincipal, JPanel panelEscuderias, Campeonato campeonato, Escuderia escuderia, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -43,7 +46,54 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         botonVolverAtras();
         minitComponents();
     }
+    
+    private void dibujarFondo(Graphics g) {
+        super.paintComponent(g);  // Asegúrate de llamar a esto primero
 
+        // Crear un objeto Graphics2D para trabajar con gráficos avanzados
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Definir los colores del gradiente
+        Color color1 = escuderia.getColorPrimario();
+        Color color2 = escuderia.getColorSecundario();
+
+        // Crear el gradiente de arriba a abajo
+        GradientPaint gradiente = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
+
+        // Establecer el gradiente como pintura
+        g2d.setPaint(gradiente);
+
+        // Dibujar el rectángulo de fondo con el gradiente
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        if (escuderia.getImagen() != null) {
+            ImageIcon icon = new ImageIcon(escuderia.getImagen());
+            Image img = icon.getImage();
+
+            // Obtener el ancho y alto original de la imagen
+            int imgAnchoOriginal = img.getWidth(this);
+            int imgAltoOriginal = img.getHeight(this);
+
+            // Calcular el ancho en función del alto deseado, manteniendo la relación de aspecto
+            int nuevoAlto = imagenAlto;  // Alto que deseas que tenga la imagen
+            int nuevoAncho = (int) ((double) imgAnchoOriginal * nuevoAlto / imgAltoOriginal);
+
+            // Calcular las coordenadas para centrar la imagen
+            int x = (getWidth() - nuevoAncho) / 2;
+            int y = (getHeight() - nuevoAlto) / 2;
+
+            // Dibuja la imagen centrada con el nuevo tamaño calculado
+            g.drawImage(img, x, y, nuevoAncho, nuevoAlto, this);
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);  // Llama al método original de paintComponent
+        dibujarFondo(g);  // Dibuja el fondo
+    }
+
+    
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
@@ -98,17 +148,21 @@ public class panelMotosPilotos extends javax.swing.JPanel {
     private void minitComponents() {
         JPanel panelContenido = new JPanel();
         panelContenido.setLayout(new BorderLayout());
-        
+        panelContenido.setOpaque(false);
         //PILITO Y MOTO DE LA IZQUIERDA
         JPanel panelContenedorIzq = new JPanel();
         panelContenedorIzq.setLayout(new BorderLayout());
         panelContenedorIzq.setBackground(colorPrimario);
+        panelContenedorIzq.setOpaque(false);
         
         //PANEL DONDE ESTARÁ EL PILITO Y LA MOTO
         JPanel panelMotoPilotoIzq = new JPanel(new BorderLayout());
+        panelMotoPilotoIzq.setOpaque(true); 
+        Color colorTransparente = new Color(0, 0, 0, 128);  //Color negro con 50% de transparencia
+        panelMotoPilotoIzq.setBackground(colorTransparente);
         //Label piloto
         JLabel labelPilotoIzq = new JLabel();
-        labelPilotoIzq.setOpaque(true);
+        labelPilotoIzq.setOpaque(false);
         labelPilotoIzq.setPreferredSize(new Dimension(200, 300));
         labelPilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
         String rutaImagenPiloto = escuderia.getPilotos().get(0).getRutaImagenPiloto();
@@ -116,7 +170,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         labelPilotoIzq.setBackground(Color.red);
         //label moto
         JLabel labelMotoIzq = new JLabel();
-        labelMotoIzq.setOpaque(true);
+        labelMotoIzq.setOpaque(false);
         labelMotoIzq.setPreferredSize(new Dimension(400, 300));
         labelMotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
         String rutaImagenMoto = escuderia.getPilotos().get(0).getMoto().getRutaimagenMoto();
@@ -161,12 +215,15 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         JPanel panelContenedorDerch = new JPanel();
         panelContenedorDerch.setLayout(new BorderLayout());
         panelContenedorDerch.setBackground(colorPrimario);
+        panelContenedorDerch.setOpaque(false);
         
         //PANEL DONDE ESTARÁ EL PILITO Y LA MOTO
         JPanel panelMotoPilotoDerch = new JPanel(new BorderLayout());
+        panelMotoPilotoDerch.setOpaque(true); 
+        panelMotoPilotoDerch.setBackground(colorTransparente);
         //Label piloto
         JLabel labelPilotoDerch = new JLabel();
-        labelPilotoDerch.setOpaque(true);
+        labelPilotoDerch.setOpaque(false);
         labelPilotoDerch.setPreferredSize(new Dimension(200, 300));
         labelPilotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
         String rutaImagenPilotoDerch = escuderia.getPilotos().get(1).getRutaImagenPiloto();
@@ -175,7 +232,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         
         //label moto
         JLabel labelMotoDerch = new JLabel();
-        labelMotoDerch.setOpaque(true);
+        labelMotoDerch.setOpaque(false);
         labelMotoDerch.setPreferredSize(new Dimension(400, 300));
         labelMotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
         String rutaImagenMotoDerch = escuderia.getPilotos().get(1).getMoto().getRutaimagenMoto();

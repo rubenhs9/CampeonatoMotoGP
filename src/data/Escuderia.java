@@ -1,6 +1,7 @@
 
 package data;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,17 @@ public class Escuderia {
     private int puntos;
     private Piloto piloto;
     private List<Piloto> pilotos = new ArrayList<>();
+    private Color colorPrimario;
+    private Color colorSecundario;
 
+    public Escuderia(String nombre, String Pais, String rutaImagen,Color colorPrimario,Color colorSecundario) {
+        this.nombre = nombre;
+        this.Pais = Pais;
+        this.rutaImagen = rutaImagen;
+        this.colorPrimario = colorPrimario;
+        this.colorSecundario = colorSecundario;
+    }
+    
     public Escuderia(String nombre, String Pais, String rutaImagen) {
         this.nombre = nombre;
         this.Pais = Pais;
@@ -49,6 +60,14 @@ public class Escuderia {
 
     public List<Piloto> getPilotos() {
         return pilotos;
+    }
+
+    public Color getColorPrimario() {
+        return colorPrimario;
+    }
+
+    public Color getColorSecundario() {
+        return colorSecundario;
     }
     
     
