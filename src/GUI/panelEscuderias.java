@@ -125,7 +125,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
         labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
         labelEscuderia.setOpaque(true);
-//        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
+        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
         labelEscuderia.setBackground(colorPrimario);
         labelEscuderia.setForeground(Color.WHITE);
         labelEscuderia.addMouseListener(new MouseAdapter() {

@@ -30,6 +30,8 @@ public class panelMotosPilotos extends javax.swing.JPanel {
     private Campeonato campeonato;
     private Escuderia escuderia;
     
+    private int tamFuente = 40;
+    
     public panelMotosPilotos(JPanel panelPrincipal, JPanel panelEscuderias, Campeonato campeonato, Escuderia escuderia, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
         this.panelEscuderias = panelEscuderias;
@@ -112,7 +114,6 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         String rutaImagenPiloto = escuderia.getPilotos().get(0).getRutaImagenPiloto();
         ajustarImagenEnLabel(labelPilotoIzq,rutaImagenPiloto,300,false);
         labelPilotoIzq.setBackground(Color.red);
-        
         //label moto
         JLabel labelMotoIzq = new JLabel();
         labelMotoIzq.setOpaque(true);
@@ -125,6 +126,8 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         panelMotoPilotoIzq.add(labelMotoIzq, BorderLayout.EAST);
         
         panelContenedorIzq.add(panelMotoPilotoIzq, BorderLayout.CENTER);
+        
+        
         //PANEL DONDE ESTARA LA INFO DEL PILOTO
         JPanel panelInfoPilotoIzq = new JPanel(new BorderLayout());
         panelInfoPilotoIzq.setPreferredSize(new Dimension(400, 100));
@@ -137,12 +140,14 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         nombrePilotoIzq.setText(escuderia.getPilotos().get(0).getNombre());
         nombrePilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
         nombrePilotoIzq.setVerticalAlignment(SwingConstants.CENTER);
+        nombrePilotoIzq.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,tamFuente));
         panelInfoPilotoIzq.add(nombrePilotoIzq,BorderLayout.CENTER);
         //Jlabel Puntos piloto
         JLabel puntosPilotoIzq = new JLabel();
         puntosPilotoIzq.setText("PTS: " + String.valueOf(escuderia.getPilotos().get(0).getPuntos()));
         puntosPilotoIzq.setHorizontalAlignment(SwingConstants.CENTER);
         puntosPilotoIzq.setVerticalAlignment(SwingConstants.CENTER);
+        puntosPilotoIzq.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,tamFuente));
         panelInfoPilotoIzq.add(puntosPilotoIzq,BorderLayout.EAST);
         
         panelContenedorIzq.add(panelInfoPilotoIzq, BorderLayout.SOUTH);
@@ -181,8 +186,33 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         
         
         panelContenedorDerch.add(panelMotoPilotoDerch, BorderLayout.CENTER);
-        //PANEL DONDE ESTARA LA INFO DEL PILOTO
         
+        
+        //PANEL DONDE ESTARA LA INFO DEL PILOTO
+        JPanel panelInfoPilotoDerch = new JPanel(new BorderLayout());
+        panelInfoPilotoDerch.setPreferredSize(new Dimension(400, 100));
+        panelInfoPilotoDerch.setBackground(Color.WHITE);
+        //Jlabel bandera
+        JLabel paisPilotoDerch = new JLabel();
+        panelInfoPilotoDerch.add(paisPilotoDerch,BorderLayout.EAST);
+        //Jlabel nombre Piloto
+        JLabel nombrePilotoDerch = new JLabel();
+        nombrePilotoDerch.setText(escuderia.getPilotos().get(1).getNombre());
+        nombrePilotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
+        nombrePilotoDerch.setVerticalAlignment(SwingConstants.CENTER);
+        nombrePilotoDerch.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,tamFuente));
+        panelInfoPilotoDerch.add(nombrePilotoDerch,BorderLayout.CENTER);
+        //Jlabel Puntos piloto
+        JLabel puntosPilotoDerch = new JLabel();
+        puntosPilotoDerch.setText("PTS: " + String.valueOf(escuderia.getPilotos().get(1).getPuntos()));
+        puntosPilotoDerch.setHorizontalAlignment(SwingConstants.CENTER);
+        puntosPilotoDerch.setVerticalAlignment(SwingConstants.CENTER);
+        puntosPilotoDerch.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,tamFuente));
+        panelInfoPilotoDerch.add(puntosPilotoDerch,BorderLayout.WEST);
+        
+        panelContenedorDerch.add(panelInfoPilotoDerch, BorderLayout.SOUTH);
+        
+        panelContenido.add(panelContenedorIzq, BorderLayout.WEST);
 
         
         panelContenido.add(panelContenedorDerch, BorderLayout.EAST);
