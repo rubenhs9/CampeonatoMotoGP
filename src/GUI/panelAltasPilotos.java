@@ -3,6 +3,7 @@ package GUI;
 
 import data.Campeonato;
 import data.Escuderia;
+import data.Piloto;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,10 +12,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -23,43 +25,31 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 
-public class panelEscuderias extends javax.swing.JPanel {
+public class panelAltasPilotos extends javax.swing.JPanel {
 
     private Color colorPrimario;
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
+    private Escuderia escuderiaSeleccionada;
+    
     private int alturaImg = 125;
     private int anchoImg = 370;
     
-    public panelEscuderias(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
+    private List<Piloto> pilotosSeleccionados = new ArrayList<Piloto>();
+    
+    
+    public panelAltasPilotos(JPanel panelPrincipal, JPanel panelAnterior, Campeonato campeonato, Escuderia escuderia,Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
-        this.panelOpciones = panelOpciones;
+        this.panelOpciones = panelAnterior;
         this.campeonato = campeonato;
+        this.escuderiaSeleccionada = escuderia;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
-        
-        
+
         botonVolverAtras();
         minitComponents();
     }
-
-    
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
 
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
@@ -77,7 +67,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelPrincipal.remove(panelEscuderias.this);
+                panelPrincipal.remove(panelAltasPilotos.this);
                 panelPrincipal.add(panelOpciones);
                 panelPrincipal.repaint();
                 panelPrincipal.revalidate();
@@ -98,7 +88,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         
         //CREAMOS EL Label QUE INIDICARA QUE ESTAMOS HACIENDO
         JLabel labelInfo = new JLabel();
-        labelInfo.setText("SELECCIONA UNA ESCUDERIA                   ");
+        labelInfo.setText("SELECCIONA LOS DOS POLITOS DE ESTA ESCUDERIA                   ");
         labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
         labelInfo.setFont(new Font("Arial",Font.BOLD,25));
         panelInfo.add(labelInfo,BorderLayout.CENTER);
@@ -106,62 +96,78 @@ public class panelEscuderias extends javax.swing.JPanel {
         this.add(panelInfo, BorderLayout.NORTH);
     }
     
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
     private void minitComponents() {
-    //Crear un panel con FlowLayout centrado
-    JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-//    panelContenido.setBackground(Color.WHITE);
+        //Crear un panel con FlowLayout centrado
+        JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+    //    panelContenido.setBackground(Color.WHITE);
 
-    //Agregar un JScrollPane que envuelve al panelContenido
-    JScrollPane scrollPane = new JScrollPane(panelContenido);
-    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    scrollPane.setBorder(null);
+        //Agregar un JScrollPane que envuelve al panelContenido
+        JScrollPane scrollPane = new JScrollPane(panelContenido);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-    //Agregar el JScrollPane al contenedor principal
-    this.add(scrollPane, BorderLayout.CENTER);
+        //Agregar el JScrollPane al contenedor principal
+        this.add(scrollPane, BorderLayout.CENTER);
 
-    //Crear un JLabel para cada escudería
-    for (Escuderia escuderia : campeonato.getEscuderias()) {
-        JLabel labelEscuderia = new JLabel();
-        labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
-        labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
-        labelEscuderia.setOpaque(true);
-        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
-        labelEscuderia.setBackground(colorPrimario);
-        labelEscuderia.setForeground(Color.WHITE);
-        labelEscuderia.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (escuderia.getPilotos().size() == 2) {
-                   panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato,escuderia, colorPrimario);
-                    panelPrincipal.remove(panelEscuderias.this);
-                    panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
-                    panelPrincipal.revalidate();
-                    panelPrincipal.repaint();
-                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder()); 
-                }else{
-                    JOptionPane.showMessageDialog(panelOpciones, "NO HAY 2 PILOTOS EN ESTE EQUIPO, AÑADELOS DESDE LAS ALTAS", "ERROR", 0);
+        //Crear un JLabel para cada escudería
+        for (Piloto piloto : campeonato.getPilotos()) {
+            JLabel labelEscuderia = new JLabel();
+            labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
+            labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
+            labelEscuderia.setOpaque(true);
+            ajustarImagenEnLabel(labelEscuderia, piloto.getRutaImagenPiloto());
+            labelEscuderia.setBackground(colorPrimario);
+            labelEscuderia.setForeground(Color.WHITE);
+            labelEscuderia.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    pilotosSeleccionados.add(piloto);
+                    for (Piloto pilotosSeleccionado : pilotosSeleccionados) {
+                        System.out.println("" + pilotosSeleccionado);
+                    }
+//                    panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato,escuderia, colorPrimario);
+//                    panelPrincipal.remove(panelEscuderias.this);
+//                    panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
+//                    panelPrincipal.revalidate();
+//                    panelPrincipal.repaint();
+//                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
                 }
-                
-            }
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                labelEscuderia.setBorder(new LineBorder(Color.RED,3,false));
-            }
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    labelEscuderia.setBorder(new LineBorder(Color.RED,3,false));
+                }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
-            }
-        });
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+                }
+            });
 
-        panelContenido.add(labelEscuderia);
+            panelContenido.add(labelEscuderia);
+        }
+
+        //Ajustar el tamaño del panel después de que la ventana sea visible
+        SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
     }
-    
-    //Ajustar el tamaño del panel después de que la ventana sea visible
-    SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
-}
 
     private void ajustarTamañoPanel(JPanel panelContenido, JScrollPane scrollPane) {
         // Obtener el ancho real del viewport

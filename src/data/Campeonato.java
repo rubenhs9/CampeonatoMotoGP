@@ -13,7 +13,7 @@ import java.util.TreeSet;
 
 public class Campeonato  {
     private List<Moto> motos = new ArrayList<>();
-    
+    private List<Piloto> pilotos = new ArrayList<>();
     private Set<Circuito> circuitos = new TreeSet<>();
     private List<Escuderia> escuderias = new ArrayList<>();
     
@@ -61,6 +61,17 @@ public class Campeonato  {
     public List<Moto> getMotos() {
         return motos;
     }
+
+    public void addPilotos(Piloto piloto1, Piloto piloto2) {
+        pilotos.add(piloto1);
+        pilotos.add(piloto1);
+    }
+
+    public List<Piloto> getPilotos() {
+        return pilotos;
+    }
+    
+    
 
     public Set<Circuito> getCircuitos() {
         return circuitos;
