@@ -39,6 +39,10 @@ public class Escuderia {
         pilotos.add(piloto3);
         pilotos.add(piloto4);
     }
+    
+    public void addPiloto(Piloto piloto3) {
+        pilotos.add(piloto3);
+    }
 
     public String getNombre() {
         return nombre;

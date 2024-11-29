@@ -136,6 +136,7 @@ public class App {
         Piloto piloto21 = new Piloto("Miguel Oliveira", Pais.ESPAÑA, "RNF MotoGP Team", generarPuntosAleatorios(), moto21, ".\\res\\imgPilotos\\Miguel Oliveira.png");
         Piloto piloto22 = new Piloto("Raúl Fernández", Pais.PORTUGAL, "RNF MotoGP Team", generarPuntosAleatorios(), moto22, ".\\res\\imgPilotos\\Raúl Fernández.png");
 //        escuderia11.addPilotos(piloto21, piloto22);
+        campeonato.addEscuderia(escuderia11);
         campeonato.addPilotos(piloto21, piloto22);
     }
     

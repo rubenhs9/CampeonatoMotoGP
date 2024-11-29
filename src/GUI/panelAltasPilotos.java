@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -29,7 +30,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
 
     private Color colorPrimario;
     private JPanel panelPrincipal;
-    private JPanel panelOpciones;
+    private JPanel panelAnterior;
     private Campeonato campeonato;
     private Escuderia escuderiaSeleccionada;
     
@@ -41,7 +42,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
     
     public panelAltasPilotos(JPanel panelPrincipal, JPanel panelAnterior, Campeonato campeonato, Escuderia escuderia,Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
-        this.panelOpciones = panelAnterior;
+        this.panelAnterior = panelAnterior;
         this.campeonato = campeonato;
         this.escuderiaSeleccionada = escuderia;
         this.colorPrimario = colorPrimario;
@@ -68,7 +69,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 panelPrincipal.remove(panelAltasPilotos.this);
-                panelPrincipal.add(panelOpciones);
+                panelPrincipal.add(panelAnterior);
                 panelPrincipal.repaint();
                 panelPrincipal.revalidate();
             }
@@ -88,7 +89,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         
         //CREAMOS EL Label QUE INIDICARA QUE ESTAMOS HACIENDO
         JLabel labelInfo = new JLabel();
-        labelInfo.setText("SELECCIONA LOS DOS POLITOS DE ESTA ESCUDERIA                   ");
+        labelInfo.setText("SELECCIONA LOS DOS PILOTOS DE ESTA ESCUDERIA                   ");
         labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
         labelInfo.setFont(new Font("Arial",Font.BOLD,25));
         panelInfo.add(labelInfo,BorderLayout.CENTER);
@@ -139,16 +140,41 @@ public class panelAltasPilotos extends javax.swing.JPanel {
             labelEscuderia.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    pilotosSeleccionados.add(piloto);
-                    for (Piloto pilotosSeleccionado : pilotosSeleccionados) {
-                        System.out.println("" + pilotosSeleccionado);
+                    
+                    if (!pilotosSeleccionados.isEmpty()) {
+                        //COMPROBAR QUE NO HAYAMOS SELECCIONADO EL MISMO PILOTO 2 VECES
+                        if (pilotosSeleccionados.get(0).getNombre().compareTo(piloto.getNombre()) == 0) {
+                            JOptionPane.showMessageDialog(panelAnterior, "ERROR, NO PUEDES AÑADIR EL MISMO PILOTO 2 VECES" 
+                                    , "ERROR", 0);
+                            
+                        }else{
+                            labelEscuderia.setBackground(Color.RED);
+                            pilotosSeleccionados.add(piloto);
+                            if (pilotosSeleccionados.size() == 2) {
+                                //QUITAMOS LOS PILOTOS QUE HAYA EN ESA ESCUDERIA SI LOS HAY
+                                escuderiaSeleccionada.getPilotos().clear();
+                                //AÑADIMOS A LOS PILOTOS
+                                for (Piloto pilotosSeleccionado : pilotosSeleccionados) {
+                                    escuderiaSeleccionada.addPiloto(pilotosSeleccionado);
+                                }
+                                //MOSTRAMOS EL MENSAJE DE CONFIRMACIÓN
+                                JOptionPane.showMessageDialog(panelAnterior, "PILOTOS AÑADIDOS CORRECTAMENTE A LA ESCUDERIA: " 
+                                        + escuderiaSeleccionada.getNombre(), "CAMBIOS CONFIRMADOS", 1);
+
+                                //VOLVEMOS ATRAS
+                                panelPrincipal.remove(panelAltasPilotos.this);
+                                panelPrincipal.add(panelAnterior);
+                                panelPrincipal.repaint();
+                                panelPrincipal.revalidate();
+                            }
                     }
-//                    panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato,escuderia, colorPrimario);
-//                    panelPrincipal.remove(panelEscuderias.this);
-//                    panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
-//                    panelPrincipal.revalidate();
-//                    panelPrincipal.repaint();
-//                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+                    }else{
+                        labelEscuderia.setBackground(Color.RED);
+                        pilotosSeleccionados.add(piloto);
+                    }
+                    
+                    
+                    
                 }
 
                 @Override

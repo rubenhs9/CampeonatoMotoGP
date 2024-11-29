@@ -2,6 +2,7 @@
 package GUI;
 
 import data.Campeonato;
+import data.Escuderia;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -133,12 +135,25 @@ public class panelOpcionesClasificacion extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelClasificacionEscuderias panelClasificacionEscuderias = new panelClasificacionEscuderias(panelPrincipal, panelOpcionesClasificacion.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpcionesClasificacion.this);
-                panelPrincipal.add(panelClasificacionEscuderias, BorderLayout.CENTER);
-                panelPrincipal.revalidate();
-                panelPrincipal.repaint();
-                segundoBoton.setBackground(colorPrimario);
+                //COMPROBAMOS QUE LAS ESCUDERIAS ESTEN LLENAS ANTES DE PODER MOSTRARLAS
+                boolean escuderiasLlenas = true;
+                for (Escuderia escuderia : campeonato.getEscuderias()) {
+                    if (escuderia.getPilotos().size() != 2) {
+                        escuderiasLlenas = false;
+                    }
+                }
+                
+                if (escuderiasLlenas) {
+                    panelClasificacionEscuderias panelClasificacionEscuderias = new panelClasificacionEscuderias(panelPrincipal, panelOpcionesClasificacion.this, campeonato, colorPrimario);
+                    panelPrincipal.remove(panelOpcionesClasificacion.this);
+                    panelPrincipal.add(panelClasificacionEscuderias, BorderLayout.CENTER);
+                    panelPrincipal.revalidate();
+                    panelPrincipal.repaint();
+                    segundoBoton.setBackground(colorPrimario);
+                }else{
+                    JOptionPane.showMessageDialog(panelOpciones, "ERROR, TODAS LAS ESCUDERIAS DEBEN ESTAR COMPLETAS", "ERROR", 0);
+                }
+                
             }
 
             @Override

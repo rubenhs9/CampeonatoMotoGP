@@ -68,7 +68,7 @@ public class Campeonato  {
 
     public void addPilotos(Piloto piloto1, Piloto piloto2) {
         pilotos.add(piloto1);
-        pilotos.add(piloto1);
+        pilotos.add(piloto2);
     }
 
     public List<Piloto> getPilotos() {
