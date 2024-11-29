@@ -2,15 +2,24 @@
 package GUI;
 
 import data.Campeonato;
+import data.Circuito;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 
 public class panelAltasCircuitos extends javax.swing.JPanel {
@@ -19,6 +28,9 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
+   
+    
+    private int alturaImg = 100;
     
     public panelAltasCircuitos(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -26,11 +38,85 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
-
+        
+        
+        System.out.println(campeonato.getCircuitos().size());
         botonVolverAtras();
-        minitComponents();
+        cargarCircuitos();
+        
     }
 
+    public void cargarCircuitos() {
+    // Crear el panel para los circuitos
+    JPanel panelC = new JPanel();
+    panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+    panelC.setBackground(colorPrimario);
+    this.add(panelC, BorderLayout.CENTER);
+
+    // Recorrer la lista de circuitos y mostrarlos
+    for (Circuito circuito : campeonato.getCircuitos()) {
+        JLabel pCircuitos = new JLabel();
+        pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
+        pCircuitos.setPreferredSize(new Dimension(300, alturaImg));
+        pCircuitos.setOpaque(true);
+
+        ajustarImagenEnLabel(pCircuitos, circuito.getImagen());
+
+        pCircuitos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Al hacer clic, solo añadir el circuito seleccionado a la lista circuitosAdd
+                if (!campeonato.getCircuitosAdd().contains(circuito)) {
+                    campeonato.addCircuitosAdd(circuito); // Añadir el circuito a la lista circuitosAdd
+                    JOptionPane.showMessageDialog(null, 
+                        "Circuito añadido: " + circuito.getNombre(), 
+                        "Información", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, 
+                        "El circuito ya está en la lista.", 
+                        "Aviso", 
+                        JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                pCircuitos.setBorder(new LineBorder(Color.RED, 3, false));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                pCircuitos.setBorder(BorderFactory.createEmptyBorder());
+            }
+        });
+
+        // Añadir el circuito al panel solo una vez
+        panelC.add(pCircuitos);
+    }
+}
+    
+    private void ajustarImagenEnLabel(JLabel label, String rutaImagen) {
+        try {
+            //Cargar la imagen desde la ruta
+            ImageIcon iconoOriginal = new ImageIcon(rutaImagen);
+            Image imagenOriginal = iconoOriginal.getImage();
+            
+
+            //Dimensiones fijas del JLabel
+            int alturaLabel = alturaImg; //Altura fija
+            int anchoEscalado = (int) (imagenOriginal.getWidth(null) * ((double) alturaLabel / imagenOriginal.getHeight(null)));
+
+            //Escalamos la imagen al tamaño deseado
+            Image imagenEscalada = imagenOriginal.getScaledInstance(anchoEscalado, alturaLabel, Image.SCALE_SMOOTH);
+
+            label.setIcon(new ImageIcon(imagenEscalada));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar la imagen: " + rutaImagen);
+        }
+    }
+    
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
@@ -82,9 +168,6 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void minitComponents() {
-        
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

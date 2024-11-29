@@ -21,6 +21,7 @@ public class panelCircuitos extends JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpcionesListados;
     private Campeonato campeonato;
+    
     private Circuito circuito;
     private int alturaImg = 100;
 
@@ -43,7 +44,12 @@ public class panelCircuitos extends JPanel {
         panelC.setBackground(colorPrimario);
         this.add(panelC, BorderLayout.CENTER);
         
-        for (Circuito circuitos : campeonato.getCircuitos()) {
+        if (campeonato.getCircuitos() == null || campeonato.getCircuitos().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No hay circuitos para cargar");
+        return;
+    }
+        
+        for (Circuito circuitos : campeonato.getCircuitosAdd()) {
             JLabel pCircuitos = new JLabel();
             pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
             pCircuitos.setPreferredSize(new Dimension(300,alturaImg));
@@ -84,6 +90,7 @@ public class panelCircuitos extends JPanel {
     }
 
     
+    
      private void ajustarImagenEnLabel(JLabel label, String rutaImagen) {
         try {
             //Cargar la imagen desde la ruta
@@ -104,9 +111,6 @@ public class panelCircuitos extends JPanel {
             System.out.println("Error al cargar la imagen: " + rutaImagen);
         }
     }
-    
-    
-    
 
     private void botonVolverAtras() {
         JPanel panelIrHaciaAtras = new JPanel(new FlowLayout(FlowLayout.LEFT));

@@ -147,24 +147,24 @@ public class App {
     
     public void datosPruebaCircuito(Campeonato campeonato){
         
-        campeonato.addCircutios(new Circuito("Lusail International Circuit", "Qatar", 5.38,".\\res\\imgCircuito\\Lusail International Circuit.png"));
-        campeonato.addCircutios(new Circuito("Autódromo Internacional do Algarve", "Portugal", 4.59,".\\res\\imgCircuito\\Autódromo Internacional do Algarve.png"));
-        campeonato.addCircutios(new Circuito("Circuit of the Americas", "Estados Unidos", 5.51,".\\res\\imgCircuito\\Circuit of the Americas.png"));
-        campeonato.addCircutios(new Circuito("Circuito de Jerez – Ángel Nieto", "España", 4.42,".\\res\\imgCircuito\\Circuito de Jerez.png"));
-        campeonato.addCircutios(new Circuito("Le Mans", "Francia", 4.18,".\\res\\imgCircuito\\Le Mans.png"));//
-        campeonato.addCircutios(new Circuito("Circuit de Barcelona-Catalunya", "España", 4.63,".\\res\\imgCircuito\\Circuit de Barcelona Catalunya.png"));
-        campeonato.addCircutios(new Circuito("Autodromo Internazionale del Mugello", "Italia", 5.25,".\\res\\imgCircuito\\Autodromo del Mugello.png"));
-        campeonato.addCircutios(new Circuito("TT Circuit Assen", "Países Bajos", 4.54,".\\res\\imgCircuito\\TT Circuit Assen.png"));
-        campeonato.addCircutios(new Circuito("Sachsenring", "Alemania", 3.67,".\\res\\imgCircuito\\Sachsenring.png"));
-        campeonato.addCircutios(new Circuito("Silverstone Circuit", "Reino Unido", 5.89,".\\res\\imgCircuito\\Silverstone.png"));
-        campeonato.addCircutios(new Circuito("Red Bull Ring – Spielberg", "Austria", 4.32,".\\res\\imgCircuito\\Red Bull Ring.png"));
-        campeonato.addCircutios(new Circuito("MotorLand Aragón", "España", 5.08,".\\res\\imgCircuito\\MotorLand Aragon.png"));
-        campeonato.addCircutios(new Circuito("Pertamina Mandalika International Circuit", "Indonesia", 4.31,".\\res\\imgCircuito\\Pertamina Mandalika International Circuit.png"));
-        campeonato.addCircutios(new Circuito("Mobility Resort Motegi", "Japón", 4.80,".\\res\\imgCircuito\\Mobility Resort Motegi.png"));
-        campeonato.addCircutios(new Circuito("Phillip Island", "Australia", 4.45,".\\res\\imgCircuito\\Phillip Island.png"));
-        campeonato.addCircutios(new Circuito("Chang International Circuit", "Tailandia", 4.55,".\\res\\imgCircuito\\Chang International Circuit.png"));
-        campeonato.addCircutios(new Circuito("Sepang International Circuit", "Malasia", 5.54,".\\res\\imgCircuito\\Sepang International Circuit.png"));
-        campeonato.addCircutios(new Circuito("Circuit Ricardo Tormo", "España", 4.00,".\\res\\imgCircuito\\Circuit Ricardo Tormo.png"));
+        campeonato.addCircuitos(new Circuito("Lusail International Circuit", "Qatar", 5.38,".\\res\\imgCircuito\\Lusail International Circuit.png"));
+        campeonato.addCircuitos(new Circuito("Autódromo Internacional do Algarve", "Portugal", 4.59,".\\res\\imgCircuito\\Autódromo Internacional do Algarve.png"));
+        campeonato.addCircuitos(new Circuito("Circuit of the Americas", "Estados Unidos", 5.51,".\\res\\imgCircuito\\Circuit of the Americas.png"));
+        campeonato.addCircuitos(new Circuito("Circuito de Jerez – Ángel Nieto", "España", 4.42,".\\res\\imgCircuito\\Circuito de Jerez.png"));
+        campeonato.addCircuitos(new Circuito("Le Mans", "Francia", 4.18,".\\res\\imgCircuito\\Le Mans.png"));//
+        campeonato.addCircuitos(new Circuito("Circuit de Barcelona-Catalunya", "España", 4.63,".\\res\\imgCircuito\\Circuit de Barcelona Catalunya.png"));
+        campeonato.addCircuitos(new Circuito("Autodromo Internazionale del Mugello", "Italia", 5.25,".\\res\\imgCircuito\\Autodromo del Mugello.png"));
+        campeonato.addCircuitos(new Circuito("TT Circuit Assen", "Países Bajos", 4.54,".\\res\\imgCircuito\\TT Circuit Assen.png"));
+        campeonato.addCircuitos(new Circuito("Sachsenring", "Alemania", 3.67,".\\res\\imgCircuito\\Sachsenring.png"));
+        campeonato.addCircuitos(new Circuito("Silverstone Circuit", "Reino Unido", 5.89,".\\res\\imgCircuito\\Silverstone.png"));
+        campeonato.addCircuitos(new Circuito("Red Bull Ring – Spielberg", "Austria", 4.32,".\\res\\imgCircuito\\Red Bull Ring.png"));
+        campeonato.addCircuitos(new Circuito("MotorLand Aragón", "España", 5.08,".\\res\\imgCircuito\\MotorLand Aragon.png"));
+        campeonato.addCircuitos(new Circuito("Pertamina Mandalika International Circuit", "Indonesia", 4.31,".\\res\\imgCircuito\\Pertamina Mandalika International Circuit.png"));
+        campeonato.addCircuitos(new Circuito("Mobility Resort Motegi", "Japón", 4.80,".\\res\\imgCircuito\\Mobility Resort Motegi.png"));
+        campeonato.addCircuitos(new Circuito("Phillip Island", "Australia", 4.45,".\\res\\imgCircuito\\Phillip Island.png"));
+        campeonato.addCircuitos(new Circuito("Chang International Circuit", "Tailandia", 4.55,".\\res\\imgCircuito\\Chang International Circuit.png"));
+        campeonato.addCircuitos(new Circuito("Sepang International Circuit", "Malasia", 5.54,".\\res\\imgCircuito\\Sepang International Circuit.png"));
+        campeonato.addCircuitos(new Circuito("Circuit Ricardo Tormo", "España", 4.00,".\\res\\imgCircuito\\Circuit Ricardo Tormo.png"));
     }
 
     private void modoGrafico() {

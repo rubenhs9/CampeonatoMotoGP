@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Circuito implements Comparable<Circuito>{
     private String nombre;
@@ -17,11 +18,7 @@ public class Circuito implements Comparable<Circuito>{
     }
 
     
-    @Override
-    public int compareTo(Circuito otroCircuito) {
-        // Puedes comparar por nombre, país o longitud dependiendo de lo que necesites
-        return this.nombre.compareTo(otroCircuito.nombre); // Comparar por nombre
-    }
+    
 
     public String getNombre() {
         return nombre;
@@ -39,9 +36,23 @@ public class Circuito implements Comparable<Circuito>{
         return longitud;
     }
     
-    
-    
-   
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Circuito circuito = (Circuito) obj;
+        return nombre.equals(circuito.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre);
+    }
+
+    @Override
+    public int compareTo(Circuito o) {
+        return this.nombre.compareTo(o.nombre);
+    }
     
     @Override
     public String toString() {
