@@ -13,7 +13,6 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -154,20 +153,8 @@ public class panelAltasPilotos extends javax.swing.JPanel {
                             if (pilotosSeleccionados.size() == 2) {
                                 //QUITAMOS LOS PILOTOS QUE HAYA EN ESA ESCUDERIA SI LOS HAY
                                 escuderiaSeleccionada.getPilotos().clear();
-                                
+                                //AÑADIMOS A LOS PILOTOS
                                 for (Piloto pilotosSeleccionado : pilotosSeleccionados) {
-                                    //COMPROBAMOS QUE EL PILOTO, NO ESTÉ ES UNA ESCUDERIA MÁS, SI LO ESTÁ, ELIMINAMOS LOS PILOTOS DE LA ESCUDERIA EN LA QUE ESTABA
-                                    for (Escuderia escuderia : campeonato.getEscuderias()) {
-                                        Iterator<Piloto> iterator = escuderia.getPilotos().iterator();
-                                        while (iterator.hasNext()) {
-                                            Piloto piloto1 = iterator.next();
-                                            if (piloto1.getNombre().compareTo(pilotosSeleccionado.getNombre()) == 0) {
-                                                iterator.remove();
-                                            }
-                                        }
-                                    }
-                                    
-                                    //AÑADIMOS A LOS PILOTOS
                                     escuderiaSeleccionada.addPiloto(pilotosSeleccionado);
                                 }
                                 //MOSTRAMOS EL MENSAJE DE CONFIRMACIÓN

@@ -12,6 +12,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -113,12 +116,18 @@ public class panelOpcionesAltas extends javax.swing.JPanel {
         primerBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelAltasCircuitos panelAltasCircuitos = new panelAltasCircuitos(panelPrincipal, panelOpcionesAltas.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpcionesAltas.this);
-                panelPrincipal.add(panelAltasCircuitos, BorderLayout.CENTER);
-                panelPrincipal.revalidate();
-                panelPrincipal.repaint();
-                primerBoton.setBackground(colorPrimario);
+                try {
+                    panelAltasCircuitos panelAltasCircuitos = new panelAltasCircuitos(panelPrincipal, panelOpcionesAltas.this, campeonato, colorPrimario);
+                    panelPrincipal.remove(panelOpcionesAltas.this);
+                    panelPrincipal.add(panelAltasCircuitos, BorderLayout.CENTER);
+                    panelPrincipal.revalidate();
+                    panelPrincipal.repaint();
+                    primerBoton.setBackground(colorPrimario);
+                } catch (IOException ex) {
+                    Logger.getLogger(panelOpcionesAltas.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(panelOpcionesAltas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             @Override
