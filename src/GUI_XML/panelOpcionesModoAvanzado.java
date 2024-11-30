@@ -1,66 +1,80 @@
 
-package GUI;
+package GUI_XML;
 
-import GUI_XML.panelOpcionesModoAvanzado;
+import GUI.panelOpciones;
+import GUI.panelOpcionesAltas;
+import GUI.panelOpcionesClasificacion;
+import GUI.panelOpcionesListados;
 import data.Campeonato;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 
-public class panelOpciones extends javax.swing.JPanel {
+public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
 
-    private JFrame vpal;
-    private GridBagConstraints gbc;
     private Color colorPrimario;
     private JPanel panelPrincipal;
+    private JPanel panelOpciones;
     private Campeonato campeonato;
-//    private Instituto instituto;
-    private Image backgroundImage;
+    private GridBagConstraints gbc;
     
-    public panelOpciones(JFrame vpal, JPanel panelPrincipal, Color colorPrimario1, Campeonato campeonato) {
-        this.vpal = vpal;
+    public panelOpcionesModoAvanzado(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
+        this.panelOpciones = panelOpciones;
         this.campeonato = campeonato;
-        this.colorPrimario = colorPrimario1;
+        this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
-//        ImageIcon imagen = new ImageIcon("res/escuela.png");
-//        backgroundImage = imagen.getImage();
 
-        botonModoAvanzado();
+        botonVolverAtras();
         minitComponents();
     }
 
-/*
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    private void botonVolverAtras(){
+        //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
+        JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
+        //BOTON PARA VOLVER ATRAS
+        JLabel volverAtras = new JLabel();
+        volverAtras.setBackground(colorPrimario);
+        volverAtras.setOpaque(true);
+        volverAtras.setForeground(Color.white);
+        volverAtras.setBorder(new EmptyBorder(0,10,0,10));
+        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setText("VOLVER");
+        volverAtras.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                panelPrincipal.remove(panelOpcionesModoAvanzado.this);
+                panelPrincipal.add(panelOpciones);
+                panelPrincipal.repaint();
+                panelPrincipal.revalidate();
+            }
 
-        //Dibujo la imagen de fondo
-        if (backgroundImage != null) {
-            g.drawImage(backgroundImage, 0, 0, vpal.getWidth(), vpal.getHeight(), this);
-            vpal.repaint();
-            vpal.revalidate();
-        }else{
-            System.out.println("No se encontro la imagen");
-        }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                volverAtras.setBackground(Color.DARK_GRAY);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                volverAtras.setBackground(colorPrimario);
+            }
+        });
+        panelIrHaciaAtras.add(volverAtras);
+        this.add(panelIrHaciaAtras, BorderLayout.NORTH);
     }
-*/    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -78,43 +92,6 @@ public class panelOpciones extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonModoAvanzado(){
-        //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
-        JPanel panelModoAvanzado = new JPanel();
-        panelModoAvanzado.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        //BOTON PARA VOLVER ATRAS
-        JLabel modoAvanzado = new JLabel();
-        modoAvanzado.setBackground(colorPrimario);
-        modoAvanzado.setOpaque(true);
-        modoAvanzado.setForeground(Color.white);
-        modoAvanzado.setBorder(new EmptyBorder(0,10,0,10));
-        modoAvanzado.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
-        modoAvanzado.setText("MODO AVANZADO");
-        modoAvanzado.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                panelOpcionesModoAvanzado panelOpcionesModoAvanzado = new panelOpcionesModoAvanzado(panelPrincipal,panelOpciones.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpciones.this);
-                panelPrincipal.add(panelOpcionesModoAvanzado);
-                panelPrincipal.repaint();
-                panelPrincipal.revalidate();
-                modoAvanzado.setBackground(colorPrimario);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                modoAvanzado.setBackground(Color.DARK_GRAY);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                modoAvanzado.setBackground(colorPrimario);
-            }
-        });
-        panelModoAvanzado.add(modoAvanzado);
-        this.add(panelModoAvanzado, BorderLayout.NORTH);
-    }
-    
     private void minitComponents() {
         JPanel panelOps = new JPanel();
         panelOps.setLayout(new GridBagLayout());
@@ -130,7 +107,7 @@ public class panelOpciones extends javax.swing.JPanel {
         primerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         primerBoton.setBackground(colorPrimario);
         primerBoton.setOpaque(true);
-        primerBoton.setText("<html><div style='text-align: center;'>ALTAS</div></html>");
+        primerBoton.setText("<html><div style='text-align: center;'>REALIZAR BUSQUEDAS</div></html>");
         primerBoton.setForeground(Color.WHITE);
         primerBoton.setFont(new Font("Arial",Font.BOLD,20));
         primerBoton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -138,9 +115,9 @@ public class panelOpciones extends javax.swing.JPanel {
         primerBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelOpcionesAltas panelOpcionesAltas = new panelOpcionesAltas(panelPrincipal,panelOpciones.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpciones.this);
-                panelPrincipal.add(panelOpcionesAltas, BorderLayout.CENTER);
+                panelRealizarBusquedas panelRealizarBusquedas = new panelRealizarBusquedas(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario);
+                panelPrincipal.remove(panelOpcionesModoAvanzado.this);
+                panelPrincipal.add(panelRealizarBusquedas, BorderLayout.CENTER);
                 panelPrincipal.revalidate();
                 panelPrincipal.repaint();
                 primerBoton.setBackground(colorPrimario);
@@ -166,7 +143,7 @@ public class panelOpciones extends javax.swing.JPanel {
         segundoBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         segundoBoton.setBackground(colorPrimario);
         segundoBoton.setOpaque(true);
-        segundoBoton.setText("<html><div style='text-align: center;'>LISTADOS</div></html>");
+        segundoBoton.setText("<html><div style='text-align: center;'>EXPORTAR A XML</div></html>");
         segundoBoton.setForeground(Color.WHITE);
         segundoBoton.setFont(new Font("Arial",Font.BOLD,20));
         segundoBoton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,9 +151,9 @@ public class panelOpciones extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelOpcionesListados panelOpcionesListados = new panelOpcionesListados(panelPrincipal, panelOpciones.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpciones.this);
-                panelPrincipal.add(panelOpcionesListados, BorderLayout.CENTER);
+                panelExportarXML panelExportarXML = new panelExportarXML(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario);
+                panelPrincipal.remove(panelOpcionesModoAvanzado.this);
+                panelPrincipal.add(panelExportarXML, BorderLayout.CENTER);
                 panelPrincipal.revalidate();
                 panelPrincipal.repaint();
                 segundoBoton.setBackground(colorPrimario);
@@ -192,7 +169,7 @@ public class panelOpciones extends javax.swing.JPanel {
                 segundoBoton.setBackground(colorPrimario);
             }
         });
-        gbc.gridx = 1;
+        gbc.gridy = 1;
         panelOps.add(segundoBoton, gbc);
         
         
@@ -203,7 +180,7 @@ public class panelOpciones extends javax.swing.JPanel {
         tercerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         tercerBoton.setBackground(colorPrimario);
         tercerBoton.setOpaque(true);
-        tercerBoton.setText("<html><div style='text-align: center;'>CLASIFICACIONES</div></html>");
+        tercerBoton.setText("<html><div style='text-align: center;'>IMPORTAR DE LOS XML</div></html>");
         tercerBoton.setForeground(Color.WHITE);
         tercerBoton.setFont(new Font("Arial",Font.BOLD,20));
         tercerBoton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -211,9 +188,9 @@ public class panelOpciones extends javax.swing.JPanel {
         tercerBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelOpcionesClasificacion panelOpcionesClasificacion = new panelOpcionesClasificacion(panelPrincipal, panelOpciones.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpciones.this);
-                panelPrincipal.add(panelOpcionesClasificacion, BorderLayout.CENTER);
+                panelImportarXML panelImportarXML = new panelImportarXML(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario);
+                panelPrincipal.remove(panelOpcionesModoAvanzado.this);
+                panelPrincipal.add(panelImportarXML, BorderLayout.CENTER);
                 panelPrincipal.revalidate();
                 panelPrincipal.repaint();
                 tercerBoton.setBackground(colorPrimario);
@@ -229,12 +206,12 @@ public class panelOpciones extends javax.swing.JPanel {
                 tercerBoton.setBackground(colorPrimario);
             }
         });
-        gbc.gridx = 3; 
+        gbc.gridy = 3; 
         panelOps.add(tercerBoton, gbc);
         
         this.add(panelOps, BorderLayout.CENTER);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
