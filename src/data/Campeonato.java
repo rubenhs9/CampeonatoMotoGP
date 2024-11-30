@@ -31,10 +31,12 @@ public class Campeonato  {
         this.circuitosAdd =  new HashSet<>();
         crearFuenteMotoGP();
         
-        FicheroEscuderias.cargarFichero(escuderias, pilotos);
         
         this.circuitosAdd = FicheroCircuito.cargarCircuitos();
         //JESUS, ESTE HILO ES EL QUE GUARDA LOS DATOS CUANDO SE CIERRA LA APP :D
+        //GRACIASSS, YO TAMBIEN LO HE USADO PARA GUARDAR MI FICHERO, POR CIERTO, LA CARGA DE MI FICHERO NO ESTÁ AQUI
+        //LA HE METIDO EN LA CLASE APP DESPUES DE DATOS DE PRUEBA YA QUE LAS ESCUDERIAS NO ESTAN CREADAS HASTA QUE
+        //NO SE EJECUTA ESO :(
         Runtime.getRuntime().addShutdownHook(new Thread(() -> { 
             try { 
                 FicheroEscuderias.guardarFichero(escuderias);
@@ -45,7 +47,15 @@ public class Campeonato  {
         }));
     }
 
-    
+    public void cargarFicheroEscuderias(){
+        try {
+            FicheroEscuderias.cargarFichero(escuderias, pilotos);
+        } catch (IOException ex) {
+            Logger.getLogger(Campeonato.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Campeonato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
     private void crearFuenteMotoGP(){

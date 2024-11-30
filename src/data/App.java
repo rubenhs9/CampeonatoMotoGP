@@ -30,12 +30,11 @@ public class App {
         }
         datosPrueba(campeonato2024);
         datosPruebaCircuito(campeonato2024);
-
         
-        
+        campeonato2024.cargarFicheroEscuderias();
+     
         
 //        campeonato2024.mostrarCircuitos();
-        campeonato2024.mostrarCircuitos();
         
         modoGrafico();
     }

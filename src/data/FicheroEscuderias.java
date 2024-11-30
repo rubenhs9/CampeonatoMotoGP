@@ -48,7 +48,7 @@ public class FicheroEscuderias {
     public static void cargarFichero(List<Escuderia> escuderias, List<Piloto> pilotos) throws IOException, ClassNotFoundException {
         File archivo = new File(RUTA_FICHERO_ESCUDERIAS);
 
-        //Si el archivo no existe, no hace falta intentar leerlo
+        // Si el archivo no existe, no hace falta intentar leerlo
         if (!archivo.exists()) {
             System.out.println("El fichero no existe, no hay datos para cargar.");
             return;
@@ -62,27 +62,34 @@ public class FicheroEscuderias {
                     String nombreEscuderia = entry.getKey();
                     List<String> nombresPilotos = entry.getValue();
 
-                    // Buscar la escudería correspondiente
-                    Escuderia escuderia = escuderias.stream()
-                        .filter(e -> e.getNombre().equals(nombreEscuderia))
-                        .findFirst()
-                        .orElse(null);
+                    Escuderia escuderiaEncontrada = null;
 
-                    if (escuderia != null) {
-                        // Limpiar pilotos existentes antes de añadir los nuevos
-                        escuderia.getPilotos().clear();
+                    // Buscar la escudería correspondiente en la lista actual
+                    for (Escuderia escuderia : escuderias) {
+                        if (escuderia.getNombre().equals(nombreEscuderia)) {
+                            escuderiaEncontrada = escuderia;
+                            break;
+                        }
+                    }
 
-                        // Añadir los pilotos si coinciden en la lista de pilotos global
+                    // Si la escudería se encontró, añadir los pilotos correspondientes
+                    if (escuderiaEncontrada != null) {
                         for (String nombrePiloto : nombresPilotos) {
-                            pilotos.stream()
-                                .filter(p -> p.getNombre().equals(nombrePiloto))
-                                .findFirst()
-                                .ifPresent(escuderia.getPilotos()::add);
+                            for (Piloto piloto : pilotos) {
+                                if (piloto.getNombre().equals(nombrePiloto)) {
+                                    // Verificar que no se añada un piloto duplicado
+                                    if (!escuderiaEncontrada.getPilotos().contains(piloto)) {
+                                        escuderiaEncontrada.getPilotos().add(piloto);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
+
+
     
 }
