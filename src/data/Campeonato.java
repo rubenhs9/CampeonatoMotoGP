@@ -31,10 +31,13 @@ public class Campeonato  {
         this.circuitosAdd =  new HashSet<>();
         crearFuenteMotoGP();
         
+        FicheroEscuderias.cargarFichero(escuderias, pilotos);
+        
         this.circuitosAdd = FicheroCircuito.cargarCircuitos();
         //JESUS, ESTE HILO ES EL QUE GUARDA LOS DATOS CUANDO SE CIERRA LA APP :D
         Runtime.getRuntime().addShutdownHook(new Thread(() -> { 
             try { 
+                FicheroEscuderias.guardarFichero(escuderias);
                 FicheroCircuito.guardarCircuitos(this.circuitosAdd);
             } catch (IOException ex) {
                 Logger.getLogger(Campeonato.class.getName()).log(Level.SEVERE, null, ex);

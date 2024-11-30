@@ -26,7 +26,7 @@ public class App {
         
         
         
-        campeonato2024.mostrarCircuitos();
+//        campeonato2024.mostrarCircuitos();
         
         modoGrafico();
     }
