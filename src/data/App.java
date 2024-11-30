@@ -21,13 +21,15 @@ public class App {
         campeonato2024 = new Campeonato(nombre);
         datosPrueba(campeonato2024);
         datosPruebaCircuito(campeonato2024);
+        
+        
+        
         campeonato2024.mostrarCircuitos();
         
         modoGrafico();
     }
     
     public void datosPrueba(Campeonato campeonato){
-        
         
         // Ducati Lenovo Team
         Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", Pais.ITALIA,".\\res\\imgEscuderias\\Ducati Lenovo Team.png",new Color(183,1,5),new Color(53,1,3));
