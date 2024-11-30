@@ -26,16 +26,17 @@ public class App {
         modoGrafico();
     }
     
+
+
+    
     public void datosPrueba(Campeonato campeonato){
-        
-        
         // Ducati Lenovo Team
         Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", Pais.ITALIA,".\\res\\imgEscuderias\\Ducati Lenovo Team.png",new Color(183,1,5),new Color(53,1,3));
         Moto moto1 = new Moto("1", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Ducati Team.png");
         Moto moto2 = new Moto("23", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Ducati Team.png");
         Piloto piloto1 = new Piloto("Francesco Bagnaia", Pais.ITALIA, "Ducati Lenovo Team", generarPuntosAleatorios(), moto1, ".\\res\\imgPilotos\\Francesco Bagnaia.png");
         Piloto piloto2 = new Piloto("Enea Bastianini", Pais.ITALIA, "Ducati Lenovo Team", generarPuntosAleatorios(), moto2, ".\\res\\imgPilotos\\Enea Bastianini.png");
-//        escuderia1.addPilotos(piloto1, piloto2);
+//      escuderia1.addPilotos(piloto1, piloto2);
         campeonato.addEscuderia(escuderia1);
         campeonato.addPilotos(piloto1, piloto2);
 

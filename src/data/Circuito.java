@@ -1,10 +1,9 @@
 package data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Circuito implements Comparable<Circuito>{
+public class Circuito implements Comparable<Circuito>, Serializable{
     private String nombre;
     private String pais;
     private String imagen;

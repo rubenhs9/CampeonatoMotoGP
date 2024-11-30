@@ -3,6 +3,7 @@ package GUI;
 
 import data.Campeonato;
 import data.Circuito;
+import data.FicheroCircuito;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,7 +12,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -32,28 +35,39 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
     
     private int alturaImg = 100;
     
-    public panelAltasCircuitos(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
+    public panelAltasCircuitos(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) throws IOException, FileNotFoundException, ClassNotFoundException {
         this.panelPrincipal = panelPrincipal;
         this.panelOpciones = panelOpciones;
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
         
+         // Cargar los circuitos guardados desde el fichero
+        Set<Circuito> circuitosGuardados = FicheroCircuito.cargarCircuitos();
+        if (circuitosGuardados != null) {
+            campeonato.getCircuitosAdd().addAll(circuitosGuardados);  // Añadir a circuitosAdd
+        }
+
         
         System.out.println(campeonato.getCircuitos().size());
         botonVolverAtras();
         cargarCircuitos();
         
     }
+    
+    public void agregarCircuitoFichero(){
+        
+    }
+    
 
-    public void cargarCircuitos() {
+    public void cargarCircuitos(){
     // Crear el panel para los circuitos
     JPanel panelC = new JPanel();
     panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
     panelC.setBackground(colorPrimario);
     this.add(panelC, BorderLayout.CENTER);
 
-    // Recorrer la lista de circuitos y mostrarlos
+    
     for (Circuito circuito : campeonato.getCircuitos()) {
         JLabel pCircuitos = new JLabel();
         pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -61,17 +75,21 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         pCircuitos.setOpaque(true);
 
         ajustarImagenEnLabel(pCircuitos, circuito.getImagen());
+        if (campeonato.getCircuitosAdd().contains(circuito)) {
+            pCircuitos.setBackground(Color.RED);
+        }
 
         pCircuitos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Al hacer clic, solo añadir el circuito seleccionado a la lista circuitosAdd
+                
                 if (!campeonato.getCircuitosAdd().contains(circuito)) {
-                    campeonato.addCircuitosAdd(circuito); // Añadir el circuito a la lista circuitosAdd
+                    campeonato.addCircuitosAdd(circuito);
                     JOptionPane.showMessageDialog(null, 
                         "Circuito añadido: " + circuito.getNombre(), 
                         "Información", 
                         JOptionPane.INFORMATION_MESSAGE);
+                    pCircuitos.setBackground(Color.RED);
                 } else {
                     JOptionPane.showMessageDialog(null, 
                         "El circuito ya está en la lista.", 
@@ -91,7 +109,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
             }
         });
 
-        // Añadir el circuito al panel solo una vez
+        
         panelC.add(pCircuitos);
     }
 }

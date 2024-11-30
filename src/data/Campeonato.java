@@ -4,12 +4,15 @@ package data;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Campeonato  {
@@ -19,15 +22,29 @@ public class Campeonato  {
     private Set<Circuito> circuitosAdd = new HashSet<>();
     private List<Escuderia> escuderias = new ArrayList<>();
     
+    
     private String nombreCampeonato;
     private Font fuenteMotoGP;
 
-    public Campeonato(String nombre) {
+    public Campeonato(String nombre) throws IOException, FileNotFoundException, ClassNotFoundException {
         this.nombreCampeonato = nombre;
         this.circuitosAdd =  new HashSet<>();
         crearFuenteMotoGP();
+        
+        this.circuitosAdd = FicheroCircuito.cargarCircuitos();
+        //JESUS, ESTE HILO ES EL QUE GUARDA LOS DATOS CUANDO SE CIERRA LA APP :D
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> { 
+            try { 
+                FicheroCircuito.guardarCircuitos(this.circuitosAdd);
+            } catch (IOException ex) {
+                Logger.getLogger(Campeonato.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }));
     }
 
+    
+    
+    
     private void crearFuenteMotoGP(){
         try {
             //Especificar la ruta del archivo .ttf
