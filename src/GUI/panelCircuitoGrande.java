@@ -152,7 +152,7 @@ public class panelCircuitoGrande extends JPanel{
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

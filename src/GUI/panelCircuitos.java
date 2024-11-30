@@ -41,7 +41,7 @@ public class panelCircuitos extends JPanel {
     private void panelesCircuitos(){
         JPanel panelC = new JPanel();
         panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
-        panelC.setBackground(colorPrimario);
+//        panelC.setBackground(colorPrimario);
         this.add(panelC, BorderLayout.CENTER);
         
         if (campeonato.getCircuitos() == null || campeonato.getCircuitos().isEmpty()) {
@@ -54,6 +54,7 @@ public class panelCircuitos extends JPanel {
             pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
             pCircuitos.setPreferredSize(new Dimension(300,alturaImg));
             pCircuitos.setOpaque(true);
+            pCircuitos.setBorder(new LineBorder(Color.BLACK,3,false));
             
             ajustarImagenEnLabel(pCircuitos, circuitos.getImagen());
             
@@ -71,7 +72,7 @@ public class panelCircuitos extends JPanel {
                 panelPrincipal.add(panelCircuitoGrande, BorderLayout.CENTER);
                 panelPrincipal.revalidate();
                 panelPrincipal.repaint();
-                pCircuitos.setBorder(BorderFactory.createEmptyBorder());
+                pCircuitos.setBorder(new LineBorder(Color.BLACK,3,false));
             }
 
             
@@ -81,7 +82,7 @@ public class panelCircuitos extends JPanel {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                pCircuitos.setBorder(BorderFactory.createEmptyBorder());
+                pCircuitos.setBorder(new LineBorder(Color.BLACK,3,false));
             }
         });
 
@@ -120,7 +121,7 @@ public class panelCircuitos extends JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

@@ -70,13 +70,13 @@ public class panelOpcionesListados extends javax.swing.JPanel {
         int heightBoton = 65;
         
         //PRIMER BOTON
-        JLabel primerBoton = new JLabel();
+        JLabel primerBoton = new JLabel("LISTADO DE CIRCUITOS");
         primerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         primerBoton.setBackground(colorPrimario);
         primerBoton.setOpaque(true);
-        primerBoton.setText("<html><div style='text-align: center;'>LISTADO DE CIRCUITOS</div></html>");
+//        primerBoton.setText("<html><div style='text-align: center;'>LISTADO DE CIRCUITOS</div></html>");
         primerBoton.setForeground(Color.WHITE);
-        primerBoton.setFont(new Font("Arial",Font.BOLD,20));
+        primerBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         primerBoton.setHorizontalAlignment(SwingConstants.CENTER);
         primerBoton.setVerticalAlignment(SwingConstants.CENTER);
         primerBoton.addMouseListener(new MouseAdapter() {
@@ -106,13 +106,13 @@ public class panelOpcionesListados extends javax.swing.JPanel {
         
         
         //SEGUNDO BOTON
-        JLabel segundoBoton = new JLabel();
+        JLabel segundoBoton = new JLabel("LISTADO DE ESCUDERIAS");
         segundoBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         segundoBoton.setBackground(colorPrimario);
         segundoBoton.setOpaque(true);
-        segundoBoton.setText("<html><div style='text-align: center;'>LISTADO DE ESCUDERIAS</div></html>");
+//        segundoBoton.setText("<html><div style='text-align: center;'>LISTADO DE ESCUDERIAS</div></html>");
         segundoBoton.setForeground(Color.WHITE);
-        segundoBoton.setFont(new Font("Arial",Font.BOLD,20));
+        segundoBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         segundoBoton.setHorizontalAlignment(SwingConstants.CENTER);
         segundoBoton.setVerticalAlignment(SwingConstants.CENTER);
         segundoBoton.addMouseListener(new MouseAdapter() {
@@ -152,7 +152,7 @@ public class panelOpcionesListados extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter(){
             @Override

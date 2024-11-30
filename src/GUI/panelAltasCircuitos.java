@@ -64,7 +64,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
     // Crear el panel para los circuitos
     JPanel panelC = new JPanel();
     panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-    panelC.setBackground(colorPrimario);
+//    panelC.setBackground(colorPrimario);
     this.add(panelC, BorderLayout.CENTER);
 
     
@@ -73,7 +73,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
         pCircuitos.setPreferredSize(new Dimension(300, alturaImg));
         pCircuitos.setOpaque(true);
-
+        pCircuitos.setBorder(new LineBorder(Color.BLACK, 3, false));
         ajustarImagenEnLabel(pCircuitos, circuito.getImagen());
         if (campeonato.getCircuitosAdd().contains(circuito)) {
             pCircuitos.setBackground(Color.RED);
@@ -105,7 +105,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                pCircuitos.setBorder(BorderFactory.createEmptyBorder());
+                pCircuitos.setBorder(new LineBorder(Color.BLACK, 3, false));
             }
         });
 
@@ -145,7 +145,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter(){
             @Override

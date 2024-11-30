@@ -72,7 +72,7 @@ public class panelEscuderias extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override
@@ -100,68 +100,69 @@ public class panelEscuderias extends javax.swing.JPanel {
         JLabel labelInfo = new JLabel();
         labelInfo.setText("SELECCIONA UNA ESCUDERIA                   ");
         labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
-        labelInfo.setFont(new Font("Arial",Font.BOLD,25));
+        labelInfo.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         panelInfo.add(labelInfo,BorderLayout.CENTER);
         
         this.add(panelInfo, BorderLayout.NORTH);
     }
     
     private void minitComponents() {
-    //Crear un panel con FlowLayout centrado
-    JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-//    panelContenido.setBackground(Color.WHITE);
+        //Crear un panel con FlowLayout centrado
+        JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+    //    panelContenido.setBackground(Color.WHITE);
 
-    //Agregar un JScrollPane que envuelve al panelContenido
-    JScrollPane scrollPane = new JScrollPane(panelContenido);
-    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    scrollPane.setBorder(null);
+        //Agregar un JScrollPane que envuelve al panelContenido
+        JScrollPane scrollPane = new JScrollPane(panelContenido);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBorder(null);
 
-    //Agregar el JScrollPane al contenedor principal
-    this.add(scrollPane, BorderLayout.CENTER);
+        //Agregar el JScrollPane al contenedor principal
+        this.add(scrollPane, BorderLayout.CENTER);
 
-    //Crear un JLabel para cada escudería
-    for (Escuderia escuderia : campeonato.getEscuderias()) {
-        JLabel labelEscuderia = new JLabel();
-        labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
-        labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
-        labelEscuderia.setOpaque(true);
-        ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
-        labelEscuderia.setBackground(colorPrimario);
-        labelEscuderia.setForeground(Color.WHITE);
-        labelEscuderia.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (escuderia.getPilotos().size() == 2) {
-                   panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato,escuderia, colorPrimario);
-                    panelPrincipal.remove(panelEscuderias.this);
-                    panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
-                    panelPrincipal.revalidate();
-                    panelPrincipal.repaint();
-                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder()); 
-                }else{
-                    JOptionPane.showMessageDialog(panelOpciones, "NO HAY 2 PILOTOS EN ESTE EQUIPO, AÑADELOS DESDE LAS ALTAS", "ERROR", 0);
+        //Crear un JLabel para cada escudería
+        for (Escuderia escuderia : campeonato.getEscuderias()) {
+            JLabel labelEscuderia = new JLabel();
+            labelEscuderia.setPreferredSize(new Dimension(anchoImg, alturaImg));
+            labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
+            labelEscuderia.setOpaque(true);
+            ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
+            labelEscuderia.setBackground(Color.WHITE);
+            labelEscuderia.setForeground(Color.WHITE);
+            labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
+            labelEscuderia.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (escuderia.getPilotos().size() == 2) {
+                       panelMotosPilotos panelMotosPilotos = new panelMotosPilotos(panelPrincipal, panelEscuderias.this, campeonato,escuderia, colorPrimario);
+                        panelPrincipal.remove(panelEscuderias.this);
+                        panelPrincipal.add(panelMotosPilotos, BorderLayout.CENTER);
+                        panelPrincipal.revalidate();
+                        panelPrincipal.repaint();
+                        labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
+                    }else{
+                        JOptionPane.showMessageDialog(panelOpciones, "NO HAY 2 PILOTOS EN ESTE EQUIPO, AÑADELOS DESDE LAS ALTAS", "ERROR", 0);
+                    }
+
                 }
-                
-            }
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                labelEscuderia.setBorder(new LineBorder(Color.RED,3,false));
-            }
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    labelEscuderia.setBorder(new LineBorder(Color.RED,3,false));
+                }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
-            }
-        });
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
+                }
+            });
 
-        panelContenido.add(labelEscuderia);
+            panelContenido.add(labelEscuderia);
+        }
+
+        //Ajustar el tamaño del panel después de que la ventana sea visible
+        SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
     }
-    
-    //Ajustar el tamaño del panel después de que la ventana sea visible
-    SwingUtilities.invokeLater(() -> ajustarTamañoPanel(panelContenido, scrollPane));
-}
 
     private void ajustarTamañoPanel(JPanel panelContenido, JScrollPane scrollPane) {
         // Obtener el ancho real del viewport

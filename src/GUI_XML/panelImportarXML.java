@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package GUI_XML;
 
 import data.Campeonato;
@@ -44,7 +41,7 @@ public class panelImportarXML extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter(){
             @Override

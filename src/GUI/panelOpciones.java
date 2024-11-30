@@ -88,7 +88,8 @@ public class panelOpciones extends javax.swing.JPanel {
         modoAvanzado.setOpaque(true);
         modoAvanzado.setForeground(Color.white);
         modoAvanzado.setBorder(new EmptyBorder(0,10,0,10));
-        modoAvanzado.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        modoAvanzado.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
+//        modoAvanzado.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
         modoAvanzado.setText("MODO AVANZADO");
         modoAvanzado.addMouseListener(new MouseAdapter(){
             @Override
@@ -126,13 +127,12 @@ public class panelOpciones extends javax.swing.JPanel {
         int heightBoton = 65;
         
         //PRIMER BOTON
-        JLabel primerBoton = new JLabel();
+        JLabel primerBoton = new JLabel("ALTAS");
         primerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         primerBoton.setBackground(colorPrimario);
         primerBoton.setOpaque(true);
-        primerBoton.setText("<html><div style='text-align: center;'>ALTAS</div></html>");
         primerBoton.setForeground(Color.WHITE);
-        primerBoton.setFont(new Font("Arial",Font.BOLD,20));
+        primerBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         primerBoton.setHorizontalAlignment(SwingConstants.CENTER);
         primerBoton.setVerticalAlignment(SwingConstants.CENTER);
         primerBoton.addMouseListener(new MouseAdapter() {
@@ -162,13 +162,12 @@ public class panelOpciones extends javax.swing.JPanel {
         
         
         //SEGUNDO BOTON
-        JLabel segundoBoton = new JLabel();
+        JLabel segundoBoton = new JLabel("LISTADOS");
         segundoBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         segundoBoton.setBackground(colorPrimario);
         segundoBoton.setOpaque(true);
-        segundoBoton.setText("<html><div style='text-align: center;'>LISTADOS</div></html>");
         segundoBoton.setForeground(Color.WHITE);
-        segundoBoton.setFont(new Font("Arial",Font.BOLD,20));
+        segundoBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         segundoBoton.setHorizontalAlignment(SwingConstants.CENTER);
         segundoBoton.setVerticalAlignment(SwingConstants.CENTER);
         segundoBoton.addMouseListener(new MouseAdapter() {
@@ -199,13 +198,12 @@ public class panelOpciones extends javax.swing.JPanel {
         
         
         //TERCER BOTON
-        JLabel tercerBoton = new JLabel();
+        JLabel tercerBoton = new JLabel("CLASIFICACIONES");
         tercerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         tercerBoton.setBackground(colorPrimario);
         tercerBoton.setOpaque(true);
-        tercerBoton.setText("<html><div style='text-align: center;'>CLASIFICACIONES</div></html>");
         tercerBoton.setForeground(Color.WHITE);
-        tercerBoton.setFont(new Font("Arial",Font.BOLD,20));
+        tercerBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         tercerBoton.setHorizontalAlignment(SwingConstants.CENTER);
         tercerBoton.setVerticalAlignment(SwingConstants.CENTER);
         tercerBoton.addMouseListener(new MouseAdapter() {

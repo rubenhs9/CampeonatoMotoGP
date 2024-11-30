@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -48,10 +49,11 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         this.escuderiaSeleccionada = escuderia;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
-
+        
         botonVolverAtras();
         minitComponents();
     }
+    
 
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
@@ -64,7 +66,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override
@@ -92,7 +94,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         JLabel labelInfo = new JLabel();
         labelInfo.setText("SELECCIONA LOS DOS PILOTOS DE ESTA ESCUDERIA                   ");
         labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
-        labelInfo.setFont(new Font("Arial",Font.BOLD,25));
+        labelInfo.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         panelInfo.add(labelInfo,BorderLayout.CENTER);
         
         this.add(panelInfo, BorderLayout.NORTH);
@@ -117,6 +119,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
     private void minitComponents() {
         //Crear un panel con FlowLayout centrado
         JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        panelContenido.setOpaque(false);
     //    panelContenido.setBackground(Color.WHITE);
 
         //Agregar un JScrollPane que envuelve al panelContenido
@@ -124,6 +127,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBorder(null);
+        scrollPane.setOpaque(false);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         //Agregar el JScrollPane al contenedor principal
@@ -136,8 +140,9 @@ public class panelAltasPilotos extends javax.swing.JPanel {
             labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
             labelEscuderia.setOpaque(true);
             ajustarImagenEnLabel(labelEscuderia, piloto.getRutaImagenPiloto());
-            labelEscuderia.setBackground(colorPrimario);
+            labelEscuderia.setBackground(Color.WHITE);
             labelEscuderia.setForeground(Color.WHITE);
+            labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
             labelEscuderia.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -195,7 +200,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+                    labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
                 }
             });
 

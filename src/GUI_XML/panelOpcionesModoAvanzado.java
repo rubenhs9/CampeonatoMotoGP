@@ -51,7 +51,7 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter(){
             @Override
@@ -103,13 +103,13 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         int heightBoton = 65;
         
         //PRIMER BOTON
-        JLabel primerBoton = new JLabel();
+        JLabel primerBoton = new JLabel("REALIZAR BUSQUEDAS");
         primerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         primerBoton.setBackground(colorPrimario);
         primerBoton.setOpaque(true);
-        primerBoton.setText("<html><div style='text-align: center;'>REALIZAR BUSQUEDAS</div></html>");
+//        primerBoton.setText("<html><div style='text-align: center;'>REALIZAR BUSQUEDAS</div></html>");
         primerBoton.setForeground(Color.WHITE);
-        primerBoton.setFont(new Font("Arial",Font.BOLD,20));
+        primerBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         primerBoton.setHorizontalAlignment(SwingConstants.CENTER);
         primerBoton.setVerticalAlignment(SwingConstants.CENTER);
         primerBoton.addMouseListener(new MouseAdapter() {
@@ -139,13 +139,13 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         
         
         //SEGUNDO BOTON
-        JLabel segundoBoton = new JLabel();
+        JLabel segundoBoton = new JLabel("EXPORTAR A XML");
         segundoBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         segundoBoton.setBackground(colorPrimario);
         segundoBoton.setOpaque(true);
-        segundoBoton.setText("<html><div style='text-align: center;'>EXPORTAR A XML</div></html>");
+//        segundoBoton.setText("<html><div style='text-align: center;'>EXPORTAR A XML</div></html>");
         segundoBoton.setForeground(Color.WHITE);
-        segundoBoton.setFont(new Font("Arial",Font.BOLD,20));
+        segundoBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         segundoBoton.setHorizontalAlignment(SwingConstants.CENTER);
         segundoBoton.setVerticalAlignment(SwingConstants.CENTER);
         segundoBoton.addMouseListener(new MouseAdapter() {
@@ -176,13 +176,13 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         
         
         //TERCER BOTON
-        JLabel tercerBoton = new JLabel();
+        JLabel tercerBoton = new JLabel("IMPORTAR DE LOS XML");
         tercerBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
         tercerBoton.setBackground(colorPrimario);
         tercerBoton.setOpaque(true);
-        tercerBoton.setText("<html><div style='text-align: center;'>IMPORTAR DE LOS XML</div></html>");
+//        tercerBoton.setText("<html><div style='text-align: center;'>IMPORTAR DE LOS XML</div></html>");
         tercerBoton.setForeground(Color.WHITE);
-        tercerBoton.setFont(new Font("Arial",Font.BOLD,20));
+        tercerBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         tercerBoton.setHorizontalAlignment(SwingConstants.CENTER);
         tercerBoton.setVerticalAlignment(SwingConstants.CENTER);
         tercerBoton.addMouseListener(new MouseAdapter() {

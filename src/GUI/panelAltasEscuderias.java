@@ -54,7 +54,7 @@ public class panelAltasEscuderias extends javax.swing.JPanel {
         volverAtras.setOpaque(true);
         volverAtras.setForeground(Color.white);
         volverAtras.setBorder(new EmptyBorder(0,10,0,10));
-        volverAtras.setFont(new Font("Microsoft YaHei UI",Font.BOLD,25));
+        volverAtras.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         volverAtras.setText("VOLVER");
         volverAtras.addMouseListener(new MouseAdapter() {
             @Override
@@ -82,7 +82,7 @@ public class panelAltasEscuderias extends javax.swing.JPanel {
         JLabel labelInfo = new JLabel();
         labelInfo.setText("SELECCIONA UNA ESCUDERIA PARA AÑADIR PILOTOS                   ");
         labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
-        labelInfo.setFont(new Font("Arial",Font.BOLD,25));
+        labelInfo.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         panelInfo.add(labelInfo,BorderLayout.CENTER);
         
         this.add(panelInfo, BorderLayout.NORTH);
@@ -125,8 +125,9 @@ public class panelAltasEscuderias extends javax.swing.JPanel {
             labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
             labelEscuderia.setOpaque(true);
             ajustarImagenEnLabel(labelEscuderia, escuderia.getImagen());
-            labelEscuderia.setBackground(colorPrimario);
+            labelEscuderia.setBackground(Color.white);
             labelEscuderia.setForeground(Color.WHITE);
+            labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
             labelEscuderia.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -135,7 +136,7 @@ public class panelAltasEscuderias extends javax.swing.JPanel {
                     panelPrincipal.add(panelAltasPilotos, BorderLayout.CENTER);
                     panelPrincipal.revalidate();
                     panelPrincipal.repaint();
-                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+                    labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
                 }
 
                 @Override
@@ -145,7 +146,7 @@ public class panelAltasEscuderias extends javax.swing.JPanel {
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    labelEscuderia.setBorder(BorderFactory.createEmptyBorder());
+                    labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
                 }
             });
 

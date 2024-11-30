@@ -6,6 +6,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.LinearGradientPaint;
+import java.awt.Paint;
+import java.awt.geom.Rectangle2D;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,7 +21,7 @@ public class panelPrincipal extends javax.swing.JPanel {
 
     private  Vpal vpal;
     private String nombreApp = "PRUEBA";
-    private Color colorPrimario = new Color(95, 171, 221); //Color principal de la app, se puede cambiar si no gusta
+    private Color colorPrimario = Color.RED; //Color principal de la app, se puede cambiar si no gusta
     private Campeonato campeonato;
     
     public panelPrincipal(Vpal vpal, Campeonato campeonato) {
@@ -43,12 +50,43 @@ public class panelPrincipal extends javax.swing.JPanel {
 
     private void minitComponents() {
         //Creo el Jpanel superior que estara en todo momento enseñando el nombre del insituto
-        JPanel panelTituloApp = new JPanel();
+        JPanel panelTituloApp = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                Graphics2D g2d = (Graphics2D) g;
+                Color colorInicio = new Color(0, 0, 0); // Negro
+                Color colorFin = new Color(70, 1, 1);  // Granate muy oscuro
+
+                Paint degradado = new LinearGradientPaint(
+                    getWidth(), 0, 0, 0, 
+                    new float[] {0.0f, 1.0f}, 
+                    new Color[] {colorFin, colorInicio}
+                );
+
+                g2d.setPaint(degradado);
+                g2d.fill(new Rectangle2D.Float(0, 0, getWidth(), getHeight()));
+                
+                // Cargar la imagen que quieres centrar
+                ImageIcon icon = new ImageIcon(".\\res\\imgInterfaz\\logo.png"); // Ruta de la imagen
+                Image image = icon.getImage();
+
+                // Calcular las coordenadas para centrar la imagen en el panel
+                int x = (getWidth() - image.getWidth(null)) / 2;
+                int y = (getHeight() - image.getHeight(null)) / 2;
+
+                // Dibujar la imagen centrada
+                g2d.drawImage(image, x, y, this);
+            }
+        };
         panelTituloApp.setLayout(new FlowLayout());
-        panelTituloApp.setBackground(colorPrimario);
+//        panelTituloApp.setBackground(colorPrimario);
+        
+        
         JLabel titulo = new JLabel();
         titulo.setForeground(Color.WHITE);
-        titulo.setText("| " + nombreApp + " |");
+        titulo.setText(" ");
         titulo.setFont(new Font("Arial",Font.BOLD,70));
         
         panelTituloApp.add(titulo);
