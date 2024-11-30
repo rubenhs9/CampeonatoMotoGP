@@ -4,6 +4,8 @@ package data;
 import GUI.Vpal;
 import java.awt.Color;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,11 +18,14 @@ public class App {
     private String nombre;
     private Campeonato campeonato2024;
 
-    public App(String nombre) {
+    public App(String nombre) throws IOException, FileNotFoundException, ClassNotFoundException {
         this.nombre = nombre;
         campeonato2024 = new Campeonato(nombre);
         datosPrueba(campeonato2024);
         datosPruebaCircuito(campeonato2024);
+        
+        
+        
         campeonato2024.mostrarCircuitos();
         
         modoGrafico();
@@ -30,6 +35,7 @@ public class App {
 
     
     public void datosPrueba(Campeonato campeonato){
+
         // Ducati Lenovo Team
         Escuderia escuderia1 = new Escuderia("Ducati Lenovo Team", Pais.ITALIA,".\\res\\imgEscuderias\\Ducati Lenovo Team.png",new Color(183,1,5),new Color(53,1,3));
         Moto moto1 = new Moto("1", "Ducati", "Desmosedici GP24", ".\\res\\imgMotos\\Ducati Team.png");
