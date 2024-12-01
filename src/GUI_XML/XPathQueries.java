@@ -1,6 +1,4 @@
-
 package GUI_XML;
-
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -8,53 +6,49 @@ import org.w3c.dom.NodeList;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XPathQueries {
     private final XPath xPath;
     private final Document document;
+    private final List<String> resultados; // Lista para almacenar los resultados
 
     public XPathQueries(Document document) {
         this.document = document;
         this.xPath = XPathFactory.newInstance().newXPath();
+        this.resultados = new ArrayList<>(); // Inicializamos la lista
     }
 
-    public void getSatellitesNames() throws Exception {
-        NodeList nodes = (NodeList) xPath.evaluate("//satelite/@nombre", document, XPathConstants.NODESET);
-        System.out.println("Nombres de todos los satélites:");
+    public List<String> getResultados() {
+        return resultados; // Devuelve la lista de resultados
+    }
+
+    public void mostrarCincoPrimeros() throws Exception {
+        NodeList nodes = (NodeList) xPath.evaluate("//row[position() <= 5]/data1", document, XPathConstants.NODESET);
         for (int i = 0; i < nodes.getLength(); i++) {
-            System.out.println("- " + nodes.item(i).getNodeValue());
+            resultados.add("- " + nodes.item(i).getTextContent());
         }
     }
 
-    public void getPlanetsWithSatelliteNamedLuna() throws Exception {
-        NodeList nodes = (NodeList) xPath.evaluate("//planeta[satelite[@nombre='Luna']]/@nombre", document, XPathConstants.NODESET);
-        System.out.println("Planetas con satélite llamado 'Luna':");
+    public void numeroNombreYamaha() throws Exception {
+        NodeList nodes = (NodeList) xPath.evaluate("//row[data3='Yamaha']/data1", document, XPathConstants.NODESET);
         for (int i = 0; i < nodes.getLength(); i++) {
-            System.out.println("- " + nodes.item(i).getNodeValue());
+            resultados.add("- " + nodes.item(i).getTextContent());
         }
     }
 
-    public void getSpacesWithAttributeName() throws Exception {
-        NodeList nodes = (NodeList) xPath.evaluate("//espacio[@nombre]", document, XPathConstants.NODESET);
-        System.out.println("Espacios con atributo 'nombre':");
+    public void pilotosEsp() throws Exception {
+        NodeList nodes = (NodeList) xPath.evaluate("//row[contains(data1, '(ESP)')]/data1", document, XPathConstants.NODESET);
         for (int i = 0; i < nodes.getLength(); i++) {
-            System.out.println("- " + nodes.item(i).getNodeValue());
+            resultados.add("- " + nodes.item(i).getTextContent());
         }
     }
 
-    public void getGalaxiesWithAttributeName() throws Exception {
-        NodeList nodes = (NodeList) xPath.evaluate("//galaxia/@nombre", document, XPathConstants.NODESET);
-        System.out.println("Galaxias con atributo 'nombre':");
-        for (int i = 0; i < nodes.getLength(); i++) {
-            System.out.println("- " + nodes.item(i).getNodeValue());
-        }
-    }
-
-    public void getNodesWithNameNotLuna() throws Exception {
-        NodeList nodes = (NodeList) xPath.evaluate("//*[not(@nombre='Luna')]/@nombre", document, XPathConstants.NODESET);
-        System.out.println("Nodos cuyo nombre no sea 'Luna':");
-        for (int i = 0; i < nodes.getLength(); i++) {
-            System.out.println("- " + nodes.item(i).getNodeValue());
-        }
+    
+    public void ejecutarConsultas() throws Exception {
+        mostrarCincoPrimeros();
+        numeroNombreYamaha();
+        pilotosEsp();
     }
 }

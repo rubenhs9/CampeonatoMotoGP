@@ -9,8 +9,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 
@@ -19,18 +22,103 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
     private Color colorPrimario;
     private JPanel panelPrincipal;
     private JPanel panelAnterior;
+    private XPathQueries xp;
+    private JPanel panelResultados;
+    private JScrollPane scrollPane;
+
     private Campeonato campeonato;
     
-    public panelRealizarBusquedas(JPanel panelPrincipal, JPanel panelAnterior, Campeonato campeonato, Color colorPrimario) {
+    public panelRealizarBusquedas(JPanel panelPrincipal, JPanel panelAnterior, Campeonato campeonato, Color colorPrimario,  XPathQueries xp) {
         this.panelPrincipal = panelPrincipal;
         this.panelAnterior = panelAnterior;
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
+        this.xp = xp;
         this.setLayout(new BorderLayout());
-
+        
+        panelResultados = new JPanel();
+        panelResultados.setLayout(new BoxLayout(panelResultados, BoxLayout.Y_AXIS)); 
+        
         botonVolverAtras();
-        minitComponents();
+        pintarBusquedas();
+        
     }
+    
+    private void pintarBusquedas() {
+    try {
+        if (xp != null) {
+            xp.ejecutarConsultas();  // Ejecutar las consultas XPath
+        } else {
+            System.out.println("El objeto xp no está inicializado.");
+        }
+
+        List<String> resultados = xp.getResultados();  // Obtener los resultados de las consultas
+
+        // Limpiar el panel de resultados antes de añadir nuevos
+        panelResultados.removeAll();
+
+        // Crear y agregar el título para la primera consulta
+        JLabel tituloConsulta1 = new JLabel("Nombre de los cinco primeros pilotos clasificados en el mundial:");
+        tituloConsulta1.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 35));
+        tituloConsulta1.setForeground(Color.RED);  // Color rojo para el título
+        panelResultados.add(tituloConsulta1);
+
+        // Añadir los resultados de la primera consulta
+        for (int i = 0; i < 5; i++) { // Mostramos solo los primeros 5 resultados
+            JLabel lblResultado = new JLabel(resultados.get(i));
+            lblResultado.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.PLAIN, 25)); 
+            lblResultado.setForeground(Color.BLACK);
+            panelResultados.add(lblResultado);
+        }
+
+        // Crear y agregar el título para la segunda consulta
+        JLabel tituloConsulta2 = new JLabel("Pilotos con Yamaha:");
+        tituloConsulta2.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 35));
+        tituloConsulta2.setForeground(Color.RED);  // Color rojo para el título
+        panelResultados.add(tituloConsulta2);
+
+        // Añadir los resultados de la segunda consulta
+        for (int i = 5; i < 10; i++) { // Suposición de que los resultados de Yamaha van después de los primeros
+            JLabel lblResultado = new JLabel(resultados.get(i));
+            lblResultado.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.PLAIN, 25)); 
+            lblResultado.setForeground(Color.BLACK);
+            panelResultados.add(lblResultado);
+        }
+
+        // Crear y agregar el título para la tercera consulta
+        JLabel tituloConsulta3 = new JLabel("Pilotos españoles:");
+        tituloConsulta3.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 35));
+        tituloConsulta3.setForeground(Color.RED);  // Color rojo para el título
+        panelResultados.add(tituloConsulta3);
+
+        // Añadir los resultados de la tercera consulta
+        for (int i = 10; i < resultados.size(); i++) { // Los resultados de los pilotos españoles
+            JLabel lblResultado = new JLabel(resultados.get(i));
+            lblResultado.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.PLAIN, 25)); 
+            lblResultado.setForeground(Color.BLACK);
+            panelResultados.add(lblResultado);
+        }
+
+        // Crear el JScrollPane con el panel que contiene los resultados
+        scrollPane = new JScrollPane(panelResultados);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new java.awt.Dimension(500, 400));  
+
+        // Asegurarse de no borrar el botón, solo actualizar el contenido
+        this.remove(scrollPane);  // Eliminar solo el contenido anterior
+
+        // Añadir el nuevo JScrollPane con los resultados
+        this.add(scrollPane, BorderLayout.CENTER);
+
+        // Redibujar la interfaz
+        this.revalidate();
+        this.repaint();
+
+    } catch (Exception e) {
+        e.printStackTrace();  // Para depurar si ocurre algún error
+    }
+}
+
 
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
@@ -83,10 +171,7 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void minitComponents() {
-        
-    }
-
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

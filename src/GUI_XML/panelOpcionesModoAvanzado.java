@@ -30,7 +30,9 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
+    private XPathQueries xp;
     private GridBagConstraints gbc;
+    private boolean datosImportados = false;
     
     public panelOpcionesModoAvanzado(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -117,7 +119,11 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         primerBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelRealizarBusquedas panelRealizarBusquedas = new panelRealizarBusquedas(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario);
+                if (!datosImportados) {
+                    JOptionPane.showMessageDialog(null, "¡Por favor, importe el archivo XML primero!");
+                    return;
+                }
+                panelRealizarBusquedas panelRealizarBusquedas = new panelRealizarBusquedas(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario,xp);
                 panelPrincipal.remove(panelOpcionesModoAvanzado.this);
                 panelPrincipal.add(panelRealizarBusquedas, BorderLayout.CENTER);
                 panelPrincipal.revalidate();
@@ -153,9 +159,7 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                XMLExporter exporter = new XMLExporter();
-                exporter.exportarCampeonato(campeonato, "res\\storage\\campeonato2024.xml");
-
+                
             }
 
             @Override
@@ -192,18 +196,16 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
                     XmlParser parser = new XmlParser(".\\res\\storage\\___dalesEsteArch__ridersMotoGP.xml");
                     Document document = parser.getDocument();
                     campeonato.setDocumentoXML2012(document);
-                    //Mostrar todo el XML
-//                    System.out.println("" + parser.getXmlAsString());
-                    String mensaje = "<html><div style='text-align: center;'>El archivo" + 
-                 " ha sido importado exitosamente" + "</div></html>";
-
-                    JOptionPane.showMessageDialog(panelOpciones, mensaje, "CONFIRMADO", JOptionPane.INFORMATION_MESSAGE);
-
-                } catch (Exception ee) {
+                    xp = new XPathQueries(document);
+//                    xp.ejecutarConsultas();
+                    datosImportados = true;
+                    if (datosImportados) {
+                        JOptionPane.showMessageDialog(null, "¡Datos importados con exito!");
+                    }
+                }catch(Exception ee){
                     ee.printStackTrace();
                 }
             }
-
             @Override
             public void mouseEntered(MouseEvent e) {
                 tercerBoton.setBackground(Color.DARK_GRAY);
