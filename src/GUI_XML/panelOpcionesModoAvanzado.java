@@ -1,6 +1,7 @@
 
 package GUI_XML;
 
+import GUI.JLabelConSaltos;
 import GUI.panelOpciones;
 import GUI.panelOpcionesAltas;
 import GUI.panelOpcionesClasificacion;
@@ -241,6 +242,35 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         });
         gbc.gridy = 3; 
         panelOps.add(tercerBoton, gbc);
+        
+        //CUARTO BOTON      ESTE BOTON BUSCA QUE SE PUEDA IMPORTAR UN FICHERO CON TODOS LAS ALTAS PARA NO TENER QUE HACERLAS MANUALMENTE
+        JLabelConSaltos cuartoBoton = new JLabelConSaltos("IMPORTAR FICHERO\n COMPLETO");
+        cuartoBoton.setPreferredSize(new Dimension(widthBoton, heightBoton));
+        cuartoBoton.setBackground(colorPrimario);
+        cuartoBoton.setOpaque(true);
+//        tercerBoton.setText("<html><div style='text-align: center;'>IMPORTAR DE LOS XML</div></html>");
+        cuartoBoton.setForeground(Color.WHITE);
+        cuartoBoton.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
+        cuartoBoton.setHorizontalAlignment(SwingConstants.CENTER);
+        cuartoBoton.setVerticalAlignment(SwingConstants.CENTER);
+        cuartoBoton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                campeonato.cargarFicheroEscuderias(true);
+                JOptionPane.showMessageDialog(null, "¡Datos importados con exito!");
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                cuartoBoton.setBackground(Color.DARK_GRAY);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                cuartoBoton.setBackground(colorPrimario);
+            }
+        });
+        gbc.gridy = 4; 
+        panelOps.add(cuartoBoton, gbc);
         
         this.add(panelOps, BorderLayout.CENTER);
     }

@@ -52,9 +52,9 @@ public class Campeonato  {
         }));
     }
 
-    public void cargarFicheroEscuderias(){
+    public void cargarFicheroEscuderias(boolean ficheroCompleto){
         try {
-            FicheroEscuderias.cargarFichero(escuderias, pilotos);
+            FicheroEscuderias.cargarFichero(escuderias, pilotos,ficheroCompleto);
         } catch (IOException ex) {
             Logger.getLogger(Campeonato.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

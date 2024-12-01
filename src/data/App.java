@@ -31,7 +31,7 @@ public class App {
         datosPrueba(campeonato2024);
         datosPruebaCircuito(campeonato2024);
         
-        campeonato2024.cargarFicheroEscuderias();
+        campeonato2024.cargarFicheroEscuderias(false);
      
         
 //        campeonato2024.mostrarCircuitos();

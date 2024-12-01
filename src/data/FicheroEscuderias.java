@@ -15,8 +15,10 @@ import java.util.Map;
 
 
 public class FicheroEscuderias {
-
+    
     private static final String RUTA_FICHERO_ESCUDERIAS = ".\\res\\storage\\escuderias.dat";
+    private static final String RUTA_FICHERO_ESCUDERIAS_COMPLETO = ".\\res\\storage\\escuderias_completo.dat";
+    private static File archivo;
     
     //Guardar escuderías en un archivo
     public static void guardarFichero(List<Escuderia> escuderias) throws IOException {
@@ -45,8 +47,13 @@ public class FicheroEscuderias {
     }
 
     // Cargar escuderías desde un archivo
-    public static void cargarFichero(List<Escuderia> escuderias, List<Piloto> pilotos) throws IOException, ClassNotFoundException {
-        File archivo = new File(RUTA_FICHERO_ESCUDERIAS);
+    public static void cargarFichero(List<Escuderia> escuderias, List<Piloto> pilotos, boolean ficheroCompleto) throws IOException, ClassNotFoundException {
+        if (!ficheroCompleto) {
+           archivo = new File(RUTA_FICHERO_ESCUDERIAS); 
+        }else{
+            archivo = new File(RUTA_FICHERO_ESCUDERIAS_COMPLETO); 
+        }
+        
 
         // Si el archivo no existe, no hace falta intentar leerlo
         if (!archivo.exists()) {
