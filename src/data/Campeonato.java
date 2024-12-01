@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.w3c.dom.Document;
 
 
 public class Campeonato  {
@@ -25,6 +26,9 @@ public class Campeonato  {
     
     private String nombreCampeonato;
     private Font fuenteMotoGP;
+    
+    //VARIABLES PARA EL XML
+    private Document documentoXML2012;
 
     public Campeonato(String nombre) throws IOException, FileNotFoundException, ClassNotFoundException {
         this.nombreCampeonato = nombre;
@@ -127,6 +131,16 @@ public class Campeonato  {
     public Font getFuenteMotoGP() {
         return fuenteMotoGP;
     }
+
+    public Document getDocumentoXML2012() {
+        return documentoXML2012;
+    }
+
+    public void setDocumentoXML2012(Document documentoXML2012) {
+        this.documentoXML2012 = documentoXML2012;
+    }
+    
+    
     
     
     

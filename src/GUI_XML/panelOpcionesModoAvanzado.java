@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import org.w3c.dom.Document;
 
 
 public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
@@ -151,12 +152,7 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelExportarXML panelExportarXML = new panelExportarXML(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpcionesModoAvanzado.this);
-                panelPrincipal.add(panelExportarXML, BorderLayout.CENTER);
-                panelPrincipal.revalidate();
-                panelPrincipal.repaint();
-                segundoBoton.setBackground(colorPrimario);
+                
             }
 
             @Override
@@ -188,12 +184,17 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         tercerBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                panelImportarXML panelImportarXML = new panelImportarXML(panelPrincipal,panelOpcionesModoAvanzado.this, campeonato, colorPrimario);
-                panelPrincipal.remove(panelOpcionesModoAvanzado.this);
-                panelPrincipal.add(panelImportarXML, BorderLayout.CENTER);
-                panelPrincipal.revalidate();
-                panelPrincipal.repaint();
-                tercerBoton.setBackground(colorPrimario);
+                try {
+                    //Cargar el archivo XML
+                    XmlParser parser = new XmlParser(".\\res\\storage\\___dalesEsteArch__ridersMotoGP.xml");
+                    Document document = parser.getDocument();
+                    campeonato.setDocumentoXML2012(document);
+                    //Mostrar todo el XML
+//                    System.out.println("" + parser.getXmlAsString());
+
+                } catch (Exception ee) {
+                    ee.printStackTrace();
+                }
             }
 
             @Override
