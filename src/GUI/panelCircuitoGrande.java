@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,6 +18,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -28,6 +30,7 @@ public class panelCircuitoGrande extends JPanel{
     private JPanel panelPrincipal;
     private Campeonato campeonato;
     private Circuito circuito;
+    private Image backgroundImage;
     
 
     public panelCircuitoGrande(JPanel panelCircuitos, Color colorPrimario, JPanel panelPrincipal, Campeonato campeonato, Circuito circuito) {
@@ -39,13 +42,29 @@ public class panelCircuitoGrande extends JPanel{
         this.setLayout(new BorderLayout());
         this.setBackground(colorPrimario);
         
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
+        
         botonVolverAtras();
         mostrarCircuito();
         
     }
     
+     @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
+    }
+    
     private void mostrarCircuito() {
         JPanel panelContenedor = new JPanel(new BorderLayout());
+        panelContenedor.setOpaque(false);
         panelContenedor.setBackground(colorPrimario);
 
         // Crear el JLabel para la imagen
@@ -88,53 +107,51 @@ public class panelCircuitoGrande extends JPanel{
 
         // Crear el panel derecho para la información
         JPanel panelInformacion = new JPanel();
+        panelInformacion.setOpaque(false);
         panelInformacion.setLayout(new BorderLayout());
         panelInformacion.setBackground(colorPrimario);
 
 
+        // LABEL NOMBRE
+        JLabel labelNombre = new JLabel();
+        labelNombre.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
+        labelNombre.setText(circuito.getNombre());
+        labelNombre.setForeground(Color.BLACK);
+        labelNombre.setHorizontalAlignment(JLabel.CENTER);
 
+        // LABEL PAIS
+        JLabel labelPais = new JLabel();
+        labelPais.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
+        labelPais.setText(circuito.getPais());
+        labelPais.setForeground(Color.BLACK);
+        labelPais.setHorizontalAlignment(JLabel.CENTER);
 
-            panelInformacion.setLayout(new BorderLayout());
-            panelInformacion.setBackground(colorPrimario);
+        // LABEL LONGITUD
+        JLabel labelLongitud = new JLabel();
+        labelLongitud.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
+        labelLongitud.setText(circuito.getLongitud() + " km");
+        labelLongitud.setForeground(Color.BLACK);
+        labelLongitud.setHorizontalAlignment(JLabel.CENTER);
 
-            // LABEL NOMBRE
-            JLabel labelNombre = new JLabel();
-            labelNombre.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
-            labelNombre.setText(circuito.getNombre());
-            labelNombre.setForeground(Color.BLACK);
-            labelNombre.setHorizontalAlignment(JLabel.CENTER);
+        // Crear un panel para contener los JLabels y organizar su disposición
+        JPanel panelTexto = new JPanel();
+        panelTexto.setOpaque(true);
+        panelTexto.setLayout(new BoxLayout(panelTexto, BoxLayout.Y_AXIS)); // Establecer disposición vertical
+        panelTexto.setBackground(colorPrimario);
 
-            // LABEL PAIS
-            JLabel labelPais = new JLabel();
-            labelPais.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
-            labelPais.setText(circuito.getPais());
-            labelPais.setForeground(Color.BLACK);
-            labelPais.setHorizontalAlignment(JLabel.CENTER);
+        panelTexto.setBackground(new Color(255,255,255,150));
 
-            // LABEL LONGITUD
-            JLabel labelLongitud = new JLabel();
-            labelLongitud.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD, 32));
-            labelLongitud.setText(circuito.getLongitud() + " km");
-            labelLongitud.setForeground(Color.BLACK);
-            labelLongitud.setHorizontalAlignment(JLabel.CENTER);
+        panelTexto.add(Box.createVerticalStrut(150));
 
-            // Crear un panel para contener los JLabels y organizar su disposición
-            JPanel panelTexto = new JPanel();
-            panelTexto.setLayout(new BoxLayout(panelTexto, BoxLayout.Y_AXIS)); // Establecer disposición vertical
-            panelTexto.setBackground(colorPrimario);
-
-            panelTexto.setBackground(Color.GRAY);
-
-            panelTexto.add(Box.createVerticalStrut(150));
-
-            panelTexto.add(labelNombre);
-            panelTexto.add(labelPais);
-            panelTexto.add(labelLongitud);
+        panelTexto.add(labelNombre);
+        panelTexto.add(labelPais);
+        panelTexto.add(labelLongitud);
 
 
 
-            // Añadir el panelTexto al centro del panelInformacion
-            panelInformacion.add(panelTexto, BorderLayout.CENTER);
+        // Añadir el panelTexto al centro del panelInformacion
+        panelInformacion.add(panelTexto, BorderLayout.CENTER);
+        panelInformacion.setBorder(new EmptyBorder(0,10,10,10));
 
         // Añadir el panel de información al lado derecho
         panelContenedor.add(panelInformacion, BorderLayout.CENTER);
@@ -146,7 +163,7 @@ public class panelCircuitoGrande extends JPanel{
     
     private void botonVolverAtras() {
         JPanel panelIrHaciaAtras = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+        panelIrHaciaAtras.setOpaque(false);
         JLabel volverAtras = new JLabel("VOLVER");
         volverAtras.setBackground(colorPrimario);
         volverAtras.setOpaque(true);

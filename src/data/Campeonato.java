@@ -26,6 +26,7 @@ public class Campeonato  {
     
     private String nombreCampeonato;
     private Font fuenteMotoGP;
+    private String background = "res/imgInterfaz/background.png";
     
     //VARIABLES PARA EL XML
     private Document documentoXML2012;
@@ -138,6 +139,10 @@ public class Campeonato  {
 
     public void setDocumentoXML2012(Document documentoXML2012) {
         this.documentoXML2012 = documentoXML2012;
+    }
+
+    public String getBackground() {
+        return background;
     }
     
     

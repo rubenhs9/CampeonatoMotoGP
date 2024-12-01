@@ -30,7 +30,6 @@ public class panelOpciones extends javax.swing.JPanel {
     private Color colorPrimario;
     private JPanel panelPrincipal;
     private Campeonato campeonato;
-//    private Instituto instituto;
     private Image backgroundImage;
     
     public panelOpciones(JFrame vpal, JPanel panelPrincipal, Color colorPrimario1, Campeonato campeonato) {
@@ -39,14 +38,15 @@ public class panelOpciones extends javax.swing.JPanel {
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario1;
         this.setLayout(new BorderLayout());
-//        ImageIcon imagen = new ImageIcon("res/escuela.png");
-//        backgroundImage = imagen.getImage();
+        this.setOpaque(false);
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
 
         botonModoAvanzado();
         minitComponents();
     }
 
-/*
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -60,7 +60,7 @@ public class panelOpciones extends javax.swing.JPanel {
             System.out.println("No se encontro la imagen");
         }
     }
-*/    
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,6 +81,7 @@ public class panelOpciones extends javax.swing.JPanel {
     private void botonModoAvanzado(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelModoAvanzado = new JPanel();
+        panelModoAvanzado.setOpaque(false);
         panelModoAvanzado.setLayout(new FlowLayout(FlowLayout.RIGHT));
         //BOTON PARA VOLVER ATRAS
         JLabel modoAvanzado = new JLabel();
@@ -118,6 +119,7 @@ public class panelOpciones extends javax.swing.JPanel {
     
     private void minitComponents() {
         JPanel panelOps = new JPanel();
+        panelOps.setOpaque(false);
         panelOps.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); //Espacio entre los botones

@@ -7,10 +7,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,6 +28,7 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
     private XPathQueries xp;
     private JPanel panelResultados;
     private JScrollPane scrollPane;
+     private Image backgroundImage;
 
     private Campeonato campeonato;
     
@@ -36,11 +40,29 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
         this.xp = xp;
         this.setLayout(new BorderLayout());
         
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
+        
         panelResultados = new JPanel();
-        panelResultados.setLayout(new BoxLayout(panelResultados, BoxLayout.Y_AXIS)); 
+        panelResultados.setOpaque(false);
+        panelResultados.setLayout(new BoxLayout(panelResultados, BoxLayout.Y_AXIS));
+        panelResultados.setBorder(new EmptyBorder(0,10,0,10)); //AÑADIMOS UN BORDE PARA QUE NO QUEDE TAN PEGADO A LA VENTANA
         
         botonVolverAtras();
         pintarBusquedas();
+        
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
         
     }
     
@@ -103,12 +125,16 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
         scrollPane = new JScrollPane(panelResultados);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new java.awt.Dimension(500, 400));  
+        scrollPane.setOpaque(true);
+        scrollPane.setBackground(new Color(255,255,255));
+        scrollPane.getViewport().setOpaque(false); 
+        scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        // Asegurarse de no borrar el botón, solo actualizar el contenido
+        //Asegurarse de no borrar el botón, solo actualizar el contenido
         this.remove(scrollPane);  // Eliminar solo el contenido anterior
 
-        // Añadir el nuevo JScrollPane con los resultados
+        //Añadir el nuevo JScrollPane con los resultados
         this.add(scrollPane, BorderLayout.CENTER);
 
         // Redibujar la interfaz
@@ -124,6 +150,7 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setOpaque(false);
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
         JLabel volverAtras = new JLabel();

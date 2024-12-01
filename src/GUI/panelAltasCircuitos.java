@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,7 +32,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
-   
+   private Image backgroundImage;
     
     private int alturaImg = 100;
     
@@ -41,6 +42,9 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
+        
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
         
          // Cargar los circuitos guardados desde el fichero
         Set<Circuito> circuitosGuardados = FicheroCircuito.cargarCircuitos();
@@ -55,6 +59,19 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         
     }
     
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
+    }
+    
+    
     public void agregarCircuitoFichero(){
         
     }
@@ -63,6 +80,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
     public void cargarCircuitos(){
     // Crear el panel para los circuitos
     JPanel panelC = new JPanel();
+    panelC.setOpaque(false);
     panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 //    panelC.setBackground(colorPrimario);
     this.add(panelC, BorderLayout.CENTER);
@@ -73,6 +91,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
         pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
         pCircuitos.setPreferredSize(new Dimension(300, alturaImg));
         pCircuitos.setOpaque(true);
+        pCircuitos.setBackground(new Color(255,255,255,150));
         pCircuitos.setBorder(new LineBorder(Color.BLACK, 3, false));
         ajustarImagenEnLabel(pCircuitos, circuito.getImagen());
         if (campeonato.getCircuitosAdd().contains(circuito)) {
@@ -101,11 +120,15 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 pCircuitos.setBorder(new LineBorder(Color.RED, 3, false));
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 pCircuitos.setBorder(new LineBorder(Color.BLACK, 3, false));
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
             }
         });
 
@@ -138,6 +161,7 @@ public class panelAltasCircuitos extends javax.swing.JPanel {
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setOpaque(false);
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
         JLabel volverAtras = new JLabel();

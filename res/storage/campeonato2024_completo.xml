@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<campeonato>
+    <escuderias>
+        <escuderia>
+            <nombre>Ducati Lenovo Team</nombre>
+            <piloto>
+                <nombre>Francesco Bagnaia</nombre>
+                <pais>ITALIA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>364</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Enea Bastianini</nombre>
+                <pais>ITALIA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>155</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Red Bull KTM Factory Racing</nombre>
+            <piloto>
+                <nombre>Brad Binder</nombre>
+                <pais>SUDAFRICA</pais>
+                <moto>RC16</moto>
+                <puntos>443</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Jack Miller</nombre>
+                <pais>AUSTRALIA</pais>
+                <moto>RC16</moto>
+                <puntos>37</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Aprilia Racing</nombre>
+            <piloto>
+                <nombre>Aleix Espargaró</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RS-GP</moto>
+                <puntos>127</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Maverick Viñales</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RS-GP</moto>
+                <puntos>74</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Prima Pramac Racing</nombre>
+            <piloto>
+                <nombre>Jorge Martín</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>569</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Franco Morbidelli</nombre>
+                <pais>ITALIA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>210</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Monster Energy Yamaha MotoGP</nombre>
+            <piloto>
+                <nombre>Fabio Quartararo</nombre>
+                <pais>FRANCIA</pais>
+                <moto>YZR-M1</moto>
+                <puntos>530</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Álex Rins</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>YZR-M1</moto>
+                <puntos>193</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Gresini Racing MotoGP</nombre>
+            <piloto>
+                <nombre>Marc Márquez</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>463</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Álex Márquez</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>132</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Pertamina Enduro Racing Team</nombre>
+            <piloto>
+                <nombre>Fabio Di Giannantonio</nombre>
+                <pais>ITALIA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>521</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Marco Bezzecchi</nombre>
+                <pais>ITALIA</pais>
+                <moto>Desmosedici GP24</moto>
+                <puntos>392</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Repsol Honda Team</nombre>
+            <piloto>
+                <nombre>Luca Marini</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RC213V</moto>
+                <puntos>352</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Joan Mir</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RC213V</moto>
+                <puntos>538</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>LCR Honda</nombre>
+            <piloto>
+                <nombre>Takaaki Nakagami</nombre>
+                <pais>JAPÓN</pais>
+                <moto>RC213V</moto>
+                <puntos>453</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Johann Zarco</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RC213V</moto>
+                <puntos>499</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>GasGas Factory Racing Tech3</nombre>
+            <piloto>
+                <nombre>Augusto Fernández</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RC16</moto>
+                <puntos>530</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Pedro Acosta</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RC16</moto>
+                <puntos>349</puntos>
+            </piloto>
+        </escuderia>
+        <escuderia>
+            <nombre>Trackhouse Racing</nombre>
+            <piloto>
+                <nombre>Miguel Oliveira</nombre>
+                <pais>ESPAÑA</pais>
+                <moto>RS-GP</moto>
+                <puntos>395</puntos>
+            </piloto>
+            <piloto>
+                <nombre>Raúl Fernández</nombre>
+                <pais>PORTUGAL</pais>
+                <moto>RS-GP</moto>
+                <puntos>209</puntos>
+            </piloto>
+        </escuderia>
+    </escuderias>
+    <circuitos>
+        <circuito>
+            <nombre>Autodromo Internazionale del Mugello</nombre>
+            <pais>Italia</pais>
+            <longitud>5.25</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Autódromo Internacional do Algarve</nombre>
+            <pais>Portugal</pais>
+            <longitud>4.59</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Chang International Circuit</nombre>
+            <pais>Tailandia</pais>
+            <longitud>4.55</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Circuit Ricardo Tormo</nombre>
+            <pais>España</pais>
+            <longitud>4.0</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Circuit de Barcelona-Catalunya</nombre>
+            <pais>España</pais>
+            <longitud>4.63</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Circuit of the Americas</nombre>
+            <pais>Estados Unidos</pais>
+            <longitud>5.51</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Circuito de Jerez – Ángel Nieto</nombre>
+            <pais>España</pais>
+            <longitud>4.42</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Le Mans</nombre>
+            <pais>Francia</pais>
+            <longitud>4.18</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Lusail International Circuit</nombre>
+            <pais>Qatar</pais>
+            <longitud>5.38</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Mobility Resort Motegi</nombre>
+            <pais>Japón</pais>
+            <longitud>4.8</longitud>
+        </circuito>
+        <circuito>
+            <nombre>MotorLand Aragón</nombre>
+            <pais>España</pais>
+            <longitud>5.08</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Pertamina Mandalika International Circuit</nombre>
+            <pais>Indonesia</pais>
+            <longitud>4.31</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Phillip Island</nombre>
+            <pais>Australia</pais>
+            <longitud>4.45</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Red Bull Ring – Spielberg</nombre>
+            <pais>Austria</pais>
+            <longitud>4.32</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Sachsenring</nombre>
+            <pais>Alemania</pais>
+            <longitud>3.67</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Sepang International Circuit</nombre>
+            <pais>Malasia</pais>
+            <longitud>5.54</longitud>
+        </circuito>
+        <circuito>
+            <nombre>Silverstone Circuit</nombre>
+            <pais>Reino Unido</pais>
+            <longitud>5.89</longitud>
+        </circuito>
+        <circuito>
+            <nombre>TT Circuit Assen</nombre>
+            <pais>Países Bajos</pais>
+            <longitud>4.54</longitud>
+        </circuito>
+    </circuitos>
+</campeonato>

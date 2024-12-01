@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 public class panelPrincipal extends javax.swing.JPanel {
 
-    private  Vpal vpal;
+    private Vpal vpal;
     private String nombreApp = "PRUEBA";
     private Color colorPrimario = Color.RED; //Color principal de la app, se puede cambiar si no gusta
     private Campeonato campeonato;
@@ -31,6 +31,9 @@ public class panelPrincipal extends javax.swing.JPanel {
         minitComponents();
     }
 
+    public Vpal getVpal() {
+        return vpal;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -100,7 +103,8 @@ public class panelPrincipal extends javax.swing.JPanel {
         panelOpciones panelOpciones = new panelOpciones(vpal, this, colorPrimario, campeonato);
         this.add(panelOpciones);
     }
-    
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

@@ -21,6 +21,7 @@ public class panelCircuitos extends JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpcionesListados;
     private Campeonato campeonato;
+    private Image backgroundImage;
     
     private Circuito circuito;
     private int alturaImg = 100;
@@ -32,14 +33,29 @@ public class panelCircuitos extends JPanel {
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
         
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
+        
         panelesCircuitos();
         botonVolverAtras();
-        
-        
+
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
     }
     
     private void panelesCircuitos(){
         JPanel panelC = new JPanel();
+        panelC.setOpaque(false);
         panelC.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
 //        panelC.setBackground(colorPrimario);
         this.add(panelC, BorderLayout.CENTER);
@@ -53,6 +69,7 @@ public class panelCircuitos extends JPanel {
             JLabel pCircuitos = new JLabel();
             pCircuitos.setHorizontalAlignment(SwingConstants.CENTER);
             pCircuitos.setPreferredSize(new Dimension(300,alturaImg));
+            pCircuitos.setBackground(new Color(255,255,255,150));
             pCircuitos.setOpaque(true);
             pCircuitos.setBorder(new LineBorder(Color.BLACK,3,false));
             
@@ -78,11 +95,15 @@ public class panelCircuitos extends JPanel {
             
             public void mouseEntered(MouseEvent e) {
               pCircuitos.setBorder(new LineBorder(Color.RED,3,false));
+              panelPrincipal.revalidate();
+              panelPrincipal.repaint();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 pCircuitos.setBorder(new LineBorder(Color.BLACK,3,false));
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
             }
         });
 
@@ -115,7 +136,7 @@ public class panelCircuitos extends JPanel {
 
     private void botonVolverAtras() {
         JPanel panelIrHaciaAtras = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
+        panelIrHaciaAtras.setOpaque(false);
         JLabel volverAtras = new JLabel("VOLVER");
         volverAtras.setBackground(colorPrimario);
         volverAtras.setOpaque(true);

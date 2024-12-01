@@ -38,6 +38,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
     
     private int alturaImg = 125;
     private int anchoImg = 370;
+    private Image backgroundImage;
     
     private List<Piloto> pilotosSeleccionados = new ArrayList<Piloto>();
     
@@ -50,15 +51,31 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
         
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
+        
         botonVolverAtras();
         minitComponents();
     }
     
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
+    }
+    
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelInfo = new JPanel(new BorderLayout());
+        panelInfo.setOpaque(false);
         JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setOpaque(false);
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
         JLabel volverAtras = new JLabel();
@@ -93,6 +110,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         //CREAMOS EL Label QUE INIDICARA QUE ESTAMOS HACIENDO
         JLabel labelInfo = new JLabel();
         labelInfo.setText("SELECCIONA LOS DOS PILOTOS DE ESTA ESCUDERIA                   ");
+        labelInfo.setForeground(Color.WHITE);
         labelInfo.setHorizontalAlignment(SwingConstants.CENTER);
         labelInfo.setFont(campeonato.getFuenteMotoGP().deriveFont(Font.BOLD,25));
         panelInfo.add(labelInfo,BorderLayout.CENTER);
@@ -120,7 +138,6 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         //Crear un panel con FlowLayout centrado
         JPanel panelContenido = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         panelContenido.setOpaque(false);
-    //    panelContenido.setBackground(Color.WHITE);
 
         //Agregar un JScrollPane que envuelve al panelContenido
         JScrollPane scrollPane = new JScrollPane(panelContenido);
@@ -128,6 +145,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBorder(null);
         scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false); 
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         //Agregar el JScrollPane al contenedor principal
@@ -140,7 +158,7 @@ public class panelAltasPilotos extends javax.swing.JPanel {
             labelEscuderia.setHorizontalAlignment(SwingConstants.CENTER);
             labelEscuderia.setOpaque(true);
             ajustarImagenEnLabel(labelEscuderia, piloto.getRutaImagenPiloto());
-            labelEscuderia.setBackground(Color.WHITE);
+            labelEscuderia.setBackground(new Color(255,255,255,150));
             labelEscuderia.setForeground(Color.WHITE);
             labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
             labelEscuderia.addMouseListener(new MouseAdapter() {
@@ -196,11 +214,15 @@ public class panelAltasPilotos extends javax.swing.JPanel {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     labelEscuderia.setBorder(new LineBorder(Color.RED,3,false));
+                    panelPrincipal.repaint();
+                    panelPrincipal.revalidate();
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
                     labelEscuderia.setBorder(new LineBorder(Color.BLACK,3,false));
+                    panelPrincipal.repaint();
+                    panelPrincipal.revalidate();
                 }
             });
 

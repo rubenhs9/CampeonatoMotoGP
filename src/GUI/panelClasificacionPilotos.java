@@ -9,14 +9,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.ImageIcon;
@@ -34,6 +33,7 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
     private JPanel panelPrincipal;
     private JPanel panelOpciones;
     private Campeonato campeonato;
+    private Image backgroundImage;
     
     public panelClasificacionPilotos(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -41,14 +41,30 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
+        
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
 
         botonVolverAtras();
         minitComponents();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
     }
 
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setOpaque(false);
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
         JLabel volverAtras = new JLabel();
@@ -100,6 +116,7 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
     private void minitComponents() {
         // Crear un panel para la tabla de clasificación
         JPanel panelClasificacion = new JPanel();
+        panelClasificacion.setOpaque(false);
         panelClasificacion.setLayout(new GridBagLayout());  // Usar GridBagLayout para un control más preciso
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -171,6 +188,9 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
         //Configurar el JScrollPane para que tenga barras de desplazamiento cuando sea necesario
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false); 
+        scrollPane.setBorder(null);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         //Añadir el JScrollPane al contenedor principal
@@ -190,6 +210,7 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
         label.setBorder(compoundBorder);  // Establecer el borde combinado
 //        label.setBackground(new Color(0, 0, 0, 50));  // Fondo semitransparente
         label.setOpaque(true);
+        label.setBackground(new Color(255,255,255,150));
 
         label.setPreferredSize(new java.awt.Dimension(20, label.getPreferredSize().height)); // 50 es el ancho adecuado
 
@@ -211,8 +232,10 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.CENTER);
         label.setFont(new Font("Arial", Font.PLAIN, 16));
+        label.setBorder(new EmptyBorder(6, 10, 5, 10));
         label.setForeground(Color.BLACK);
-        
+        label.setOpaque(true);
+        label.setBackground(new Color(255,255,255,150));
 
         return label;
     }
@@ -230,6 +253,7 @@ public class panelClasificacionPilotos extends javax.swing.JPanel {
         label.setBorder(compoundBorder);  // Establecer el borde combinado
 //        label.setBackground(new Color(0, 0, 0, 50));  // Fondo semitransparente
         label.setOpaque(true);
+        label.setBackground(new Color(255,255,255,150));
         return label;
     }
 

@@ -20,7 +20,7 @@ public class Vpal extends javax.swing.JFrame {
         this.setLayout(new GridLayout());
         
         this.campeonato = campeonato2024;
-        
+                
         minitComponents();
     }
 
@@ -50,7 +50,7 @@ public class Vpal extends javax.swing.JFrame {
         panelPrincipal panelPrincipal = new panelPrincipal(this, campeonato); 
         this.add(panelPrincipal);
     }
-   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

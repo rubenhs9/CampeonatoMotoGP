@@ -11,11 +11,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +36,7 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
     private XPathQueries xp;
     private GridBagConstraints gbc;
     private boolean datosImportados = false;
+    private Image backgroundImage;
     
     public panelOpcionesModoAvanzado(JPanel panelPrincipal, JPanel panelOpciones, Campeonato campeonato, Color colorPrimario) {
         this.panelPrincipal = panelPrincipal;
@@ -40,14 +44,31 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         this.campeonato = campeonato;
         this.colorPrimario = colorPrimario;
         this.setLayout(new BorderLayout());
+        
+        ImageIcon imagen = new ImageIcon(campeonato.getBackground());
+        backgroundImage = imagen.getImage();
 
         botonVolverAtras();
         minitComponents();
     }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //Dibujo la imagen de fondo
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, panelPrincipal.getWidth(), panelPrincipal.getHeight(), this);
+        }else{
+            System.out.println("No se encontro la imagen");
+        }
+    }
+    
 
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setOpaque(false);
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
         JLabel volverAtras = new JLabel();
@@ -98,6 +119,7 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
 
     private void minitComponents() {
         JPanel panelOps = new JPanel();
+        panelOps.setOpaque(false);
         panelOps.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); //Espacio entre los botones

@@ -97,6 +97,8 @@ public class panelMotosPilotos extends javax.swing.JPanel {
     private void botonVolverAtras(){
         //CREAMOS EL PANEL DE ARRIBA DONDE ESTARA EL BOTON DE VOLVER
         JPanel panelIrHaciaAtras = new JPanel();
+        panelIrHaciaAtras.setOpaque(true);
+        panelIrHaciaAtras.setBackground(Color.black);
         panelIrHaciaAtras.setLayout(new FlowLayout(FlowLayout.LEFT));
         //BOTON PARA VOLVER ATRAS
         JLabel volverAtras = new JLabel();
@@ -185,7 +187,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         //PANEL DONDE ESTARA LA INFO DEL PILOTO
         JPanel panelInfoPilotoIzq = new JPanel(new BorderLayout());
         panelInfoPilotoIzq.setPreferredSize(new Dimension(400, 100));
-        panelInfoPilotoIzq.setBackground(Color.WHITE);
+        panelInfoPilotoIzq.setBackground(new Color(255,255,255,150));
         //Jlabel bandera
         JLabel paisPilotoIzq = new JLabel();
         String rutaPais = escuderia.getPilotos().get(0).getPais().getRutaImagen();
@@ -250,7 +252,7 @@ public class panelMotosPilotos extends javax.swing.JPanel {
         //PANEL DONDE ESTARA LA INFO DEL PILOTO
         JPanel panelInfoPilotoDerch = new JPanel(new BorderLayout());
         panelInfoPilotoDerch.setPreferredSize(new Dimension(400, 100));
-        panelInfoPilotoDerch.setBackground(Color.WHITE);
+        panelInfoPilotoDerch.setBackground(new Color(255,255,255,150));
         //Jlabel bandera
         JLabel paisPilotoDerch = new JLabel();
         String rutaPaisDerch = escuderia.getPilotos().get(1).getPais().getRutaImagen();
