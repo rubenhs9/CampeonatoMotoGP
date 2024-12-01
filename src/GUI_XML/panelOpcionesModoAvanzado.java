@@ -17,6 +17,7 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -152,7 +153,9 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                XMLExporter exporter = new XMLExporter();
+                exporter.exportarCampeonato(campeonato, "res\\storage\\campeonato2024.xml");
+
             }
 
             @Override
@@ -191,6 +194,10 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
                     campeonato.setDocumentoXML2012(document);
                     //Mostrar todo el XML
 //                    System.out.println("" + parser.getXmlAsString());
+                    String mensaje = "<html><div style='text-align: center;'>El archivo" + 
+                 " ha sido importado exitosamente" + "</div></html>";
+
+                    JOptionPane.showMessageDialog(panelOpciones, mensaje, "CONFIRMADO", JOptionPane.INFORMATION_MESSAGE);
 
                 } catch (Exception ee) {
                     ee.printStackTrace();
