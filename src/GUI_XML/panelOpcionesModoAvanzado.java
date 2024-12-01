@@ -159,7 +159,8 @@ public class panelOpcionesModoAvanzado extends javax.swing.JPanel {
         segundoBoton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                XMLExporter exporter = new XMLExporter();
+                exporter.exportarCampeonato(campeonato, "res\\storage\\campeonato2024.xml");
             }
 
             @Override

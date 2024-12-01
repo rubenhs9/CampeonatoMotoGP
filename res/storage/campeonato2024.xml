@@ -3,54 +3,18 @@
     <escuderias>
         <escuderia>
             <nombre>Ducati Lenovo Team</nombre>
-            <piloto>
-                <nombre>Jack Miller</nombre>
-                <pais>AUSTRALIA</pais>
-                <moto>RC16</moto>
-                <puntos>207</puntos>
-            </piloto>
-            <piloto>
-                <nombre>Jorge Martín</nombre>
-                <pais>ESPAÑA</pais>
-                <moto>Desmosedici GP24</moto>
-                <puntos>283</puntos>
-            </piloto>
         </escuderia>
         <escuderia>
             <nombre>Red Bull KTM Factory Racing</nombre>
-            <piloto>
-                <nombre>Enea Bastianini</nombre>
-                <pais>ITALIA</pais>
-                <moto>Desmosedici GP24</moto>
-                <puntos>232</puntos>
-            </piloto>
         </escuderia>
         <escuderia>
             <nombre>Aprilia Racing</nombre>
-            <piloto>
-                <nombre>Aleix Espargaró</nombre>
-                <pais>ESPAÑA</pais>
-                <moto>RS-GP</moto>
-                <puntos>480</puntos>
-            </piloto>
-            <piloto>
-                <nombre>Maverick Viñales</nombre>
-                <pais>ESPAÑA</pais>
-                <moto>RS-GP</moto>
-                <puntos>201</puntos>
-            </piloto>
         </escuderia>
         <escuderia>
             <nombre>Prima Pramac Racing</nombre>
         </escuderia>
         <escuderia>
             <nombre>Monster Energy Yamaha MotoGP</nombre>
-            <piloto>
-                <nombre>Fabio Quartararo</nombre>
-                <pais>FRANCIA</pais>
-                <moto>YZR-M1</moto>
-                <puntos>287</puntos>
-            </piloto>
         </escuderia>
         <escuderia>
             <nombre>Gresini Racing MotoGP</nombre>

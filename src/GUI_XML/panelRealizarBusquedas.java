@@ -103,6 +103,7 @@ public class panelRealizarBusquedas extends javax.swing.JPanel {
         scrollPane = new JScrollPane(panelResultados);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new java.awt.Dimension(500, 400));  
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         // Asegurarse de no borrar el botón, solo actualizar el contenido
         this.remove(scrollPane);  // Eliminar solo el contenido anterior
