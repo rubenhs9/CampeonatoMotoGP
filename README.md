@@ -1,5 +1,8 @@
 # README - Campeonato MotoGP
 
+> ⚠️ Aviso: Este proyecto es **solo con fines educativos**.  
+> Las imágenes y marcas de MotoGP son usadas únicamente a modo de demostración y **no pertenecen al autor**.
+
 ## 📋 Descripción del Proyecto
 
 Sistema de gestión de campeonatos de MotoGP desarrollado en Java con interfaz gráfica Swing. La aplicación permite gestionar escuderías, pilotos, circuitos y clasificaciones del campeonato, con funcionalidades avanzadas de exportación e importación de datos en formato XML.
