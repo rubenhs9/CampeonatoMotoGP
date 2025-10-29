@@ -153,7 +153,7 @@ Cada escudería incluye colores primarios y secundarios personalizados para la i
 ---
 
 **Desarrolladores**: 
- - [Rubén](https://github.com/rubenhs9)
- - [Jesús](https://github.com/LightnigFast)
+- [**Jesús Gómez Villaboa**](https://github.com/LightnigFast) · [LinkedIn](https://linkedin.com/in/jesús-gómez-274111351/)
+- [**Rubén De Las Heras Silveira**](https://github.com/rubenhs9) · [LinkedIn](https://linkedin.com/in/rubenhs9/)
 
 **Proyecto**: Sistema de Gestión de Campeonato MotoGP 2024
